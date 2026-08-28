@@ -1,0 +1,106 @@
+/* Home's source stylesheet is preserved in index.css. Template-only adaptations live here. */
+:root { letter-spacing: 0; }
+body { min-width: 0; }
+.app-shell, .app-shell [class], .ui-dialog-content [class] { letter-spacing: 0; }
+.ui-button:disabled { cursor: not-allowed; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.ui-card-title, .hero-copy h1, .section-heading h2, .brand-name, .support-copy h2 { letter-spacing: 0; }
+.hero-copy h1 { font-size: 58px; }
+.section-heading h2 { font-size: 42px; }
+.support-copy h2 { font-size: 39px; }
+.header-primary { white-space: nowrap; flex-shrink: 0; }
+.people-page { min-height: 100vh; background: #f6f8fb; color: #292d34; }
+.people-page .site-header { background: #fff; }
+.template-nav { display: flex; align-items: center; gap: .5rem; margin-left: 3rem; }
+.template-nav .template-nav-current { color: #3478f6; background: #f0f5fe; }
+.template-data-badge { margin-left: auto; border: 1px solid #e1e6ef; border-radius: .375rem; padding: .25rem .5rem; color: #7a8493; font-size: .6875rem; white-space: nowrap; }
+.people-main { width: min(1240px, calc(100% - 72px)); margin: 0 auto; padding: 1.75rem 0 2rem; }
+.people-breadcrumb { display: flex; align-items: center; gap: .5rem; color: #8c95a2; font-size: .75rem; }
+.people-breadcrumb span:last-child { color: #596473; }
+.people-page-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 1.25rem 0 1.75rem; }
+.people-page-heading h1 { margin: 0; font-size: 1.75rem; font-weight: 650; line-height: 1.4; }
+.people-page-heading p { margin: .5rem 0 0; color: #7a8492; font-size: .75rem; }
+.people-page-heading p > span { padding: 0 .375rem; }
+.people-owner-section { border-top: 1px solid #e4e9f0; border-bottom: 1px solid #e4e9f0; padding: 1.25rem 0 1.5rem; }
+.people-owner-section h2 { display: flex; align-items: center; gap: .5rem; margin: 0 0 1.125rem; color: #414b5c; font-size: .875rem; font-weight: 600; }
+.people-owner-section h2 svg { color: #7b8799; }
+.people-field-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+.people-field { display: flex; flex-direction: column; gap: .5rem; min-width: 0; }
+.people-field > label { display: flex; align-items: center; gap: .375rem; font-size: .75rem; font-weight: 500; }
+.people-field > label svg { color: #9199a5; }
+.people-field-meta { min-height: 1rem; color: #8b93a0; font-size: .6875rem; }
+.people-assignments { margin-top: 2rem; }
+.people-section-heading { display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; }
+.people-section-heading h2 { margin: 0; font-size: 1rem; font-weight: 600; }
+.people-section-heading > span { color: #8992a0; font-size: .6875rem; }
+.people-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .875rem; }
+.people-tabs { display: flex; flex-shrink: 0; gap: .25rem; border: 1px solid #e4e8ee; border-radius: .5rem; padding: .1875rem; background: #edf0f4; }
+.ui-button.people-tab { gap: .375rem; min-height: 1.875rem; border-radius: .375rem; padding: 0 .75rem; color: #7a8391; font-size: .75rem; font-weight: 500; transform: none; }
+.ui-button.people-tab-active { color: #303843; background: #fff; box-shadow: 0 1px 3px rgb(30 40 55 / 7%); }
+.people-tab > span { color: #99a1ac; font-size: .625rem; font-variant-numeric: tabular-nums; }
+.people-store-search { position: relative; display: flex; align-items: center; width: 15rem; max-width: 100%; }
+.people-store-search > svg { position: absolute; left: .75rem; color: #919aaa; }
+.people-store-search .ui-input { width: 100%; min-height: 2.25rem; height: 2.25rem; border: 1px solid #e1e6ee; border-radius: .5rem; padding: 0 2rem 0 2.25rem; background: #fff; font-size: .75rem; }
+.people-store-search .ui-button { position: absolute; right: .125rem; width: 1.75rem; min-height: 1.75rem; transform: none; }
+.ui-table-container { width: 100%; overflow: auto; }
+.people-table-scroll { border: 1px solid #e2e7ef; border-radius: .5rem; background: #fff; overscroll-behavior-x: contain; scrollbar-width: thin; }
+.ui-table { width: 100%; border-collapse: collapse; text-align: left; font-size: .75rem; font-variant-numeric: tabular-nums; }
+.people-table-scroll .ui-table { min-width: 56rem; }
+.ui-table th { height: 2.625rem; border-bottom: 1px solid #e6e9ef; padding: 0 1rem; background: #f4f6f9; color: #687282; font-size: .6875rem; font-weight: 600; white-space: nowrap; }
+.ui-table td { height: 4.375rem; border-bottom: 1px solid #edf0f5; padding: .75rem 1rem; vertical-align: middle; }
+.ui-table th + th, .ui-table td + td { border-left: 1px solid #edf0f5; }
+.ui-table tr:last-child td { border-bottom: 0; }
+.ui-table tbody tr:nth-child(even) { background: #f8fafd; }
+.ui-table tbody tr:hover { background: #f0f6ff; }
+.people-store-cell, .people-assigned-person { display: flex; align-items: center; gap: .5rem; }
+.people-store-cell strong, .people-assigned-person strong { display: block; color: #3b424d; font-size: .75rem; font-weight: 600; }
+.people-store-cell small, .people-assigned-person small { display: block; margin-top: .375rem; color: #8a93a0; font-size: .625rem; }
+.people-store-icon { display: grid; place-items: center; flex-shrink: 0; width: 1.75rem; height: 1.75rem; border-radius: .5rem; color: #3b92f1; background: #e9f3ff; }
+.people-person-icon { display: grid; place-items: center; flex-shrink: 0; width: 1.75rem; height: 1.75rem; border-radius: 50%; color: #8c77d9; background: #eeeafa; }
+.people-date { color: #6d7684; font-size: .6875rem; white-space: nowrap; }
+.people-state { display: inline-flex; align-items: center; gap: .25rem; border: 1px solid #c9e8d4; border-radius: 1rem; padding: .25rem .5rem; color: #4b9e68; background: #ebf7ee; font-size: .625rem; white-space: nowrap; }
+.people-province { display: inline-block; border: 1px solid #c8eaf2; border-radius: 1rem; padding: .25rem .5rem; color: #388fa2; background: #edf9fc; font-size: .625rem; white-space: nowrap; }
+.people-city { margin-left: .5rem; color: #8c94a0; font-size: .625rem; white-space: nowrap; }
+.people-unassigned { display: inline-flex; border: 1px solid #f3dfbf; border-radius: 1rem; padding: .25rem .5rem; color: #b8802d; background: #fff7e9; font-size: .625rem; white-space: nowrap; }
+.people-assignment-column { width: 7.25rem; text-align: center; }
+.ui-table .people-empty-table { height: 12rem; text-align: center; color: #8a93a1; }
+.people-table-footer { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-top: .875rem; color: #8a93a1; font-size: .6875rem; }
+.people-table-footer > span > span { margin: 0 .375rem; }
+.people-bottom-nav { margin-top: 1.5rem; }
+.people-bottom-nav .ui-button { min-height: 2rem; padding-left: 0; color: #828d9d; font-size: .75rem; }
+
+@media (max-width: 1120px) {
+  .hero-copy h1 { font-size: 52px; }
+  .app-shell .desktop-nav { margin-left: 1rem; }
+  .app-shell .header-download { display: none; }
+}
+
+@media (max-width: 820px) {
+  .app-shell .desktop-nav { max-height: calc(100dvh - 5rem); overflow-y: auto; overscroll-behavior: contain; margin: 0; }
+  .people-main { width: calc(100% - 36px); }
+  .template-nav { margin-left: auto; gap: .125rem; }
+  .template-data-badge { margin-left: .5rem; }
+  .people-field-grid { grid-template-columns: minmax(0, 1fr); gap: 1.125rem; }
+  .people-toolbar { align-items: stretch; flex-direction: column; }
+  .people-tabs { align-self: flex-start; }
+  .people-store-search { width: 100%; }
+  .people-page-heading { margin-bottom: 1.25rem; }
+  .people-page-heading h1 { font-size: 1.5rem; }
+  .hero-copy h1 { font-size: 44px; }
+  .section-heading h2 { font-size: 36px; }
+  .support-copy h2 { font-size: 33px; }
+}
+
+@media (max-width: 560px) {
+  .people-main { width: calc(100% - 28px); padding-top: 1.25rem; }
+  .people-page .template-data-badge { display: none; }
+  .template-nav .ui-button { gap: .25rem; padding: 0 .5rem; font-size: .75rem; }
+  .people-table-footer { flex-wrap: wrap; }
+  .hero-copy h1 { font-size: 35px; }
+  .section-heading h2 { font-size: 29px; }
+  .support-copy h2 { font-size: 29px; }
+}
+
+@media (max-width: 360px) {
+  .app-shell .header-primary { display: none; }
+}

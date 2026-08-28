@@ -1,0 +1,1424 @@
+{
+  "version": 1,
+  "navigation": [
+    {
+      "id": "system",
+      "name": "系统矩阵",
+      "href": "",
+      "enabled": true,
+      "order": 10,
+      "megaMenuId": "system",
+      "visibility": {
+        "mode": "inherit"
+      }
+    },
+    {
+      "id": "collaboration",
+      "name": "业务协同",
+      "href": "",
+      "enabled": true,
+      "order": 20,
+      "megaMenuId": "collaboration",
+      "visibility": {
+        "mode": "inherit"
+      }
+    },
+    {
+      "id": "operations",
+      "name": "数据与运营",
+      "href": "",
+      "enabled": true,
+      "order": 30,
+      "megaMenuId": "operations",
+      "visibility": {
+        "mode": "inherit"
+      }
+    },
+    {
+      "id": "support",
+      "name": "帮助与支持",
+      "href": "",
+      "enabled": true,
+      "order": 40,
+      "megaMenuId": "support",
+      "visibility": {
+        "mode": "inherit"
+      }
+    },
+    {
+      "id": "person-picker",
+      "name": "人员选择",
+      "href": "/components/person-picker",
+      "enabled": true,
+      "order": 50,
+      "visibility": {
+        "mode": "public"
+      }
+    }
+  ],
+  "megaMenus": [
+    {
+      "id": "system",
+      "categories": [
+        {
+          "id": "system-category-1",
+          "label": "全部系统",
+          "eyebrow": "",
+          "title": "尚毅核心业务系统",
+          "description": "从同一个入口，进入人员、招商与运营工作现场。",
+          "enabled": true,
+          "order": 10,
+          "sections": [
+            {
+              "id": "system-category-1-section-1",
+              "title": "核心业务系统",
+              "enabled": true,
+              "order": 10,
+              "items": [
+                {
+                  "id": "system-category-1-section-1-item-1",
+                  "title": "人员与组织中台",
+                  "description": "人员、组织、招聘与权限",
+                  "badge": "核心",
+                  "href": "/components/person-picker",
+                  "systemId": "hrm",
+                  "iconKey": "users",
+                  "tone": "blue",
+                  "enabled": true,
+                  "order": 10,
+                  "visibility": {
+                    "mode": "inherit"
+                  }
+                },
+                {
+                  "id": "system-category-1-section-1-item-2",
+                  "title": "水果招商中台",
+                  "description": "线索、跟进、签约与入驻",
+                  "badge": "招商账号",
+                  "href": "/components/person-picker",
+                  "systemId": "invest",
+                  "iconKey": "store",
+                  "tone": "orange",
+                  "enabled": true,
+                  "order": 20,
+                  "visibility": {
+                    "mode": "inherit"
+                  }
+                },
+                {
+                  "id": "system-category-1-section-1-item-3",
+                  "title": "水果运营中台",
+                  "description": "门店、经营数据与日报",
+                  "badge": "运营账号",
+                  "href": "/components/person-picker",
+                  "systemId": "operator",
+                  "iconKey": "barChart",
+                  "tone": "mint",
+                  "enabled": true,
+                  "order": 30,
+                  "visibility": {
+                    "mode": "inherit"
+                  }
+                }
+              ],
+              "visibility": {
+                "mode": "inherit"
+              }
+            },
+            {
+              "id": "system-category-1-section-2",
+              "title": "常用能力",
+              "enabled": true,
+              "order": 20,
+              "items": [
+                {
+                  "id": "system-category-1-section-2-item-1",
+                  "title": "组织与权限",
+                  "description": "统一人员和数据范围",
+                  "systemId": "hrm",
+                  "iconKey": "shield",
+                  "tone": "cyan",
+                  "enabled": true,
+                  "order": 10,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "hrm.organization.tree",
+                      "authorization.admin.manage"
+                    ]
+                  }
+                },
+                {
+                  "id": "system-category-1-section-2-item-2",
+                  "title": "招商跟进",
+                  "description": "推进线索与商户合作",
+                  "systemId": "invest",
+                  "iconKey": "phone",
+                  "tone": "coral",
+                  "enabled": true,
+                  "order": 20,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.leads.pending",
+                      "invest.intentions.mine",
+                      "invest.public.intention"
+                    ]
+                  }
+                },
+                {
+                  "id": "system-category-1-section-2-item-3",
+                  "title": "经营日报",
+                  "description": "运营账号生成并核对日报",
+                  "systemId": "operator",
+                  "iconKey": "spreadsheet",
+                  "tone": "green",
+                  "enabled": true,
+                  "order": 30,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.yesterday.workspace"
+                    ]
+                  }
+                },
+                {
+                  "id": "system-category-1-section-2-item-4",
+                  "title": "数据同步",
+                  "description": "更新门店业务快照",
+                  "systemId": "operator",
+                  "iconKey": "refresh",
+                  "tone": "purple",
+                  "enabled": true,
+                  "order": 40,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.sync.workspace"
+                    ]
+                  }
+                }
+              ],
+              "visibility": {
+                "mode": "inherit"
+              }
+            }
+          ],
+          "visibility": {
+            "mode": "inherit"
+          }
+        },
+        {
+          "id": "system-category-2",
+          "label": "组织与权限",
+          "eyebrow": "",
+          "title": "人员与组织能力",
+          "description": "围绕人员生命周期、组织事实与访问边界开展工作。",
+          "enabled": true,
+          "order": 20,
+          "sections": [
+            {
+              "id": "system-category-2-section-1",
+              "title": "人员与组织能力",
+              "enabled": true,
+              "order": 10,
+              "items": [
+                {
+                  "id": "system-category-2-section-1-item-1",
+                  "title": "人员名册",
+                  "description": "查询人员与任职状态",
+                  "systemId": "hrm",
+                  "iconKey": "users",
+                  "tone": "blue",
+                  "enabled": true,
+                  "order": 10,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "hrm.personnel.roster"
+                    ]
+                  }
+                },
+                {
+                  "id": "system-category-2-section-1-item-2",
+                  "title": "组织架构",
+                  "description": "维护组织、岗位与负责人",
+                  "systemId": "hrm",
+                  "iconKey": "network",
+                  "tone": "cyan",
+                  "enabled": true,
+                  "order": 20,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "hrm.organization.tree"
+                    ]
+                  }
+                },
+                {
+                  "id": "system-category-2-section-1-item-3",
+                  "title": "招聘管理",
+                  "description": "候选人、面试与入职安排",
+                  "systemId": "hrm",
+                  "iconKey": "briefcase",
+                  "tone": "violet",
+                  "enabled": true,
+                  "order": 30,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "hrm.recruitment.appointments",
+                      "hrm.recruitment.interviews",
+                      "hrm.recruitment.candidates"
+                    ]
+                  }
+                },
+                {
+                  "id": "system-category-2-section-1-item-4",
+                  "title": "权限中心",
+                  "description": "角色、功能与数据范围",
+                  "systemId": "hrm",
+                  "iconKey": "key",
+                  "tone": "orange",
+                  "enabled": true,
+                  "order": 40,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "authorization.admin.manage"
+                    ]
+                  }
+                },
+                {
+                  "id": "system-category-2-section-1-item-5",
+                  "title": "人员变化",
+                  "description": "入职、调岗与职级调整",
+                  "systemId": "hrm",
+                  "iconKey": "person",
+                  "tone": "green",
+                  "enabled": true,
+                  "order": 50,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "hrm.personnel.actions"
+                    ]
+                  }
+                },
+                {
+                  "id": "system-category-2-section-1-item-6",
+                  "title": "组织事实",
+                  "description": "让下游系统统一引用",
+                  "systemId": "hrm",
+                  "iconKey": "building",
+                  "tone": "coral",
+                  "enabled": true,
+                  "order": 60,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "hrm.organization.tree"
+                    ]
+                  }
+                }
+              ],
+              "visibility": {
+                "mode": "inherit"
+              }
+            }
+          ],
+          "visibility": {
+            "mode": "inherit"
+          }
+        },
+        {
+          "id": "system-category-3",
+          "label": "业务增长",
+          "eyebrow": "",
+          "title": "招商与商户协同",
+          "description": "让每条线索从进入到签约、入驻都能找到下一步。",
+          "enabled": true,
+          "order": 30,
+          "sections": [
+            {
+              "id": "system-category-3-section-1",
+              "title": "招商能力",
+              "enabled": true,
+              "order": 10,
+              "items": [
+                {
+                  "id": "system-category-3-section-1-item-1",
+                  "title": "线索分配",
+                  "description": "公海、私海与分配队列",
+                  "systemId": "invest",
+                  "iconKey": "route",
+                  "tone": "blue",
+                  "enabled": true,
+                  "order": 10,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.allocation.workspace"
+                    ]
+                  }
+                },
+                {
+                  "id": "system-category-3-section-1-item-2",
+                  "title": "招商跟进",
+                  "description": "记录联系与下一次行动",
+                  "systemId": "invest",
+                  "iconKey": "phone",
+                  "tone": "cyan",
+                  "enabled": true,
+                  "order": 20,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.leads.pending",
+                      "invest.intentions.mine",
+                      "invest.public.intention"
+                    ]
+                  }
+                },
+                {
+                  "id": "system-category-3-section-1-item-3",
+                  "title": "签约管理",
+                  "description": "沉淀有效签约事实",
+                  "systemId": "invest",
+                  "iconKey": "handshake",
+                  "tone": "orange",
+                  "enabled": true,
+                  "order": 30,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.signings.mine",
+                      "invest.signings.team"
+                    ]
+                  }
+                },
+                {
+                  "id": "system-category-3-section-1-item-4",
+                  "title": "商户入驻",
+                  "description": "提交资料并推进运营交接",
+                  "systemId": "invest",
+                  "iconKey": "store",
+                  "tone": "coral",
+                  "enabled": true,
+                  "order": 40,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.merchant-onboarding.member",
+                      "invest.merchant-onboarding.manager"
+                    ]
+                  }
+                },
+                {
+                  "id": "system-category-3-section-1-item-5",
+                  "title": "招商工作台",
+                  "description": "查看个人与团队进展",
+                  "systemId": "invest",
+                  "iconKey": "sparkles",
+                  "tone": "violet",
+                  "enabled": true,
+                  "order": 50,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.analytics.personal",
+                      "invest.analytics.dashboard",
+                      "invest.analytics.team"
+                    ]
+                  }
+                },
+                {
+                  "id": "system-category-3-section-1-item-6",
+                  "title": "共享公海",
+                  "description": "统一查看待分配线索",
+                  "systemId": "invest",
+                  "iconKey": "grid",
+                  "tone": "green",
+                  "enabled": true,
+                  "order": 60,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.public.ordinary",
+                      "invest.public.intention"
+                    ]
+                  }
+                }
+              ],
+              "visibility": {
+                "mode": "inherit"
+              }
+            }
+          ],
+          "visibility": {
+            "mode": "inherit"
+          }
+        },
+        {
+          "id": "system-category-4",
+          "label": "运营管理",
+          "eyebrow": "",
+          "title": "门店经营与数据管理",
+          "description": "围绕门店主档、日报和经营指标，形成连续的运营视图。",
+          "enabled": true,
+          "order": 40,
+          "sections": [
+            {
+              "id": "system-category-4-section-1",
+              "title": "经营数据",
+              "enabled": true,
+              "order": 10,
+              "items": [
+                {
+                  "id": "system-category-4-section-1-item-1",
+                  "title": "门店主档",
+                  "description": "运营账号查看门店信息",
+                  "systemId": "operator",
+                  "iconKey": "database",
+                  "tone": "blue",
+                  "enabled": true,
+                  "order": 10,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.crm.workspace"
+                    ]
+                  }
+                },
+                {
+                  "id": "system-category-4-section-1-item-2",
+                  "title": "日报生成",
+                  "description": "运营账号生成正确日报",
+                  "systemId": "operator",
+                  "iconKey": "spreadsheet",
+                  "tone": "green",
+                  "enabled": true,
+                  "order": 20,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.yesterday.workspace"
+                    ]
+                  }
+                },
+                {
+                  "id": "system-category-4-section-1-item-3",
+                  "title": "经营数据",
+                  "description": "运营账号查看关键指标",
+                  "systemId": "operator",
+                  "iconKey": "barChart",
+                  "tone": "cyan",
+                  "enabled": true,
+                  "order": 30,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.yesterday.workspace"
+                    ]
+                  }
+                },
+                {
+                  "id": "system-category-4-section-1-item-4",
+                  "title": "数据同步",
+                  "description": "运营账号更新业务快照",
+                  "systemId": "operator",
+                  "iconKey": "refresh",
+                  "tone": "orange",
+                  "enabled": true,
+                  "order": 40,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.sync.workspace"
+                    ]
+                  }
+                }
+              ],
+              "visibility": {
+                "mode": "inherit"
+              }
+            }
+          ],
+          "visibility": {
+            "mode": "inherit"
+          }
+        }
+      ]
+    },
+    {
+      "id": "collaboration",
+      "categories": [
+        {
+          "id": "collaboration-category-1",
+          "label": "全业务链路",
+          "eyebrow": "",
+          "title": "三个入口，一条工作路径",
+          "description": "招商与运营共用同一平台，通过账号权限进入各自工作现场。",
+          "enabled": true,
+          "order": 10,
+          "sections": [
+            {
+              "id": "collaboration-category-1-section-1",
+              "title": "端到端协同",
+              "enabled": true,
+              "order": 10,
+              "items": [
+                {
+                  "id": "collaboration-category-1-section-1-item-1",
+                  "title": "组织与身份",
+                  "description": "从人员和权限开始",
+                  "systemId": "hrm",
+                  "iconKey": "users",
+                  "tone": "blue",
+                  "enabled": true,
+                  "order": 10,
+                  "visibility": {
+                    "mode": "inherit"
+                  }
+                },
+                {
+                  "id": "collaboration-category-1-section-1-item-2",
+                  "title": "线索与商户",
+                  "description": "推进招商与有效签约",
+                  "systemId": "invest",
+                  "iconKey": "store",
+                  "tone": "orange",
+                  "enabled": true,
+                  "order": 20,
+                  "visibility": {
+                    "mode": "inherit"
+                  }
+                },
+                {
+                  "id": "collaboration-category-1-section-1-item-3",
+                  "title": "运营交接",
+                  "description": "承接可经营门店与主档",
+                  "systemId": "operator",
+                  "iconKey": "barChart",
+                  "tone": "mint",
+                  "enabled": true,
+                  "order": 30,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.sync.workspace"
+                    ]
+                  }
+                },
+                {
+                  "id": "collaboration-category-1-section-1-item-4",
+                  "title": "经营复盘",
+                  "description": "用日报和指标核对结果",
+                  "systemId": "operator",
+                  "iconKey": "refresh",
+                  "tone": "violet",
+                  "enabled": true,
+                  "order": 40,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.yesterday.workspace"
+                    ]
+                  }
+                }
+              ],
+              "visibility": {
+                "mode": "inherit"
+              }
+            }
+          ],
+          "visibility": {
+            "mode": "inherit"
+          }
+        },
+        {
+          "id": "collaboration-category-2",
+          "label": "招商协同",
+          "eyebrow": "",
+          "title": "从线索到运营交接",
+          "description": "让线索分配、跟进、签约和入驻按顺序推进。",
+          "enabled": true,
+          "order": 20,
+          "sections": [
+            {
+              "id": "collaboration-category-2-section-1",
+              "title": "招商链路",
+              "enabled": true,
+              "order": 10,
+              "items": [
+                {
+                  "id": "collaboration-category-2-section-1-item-1",
+                  "title": "获取人员范围",
+                  "description": "按人员中台权限进入业务",
+                  "systemId": "hrm",
+                  "iconKey": "shield",
+                  "tone": "blue",
+                  "enabled": true,
+                  "order": 10,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "hrm.personnel.roster"
+                    ]
+                  }
+                },
+                {
+                  "id": "collaboration-category-2-section-1-item-2",
+                  "title": "分配与跟进",
+                  "description": "将线索推进到有意愿",
+                  "systemId": "invest",
+                  "iconKey": "route",
+                  "tone": "cyan",
+                  "enabled": true,
+                  "order": 20,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.allocation.workspace",
+                      "invest.leads.pending",
+                      "invest.intentions.mine",
+                      "invest.public.intention"
+                    ]
+                  }
+                },
+                {
+                  "id": "collaboration-category-2-section-1-item-3",
+                  "title": "签约与入驻",
+                  "description": "形成商户合作事实",
+                  "systemId": "invest",
+                  "iconKey": "handshake",
+                  "tone": "orange",
+                  "enabled": true,
+                  "order": 30,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.signings.mine",
+                      "invest.signings.team",
+                      "invest.merchant-onboarding.member",
+                      "invest.merchant-onboarding.manager"
+                    ]
+                  }
+                },
+                {
+                  "id": "collaboration-category-2-section-1-item-4",
+                  "title": "运营交接",
+                  "description": "在同一平台承接可经营门店",
+                  "systemId": "operator",
+                  "iconKey": "store",
+                  "tone": "green",
+                  "enabled": true,
+                  "order": 40,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.sync.workspace"
+                    ]
+                  }
+                }
+              ],
+              "visibility": {
+                "mode": "inherit"
+              }
+            }
+          ],
+          "visibility": {
+            "mode": "inherit"
+          }
+        },
+        {
+          "id": "collaboration-category-3",
+          "label": "经营复盘",
+          "eyebrow": "",
+          "title": "从门店经营到结果复盘",
+          "description": "门店主档、日报和经营指标在同一条运营链路中持续核对。",
+          "enabled": true,
+          "order": 30,
+          "sections": [
+            {
+              "id": "collaboration-category-3-section-1",
+              "title": "经营链路",
+              "enabled": true,
+              "order": 10,
+              "items": [
+                {
+                  "id": "collaboration-category-3-section-1-item-1",
+                  "title": "门店主档",
+                  "description": "运营账号确认门店生命周期",
+                  "systemId": "operator",
+                  "iconKey": "database",
+                  "tone": "blue",
+                  "enabled": true,
+                  "order": 10,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.crm.workspace"
+                    ]
+                  }
+                },
+                {
+                  "id": "collaboration-category-3-section-1-item-2",
+                  "title": "经营数据",
+                  "description": "运营账号汇总日报和指标",
+                  "systemId": "operator",
+                  "iconKey": "barChart",
+                  "tone": "mint",
+                  "enabled": true,
+                  "order": 20,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.yesterday.workspace"
+                    ]
+                  }
+                },
+                {
+                  "id": "collaboration-category-3-section-1-item-3",
+                  "title": "异常核对",
+                  "description": "定位缺失和异常数据",
+                  "systemId": "operator",
+                  "iconKey": "list",
+                  "tone": "violet",
+                  "enabled": true,
+                  "order": 30,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.yesterday.workspace"
+                    ]
+                  }
+                },
+                {
+                  "id": "collaboration-category-3-section-1-item-4",
+                  "title": "结果复盘",
+                  "description": "查看结果与改进方向",
+                  "systemId": "operator",
+                  "iconKey": "refresh",
+                  "tone": "orange",
+                  "enabled": true,
+                  "order": 40,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.yesterday.workspace"
+                    ]
+                  }
+                }
+              ],
+              "visibility": {
+                "mode": "inherit"
+              }
+            }
+          ],
+          "visibility": {
+            "mode": "inherit"
+          }
+        }
+      ]
+    },
+    {
+      "id": "operations",
+      "categories": [
+        {
+          "id": "operations-category-1",
+          "label": "经营数据",
+          "eyebrow": "",
+          "title": "把门店经营数据放在一起看",
+          "description": "围绕门店主档、日报和经营指标形成稳定视图。",
+          "enabled": true,
+          "order": 10,
+          "sections": [
+            {
+              "id": "operations-category-1-section-1",
+              "title": "数据能力",
+              "enabled": true,
+              "order": 10,
+              "items": [
+                {
+                  "id": "operations-category-1-section-1-item-1",
+                  "title": "门店主档",
+                  "description": "运营账号查看门店业务信息",
+                  "systemId": "operator",
+                  "iconKey": "database",
+                  "tone": "blue",
+                  "enabled": true,
+                  "order": 10,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.crm.workspace"
+                    ]
+                  }
+                },
+                {
+                  "id": "operations-category-1-section-1-item-2",
+                  "title": "日报生成",
+                  "description": "运营账号生成并验收日报",
+                  "systemId": "operator",
+                  "iconKey": "spreadsheet",
+                  "tone": "green",
+                  "enabled": true,
+                  "order": 20,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.yesterday.workspace"
+                    ]
+                  }
+                },
+                {
+                  "id": "operations-category-1-section-1-item-3",
+                  "title": "经营排行",
+                  "description": "运营账号查看指标表现",
+                  "systemId": "operator",
+                  "iconKey": "barChart",
+                  "tone": "cyan",
+                  "enabled": true,
+                  "order": 30,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.yesterday.workspace"
+                    ]
+                  }
+                },
+                {
+                  "id": "operations-category-1-section-1-item-4",
+                  "title": "版本同步",
+                  "description": "运营账号更新数据快照",
+                  "systemId": "operator",
+                  "iconKey": "refresh",
+                  "tone": "orange",
+                  "enabled": true,
+                  "order": 40,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.sync.workspace"
+                    ]
+                  }
+                }
+              ],
+              "visibility": {
+                "mode": "inherit"
+              }
+            }
+          ],
+          "visibility": {
+            "mode": "inherit"
+          }
+        },
+        {
+          "id": "operations-category-2",
+          "label": "运营协同",
+          "eyebrow": "",
+          "title": "让门店事实和日常动作保持一致",
+          "description": "运营账号围绕门店、日报、同步和异常核对完成日常协作。",
+          "enabled": true,
+          "order": 20,
+          "sections": [
+            {
+              "id": "operations-category-2-section-1",
+              "title": "运营能力",
+              "enabled": true,
+              "order": 10,
+              "items": [
+                {
+                  "id": "operations-category-2-section-1-item-1",
+                  "title": "门店维护",
+                  "description": "核对门店主档和状态",
+                  "systemId": "operator",
+                  "iconKey": "database",
+                  "tone": "violet",
+                  "enabled": true,
+                  "order": 10,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.crm.workspace"
+                    ]
+                  }
+                },
+                {
+                  "id": "operations-category-2-section-1-item-2",
+                  "title": "经营日报",
+                  "description": "生成并检查每日数据",
+                  "systemId": "operator",
+                  "iconKey": "spreadsheet",
+                  "tone": "coral",
+                  "enabled": true,
+                  "order": 20,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.yesterday.workspace"
+                    ]
+                  }
+                },
+                {
+                  "id": "operations-category-2-section-1-item-3",
+                  "title": "异常清单",
+                  "description": "集中处理待核对事项",
+                  "systemId": "operator",
+                  "iconKey": "list",
+                  "tone": "green",
+                  "enabled": true,
+                  "order": 30,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.yesterday.workspace"
+                    ]
+                  }
+                },
+                {
+                  "id": "operations-category-2-section-1-item-4",
+                  "title": "经营概览",
+                  "description": "查看结果和门店表现",
+                  "systemId": "operator",
+                  "iconKey": "barChart",
+                  "tone": "blue",
+                  "enabled": true,
+                  "order": 40,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.yesterday.workspace"
+                    ]
+                  }
+                }
+              ],
+              "visibility": {
+                "mode": "inherit"
+              }
+            }
+          ],
+          "visibility": {
+            "mode": "inherit"
+          }
+        },
+        {
+          "id": "operations-category-3",
+          "label": "结果复盘",
+          "eyebrow": "",
+          "title": "从结果回到业务动作",
+          "description": "用经营数据解释门店表现，让问题回到可执行的运营动作。",
+          "enabled": true,
+          "order": 30,
+          "sections": [
+            {
+              "id": "operations-category-3-section-1",
+              "title": "复盘入口",
+              "enabled": true,
+              "order": 10,
+              "items": [
+                {
+                  "id": "operations-category-3-section-1-item-1",
+                  "title": "经营概览",
+                  "description": "运营账号查看门店表现",
+                  "systemId": "operator",
+                  "iconKey": "barChart",
+                  "tone": "mint",
+                  "enabled": true,
+                  "order": 10,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.yesterday.workspace"
+                    ]
+                  }
+                },
+                {
+                  "id": "operations-category-3-section-1-item-2",
+                  "title": "日报追溯",
+                  "description": "回看每日生成结果",
+                  "systemId": "operator",
+                  "iconKey": "spreadsheet",
+                  "tone": "violet",
+                  "enabled": true,
+                  "order": 20,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.yesterday.workspace"
+                    ]
+                  }
+                },
+                {
+                  "id": "operations-category-3-section-1-item-3",
+                  "title": "来源核对",
+                  "description": "确认结果引用的数据",
+                  "systemId": "operator",
+                  "iconKey": "database",
+                  "tone": "blue",
+                  "enabled": true,
+                  "order": 30,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.yesterday.workspace"
+                    ]
+                  }
+                },
+                {
+                  "id": "operations-category-3-section-1-item-4",
+                  "title": "重新同步",
+                  "description": "回到数据来源检查更新",
+                  "systemId": "operator",
+                  "iconKey": "refresh",
+                  "tone": "orange",
+                  "enabled": true,
+                  "order": 40,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "invest.operator.sync.workspace"
+                    ]
+                  }
+                }
+              ],
+              "visibility": {
+                "mode": "inherit"
+              }
+            }
+          ],
+          "visibility": {
+            "mode": "inherit"
+          }
+        }
+      ]
+    },
+    {
+      "id": "support",
+      "categories": [
+        {
+          "id": "support-category-1",
+          "label": "开始使用",
+          "eyebrow": "",
+          "title": "快速找到正确的系统入口",
+          "description": "先确定工作内容，再进入对应系统继续处理。",
+          "enabled": true,
+          "order": 10,
+          "sections": [
+            {
+              "id": "support-category-1-section-1",
+              "title": "入口说明",
+              "enabled": true,
+              "order": 10,
+              "items": [
+                {
+                  "id": "support-category-1-section-1-item-1",
+                  "title": "系统目录",
+                  "description": "查看全部核心系统",
+                  "href": "#systems",
+                  "iconKey": "grid",
+                  "tone": "blue",
+                  "enabled": true,
+                  "order": 10,
+                  "visibility": {
+                    "mode": "public"
+                  }
+                },
+                {
+                  "id": "support-category-1-section-1-item-2",
+                  "title": "业务链路",
+                  "description": "了解系统之间的关系",
+                  "href": "#workflow",
+                  "iconKey": "route",
+                  "tone": "cyan",
+                  "enabled": true,
+                  "order": 20,
+                  "visibility": {
+                    "mode": "public"
+                  }
+                },
+                {
+                  "id": "support-category-1-section-1-item-3",
+                  "title": "登录说明",
+                  "description": "可选登录并复用统一身份",
+                  "href": "#support",
+                  "iconKey": "login",
+                  "tone": "violet",
+                  "enabled": true,
+                  "order": 30,
+                  "visibility": {
+                    "mode": "public"
+                  }
+                },
+                {
+                  "id": "support-category-1-section-1-item-4",
+                  "title": "使用说明",
+                  "description": "了解入口与权限边界",
+                  "href": "#support",
+                  "iconKey": "book",
+                  "tone": "green",
+                  "enabled": true,
+                  "order": 40,
+                  "visibility": {
+                    "mode": "public"
+                  }
+                }
+              ],
+              "visibility": {
+                "mode": "inherit"
+              }
+            }
+          ],
+          "visibility": {
+            "mode": "inherit"
+          }
+        },
+        {
+          "id": "support-category-2",
+          "label": "登录与权限",
+          "eyebrow": "",
+          "title": "门户身份与系统权限各司其职",
+          "description": "门户复用人员中台身份，具体功能和数据范围仍由对应系统执行。",
+          "enabled": true,
+          "order": 20,
+          "sections": [
+            {
+              "id": "support-category-2-section-1",
+              "title": "访问帮助",
+              "enabled": true,
+              "order": 10,
+              "items": [
+                {
+                  "id": "support-category-2-section-1-item-1",
+                  "title": "账号登录",
+                  "description": "使用人员中台账号登录门户",
+                  "href": "#support",
+                  "iconKey": "login",
+                  "tone": "blue",
+                  "enabled": true,
+                  "order": 10,
+                  "visibility": {
+                    "mode": "public"
+                  }
+                },
+                {
+                  "id": "support-category-2-section-1-item-2",
+                  "title": "权限范围",
+                  "description": "按人员和组织范围访问",
+                  "systemId": "hrm",
+                  "iconKey": "shield",
+                  "tone": "violet",
+                  "enabled": true,
+                  "order": 20,
+                  "visibility": {
+                    "mode": "permission",
+                    "resourceCodes": [
+                      "authorization.admin.manage"
+                    ]
+                  }
+                },
+                {
+                  "id": "support-category-2-section-1-item-3",
+                  "title": "入口不可用",
+                  "description": "确认目标服务是否启动",
+                  "href": "#support",
+                  "iconKey": "lifeBuoy",
+                  "tone": "orange",
+                  "enabled": true,
+                  "order": 30,
+                  "visibility": {
+                    "mode": "public"
+                  }
+                },
+                {
+                  "id": "support-category-2-section-1-item-4",
+                  "title": "切换系统",
+                  "description": "回到首页选择其他入口",
+                  "href": "#systems",
+                  "iconKey": "refresh",
+                  "tone": "green",
+                  "enabled": true,
+                  "order": 40,
+                  "visibility": {
+                    "mode": "public"
+                  }
+                }
+              ],
+              "visibility": {
+                "mode": "inherit"
+              }
+            }
+          ],
+          "visibility": {
+            "mode": "inherit"
+          }
+        },
+        {
+          "id": "support-category-3",
+          "label": "反馈支持",
+          "eyebrow": "",
+          "title": "问题要反馈到正确的位置",
+          "description": "入口问题在首页反馈，业务问题由对应系统负责人处理。",
+          "enabled": true,
+          "order": 30,
+          "sections": [
+            {
+              "id": "support-category-3-section-1",
+              "title": "支持入口",
+              "enabled": true,
+              "order": 10,
+              "items": [
+                {
+                  "id": "support-category-3-section-1-item-1",
+                  "title": "入口反馈",
+                  "description": "反馈链接或导航问题",
+                  "href": "#support",
+                  "iconKey": "message",
+                  "tone": "blue",
+                  "enabled": true,
+                  "order": 10,
+                  "visibility": {
+                    "mode": "public"
+                  }
+                },
+                {
+                  "id": "support-category-3-section-1-item-2",
+                  "title": "系统帮助",
+                  "description": "进入系统查看具体说明",
+                  "href": "#systems",
+                  "iconKey": "help",
+                  "tone": "cyan",
+                  "enabled": true,
+                  "order": 20,
+                  "visibility": {
+                    "mode": "public"
+                  }
+                },
+                {
+                  "id": "support-category-3-section-1-item-3",
+                  "title": "运行状态",
+                  "description": "确认本地服务是否可用",
+                  "href": "#support",
+                  "iconKey": "lifeBuoy",
+                  "tone": "green",
+                  "enabled": true,
+                  "order": 30,
+                  "visibility": {
+                    "mode": "public"
+                  }
+                },
+                {
+                  "id": "support-category-3-section-1-item-4",
+                  "title": "返回首页",
+                  "description": "重新选择工作入口",
+                  "href": "#top",
+                  "iconKey": "grid",
+                  "tone": "violet",
+                  "enabled": true,
+                  "order": 40,
+                  "visibility": {
+                    "mode": "public"
+                  }
+                }
+              ],
+              "visibility": {
+                "mode": "inherit"
+              }
+            }
+          ],
+          "visibility": {
+            "mode": "inherit"
+          }
+        }
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "id": "hrm",
+      "name": "人员与组织中台",
+      "href": "/components/person-picker",
+      "label": "组织数字化",
+      "enabled": true,
+      "order": 10,
+      "visibility": {
+        "mode": "permission",
+        "resourceCodes": [
+          "hrm.personnel.roster",
+          "hrm.organization.tree",
+          "hrm.talent.pool",
+          "hrm.talent.intake",
+          "hrm.personnel.actions",
+          "hrm.personnel.accounts",
+          "hrm.recruitment.appointments",
+          "hrm.recruitment.interviews",
+          "hrm.recruitment.candidates",
+          "hrm.recruitment.onboarding-arrangements",
+          "hrm.transfer.self-service",
+          "hrm.transfer.management",
+          "authorization.admin.manage",
+          "authorization.integration.manage"
+        ]
+      }
+    },
+    {
+      "id": "invest",
+      "name": "水果招商中台",
+      "href": "/components/person-picker",
+      "label": "招商数字化",
+      "enabled": true,
+      "order": 20,
+      "visibility": {
+        "mode": "permission",
+        "resourceCodes": [
+          "invest.access.manager",
+          "invest.access.member",
+          "invest.administration.assist"
+        ]
+      }
+    },
+    {
+      "id": "operator",
+      "name": "水果运营中台",
+      "href": "/components/person-picker",
+      "label": "经营数字化",
+      "enabled": true,
+      "order": 30,
+      "visibility": {
+        "mode": "permission",
+        "resourceCodes": [
+          "invest.operator.access.manager",
+          "invest.operator.access.leader",
+          "invest.operator.access.member",
+          "invest.operator.administration.assist"
+        ]
+      }
+    },
+    {
+      "id": "card-1787301955616-cumqem",
+      "name": "运营数据中台",
+      "href": "/components/person-picker",
+      "label": "运营数据中台",
+      "enabled": true,
+      "order": 40,
+      "visibility": {
+        "mode": "admin"
+      }
+    },
+    {
+      "id": "card-1787628273450-0r5jii",
+      "name": "尚毅课堂",
+      "href": "/components/person-picker",
+      "label": "尚毅课堂",
+      "enabled": true,
+      "order": 50,
+      "visibility": {
+        "mode": "permission",
+        "resourceCodes": [
+          "shangyi-classroom.entry.access"
+        ]
+      }
+    }
+  ]
+}

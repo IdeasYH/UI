@@ -1,0 +1,59 @@
+/* Local role editing stays visually distinct from business operations. */
+.perm-launcher { white-space: nowrap; gap: 6px; font-size: 12px; }
+.perm-mode-bar { position: sticky; top: 0; z-index: 85; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; padding: 10px 18px; background: #eef2ff; border-bottom: 1px solid #c7d2fe; color: #312e81; font-size: 14px; }
+.perm-mode-bar.is-patrol { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
+.perm-warning { padding: 10px 20px; background: #fffbeb; color: #92400e; }
+.ui-dialog-overlay:has(.perm-dialog), .ui-dialog-overlay:has(.perm-inspector) { z-index: 140; padding: 20px; place-items: center; }
+.ui-dialog-content.perm-dialog { width: min(1080px, 100%); max-height: 92dvh; overflow: auto; padding: 24px; border-radius: 12px; background: white; color: #1e293b; font-size: 14px; line-height: 1.6; }
+.ui-dialog-content.perm-inspector { width: min(580px, 100%); max-height: 85dvh; overflow: auto; padding: 24px; background: white; color: #1e293b; font-size: 15px; line-height: 1.7; }
+.perm-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
+.perm-eyebrow { font-size: 12px; color: #6366f1; font-weight: 650; }
+.perm-dialog h2, .perm-inspector h2 { font-size: 23px; line-height: 1.4; margin: 6px 0 10px; }
+.perm-dialog h3 { font-size: 17px; margin: 10px 0; }
+.perm-heading p, .perm-note, .perm-bottom, .perm-test-card p { color: #64748b; }
+.perm-tabs, .perm-row, .perm-footer { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+.perm-tabs { padding-bottom: 14px; border-bottom: 1px solid #e2e8f0; }
+.perm-row > .ui-input { flex: 1 1 220px; max-width: 420px; }
+.perm-row > span { font-size: 13px; color: #64748b; }
+.perm-dialog .ui-button, .perm-inspector .ui-button { gap: 6px; min-height: 34px; font-size: 13px; }
+.perm-tree { max-height: 44dvh; overflow: auto; border: 1px solid #dbe3ee; border-radius: 8px; margin-top: 14px; }
+.perm-page-node + .perm-page-node { border-top: 1px solid #e2e8f0; }
+.perm-tree-row { display: flex; align-items: center; gap: 10px; padding: 12px; background: #f8fafc; }
+.perm-resource-name { min-width: 0; flex: 1; display: flex; flex-direction: column; overflow-wrap: anywhere; }
+.perm-resource-name code { font-size: 11px; color: #64748b; }
+.perm-action-node { padding-left: 52px; background: white; border-top: 1px solid #f1f5f9; }
+.perm-action-node small { color: #a16207; }
+.perm-dialog [role="checkbox"] { width: 30px; min-width: 30px; padding: 0; }
+.perm-dialog [aria-checked="true"], .perm-inspector [aria-checked="true"], .perm-role-options [aria-pressed="true"] { background: #eef2ff; border-color: #818cf8; color: #3730a3; }
+.perm-footer { position: sticky; bottom: -24px; padding: 14px 0; margin-bottom: 0; background: white; border-top: 1px solid #e2e8f0; z-index: 2; }
+.perm-footer > span { margin-right: auto; font-weight: 650; }
+.perm-bottom { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding-top: 12px; font-size: 12px; }
+.perm-message { padding: 10px; margin-top: 10px; background: #ecfdf5; color: #065f46; border-radius: 6px; }
+.perm-test-card { padding: 18px; border: 1px solid #e2e8f0; box-shadow: none; }
+.perm-decisions { max-height: 32dvh; overflow: auto; border: 1px solid #e2e8f0; border-radius: 8px; }
+.perm-decisions > div { display: grid; grid-template-columns: 180px 48px 1fr; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid #f1f5f9; }
+.perm-decisions small { color: #64748b; }
+.perm-decisions [data-allowed="true"] { color: #047857; }
+.perm-decisions [data-allowed="false"] { color: #b91c1c; }
+.perm-role-options { display: flex; gap: 10px; flex-wrap: wrap; margin: 16px 0; }
+.perm-inspector > code { display: block; margin: 10px 0; padding: 8px; background: #f1f5f9; }
+.perm-page-marker { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin: 12px 24px; padding: 12px; border: 1px dashed #10b981; color: #065f46; font-size: 13px; background: #ecfdf5; }
+.ui-button[data-patrol="true"] { outline: 2px dashed #059669; outline-offset: 2px; cursor: crosshair; }
+.perm-denied { max-width: 780px; margin: 60px auto; padding: 36px; text-align: center; }
+.perm-denied h1 { margin: 16px 0; font-size: 22px; }
+.perm-denied p { margin: 12px 0; color: #64748b; }
+.ui-dropdown-content.perm-menu { z-index: 160; max-height: 320px; overflow: auto; }
+@media (max-width: 700px) {
+  .ui-dialog-content.perm-dialog { padding: 16px; max-height: 95dvh; }
+  .perm-tree-row { flex-wrap: wrap; padding: 10px; }
+  .perm-resource-name { flex-basis: 55%; }
+  .perm-action-node { padding-left: 28px; }
+  .perm-footer { bottom: -16px; }
+  .perm-decisions > div { grid-template-columns: 1fr 44px; }
+  .perm-decisions small { grid-column: 1 / -1; }
+  .perm-bottom { flex-wrap: wrap; }
+}
+
+.perm-access-options { display:flex; gap:6px; flex-wrap:wrap; }
+.perm-access-options [aria-pressed="true"] { background:#eef2ff; border-color:#818cf8; color:#3730a3; }
+.perm-tree { overflow-anchor:none; }

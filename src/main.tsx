@@ -6,6 +6,7 @@ import './template.css'
 import './reference.css'
 import './organization.css'
 import './figma-organization.css'
+import './permissions.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

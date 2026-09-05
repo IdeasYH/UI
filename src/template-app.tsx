@@ -8,6 +8,7 @@ import { PeoplePage } from './pages/people-page'
 import { OrganizationTreePage } from './pages/organization-page'
 import { PersonnelManagementPage } from './pages/personnel-management-page'
 import { FigmaOrganizationPage } from './pages/figma-organization-page'
+import { PermissionProvider, PermissionPage } from './components/permissions/permission-provider'
 
 const pageComponents: Record<TemplatePageId, ComponentType> = {
   guide: GuidePage,
@@ -35,8 +36,8 @@ export function TemplateApp() {
     return () => window.cancelAnimationFrame(frame)
   }, [currentPage])
 
-  return <div className="reference-shell">
+  return <PermissionProvider><div className="reference-shell">
     <TemplateNavigation currentPage={currentPage} />
-    <Page />
-  </div>
+    <PermissionPage pageId={currentPage}><Page /></PermissionPage>
+  </div></PermissionProvider>
 }

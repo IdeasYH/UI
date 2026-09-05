@@ -1083,7 +1083,7 @@ function App() {
               查看系统
             </Button>
             {activeSystemHref && (
-              <Button className="header-primary" href={activeSystemHref} target="_blank" rel="noreferrer">
+              <Button permission="portal.enter" className="header-primary" href={activeSystemHref} target="_blank" rel="noreferrer">
                 进入工作台
                 <ArrowRight size={15} />
               </Button>
@@ -1146,7 +1146,7 @@ function App() {
                     : publicPortal.description}</p>
               <div className="hero-actions">
                 {activeSystemHref ? (
-                  <Button href={activeSystemHref} target="_blank" rel="noreferrer">
+                  <Button permission="portal.enter" href={activeSystemHref} target="_blank" rel="noreferrer">
                     立即进入
                     <ArrowRight size={17} />
                   </Button>
@@ -1312,7 +1312,7 @@ function App() {
                         ))}
                       </div>
                       <div className="system-card-footer">
-                        <Button href={systemEntryHref(system)} target="_blank" rel="noreferrer">
+                        <Button permission="portal.enter" href={systemEntryHref(system)} target="_blank" rel="noreferrer">
                           进入系统
                           <ArrowRight size={16} />
                         </Button>

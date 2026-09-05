@@ -1,5 +1,51 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import { buttonState, setButtonState, toggleCollapsed, visibilityCode, evaluatePermission, initialPermissions, parsePermissions, setGrant } from '../src/components/permissions/permission-model.ts'
+
+test('本系统功能权限按角色并集，页面和动作均需授权，来源可解释', () => {
+  const state = initialPermissions()
+  state.subject = { type: 'person', id: 'test-person' }
+  state.roles = [{ id: 'page', name: '页面角色', grants: ['page:organization-figma'] }, { id: 'action', name: '新增角色', grants: ['org.create'] }]
+  state.bindings['test-person'] = ['page', 'action']
+  assert.deepEqual(evaluatePermission(state, 'org.create'), { allowed: true, reason: '来自角色：新增角色', sources: ['新增角色'] })
+  state.bindings['test-person'] = ['action']
+  assert.equal(evaluatePermission(state, 'org.create').allowed, false)
+  state.bindings['test-person'] = ['page']
+  assert.equal(evaluatePermission(state, 'org.create').allowed, false)
+  assert.equal(evaluatePermission(state, 'unknown').allowed, false)
+})
+
+test('HRM准入关闭优先于本系统角色，未分配人员不自动得到页面权限', () => {
+  const state = initialPermissions()
+  state.subject = { type: 'person', id: 'person-zhou-lin' }
+  assert.equal(evaluatePermission(state, 'org.delete').allowed, true)
+  state.entry[state.subject.id] = false
+  assert.equal(evaluatePermission(state, 'page:organization-figma').allowed, false)
+  state.subject = { type: 'person', id: 'unassigned' }
+  assert.equal(evaluatePermission(state, 'page:organization-figma').allowed, false)
+})
+
+test('功能权限草稿不影响已保存测试结果，关闭页面不删除按钮授权', () => {
+  const state = initialPermissions()
+  state.subject = { type: 'role', id: 'viewer' }
+  state.draft = { roleId: 'viewer', grants: setGrant(state.roles[1].grants, 'org.create', true) }
+  assert.equal(evaluatePermission(state, 'org.create').allowed, false)
+  state.roles[1].grants = state.draft.grants
+  assert.equal(evaluatePermission(state, 'org.create').allowed, true)
+  state.roles[1].grants = setGrant(state.roles[1].grants, 'page:organization-figma', false)
+  assert.ok(state.roles[1].grants.includes('org.create'))
+  assert.equal(evaluatePermission(state, 'org.create').allowed, false)
+})
+
+test('权限缓存校验系统和版本，不接受跨系统或未登记权限，正常草稿可往返', () => {
+  const state = initialPermissions()
+  assert.deepEqual(parsePermissions(JSON.stringify(state)), state)
+  assert.equal(parsePermissions(JSON.stringify({ ...state, applicationId: 'other-system' })), null)
+  assert.equal(parsePermissions(JSON.stringify({ ...state, version: 2 })), null)
+  assert.equal(parsePermissions('{bad json'), null)
+  state.roles[0].grants.push('other:admin')
+  assert.equal(parsePermissions(JSON.stringify(state)), null)
+})
 import { demoDepartmentData } from '../src/data/figma-organization.ts'
 import { applyFigmaAction, canvasScale, crossLevelResponsiblePersonIds, filterFigmaGroups, findFigmaMember, fitFigmaCanvas, kpiTone, nextDemoCode, responsibleAssignmentCounts, type FigmaDepartment } from '../src/components/figma-organization/figma-organization-model.ts'
 import { componentCatalog, examplePages, resolveTemplatePage } from '../src/data/template-catalog.ts'
@@ -230,4 +276,39 @@ test('缩放有边界，适应画布同时考虑宽高且保持内容居中', ()
   assert.ok(content.width * fitted.scale <= viewport.width)
   assert.ok(content.height * fitted.scale + fitted.y <= viewport.height)
   assert.equal(fitted.x, (viewport.width - content.width * fitted.scale) / 2)
+})
+
+
+test('按钮三态分别保存可见与可用，隐藏移除两种授权', () => {
+  let grants = setButtonState([], 'portal.enter', 'enabled')
+  assert.equal(buttonState(grants, 'portal.enter'), 'enabled')
+  grants = setButtonState(grants, 'portal.enter', 'disabled')
+  assert.equal(buttonState(grants, 'portal.enter'), 'disabled')
+  assert.ok(!grants.includes('portal.enter'))
+  grants = setButtonState(grants, 'portal.enter', 'hidden')
+  assert.deepEqual(grants, [])
+})
+
+test('多角色合并可见与可用，门户入口仍受页面和HRM准入约束', () => {
+  const state = initialPermissions()
+  state.subject = { type: 'person', id: 'p' }
+  state.bindings.p = ['view', 'use']
+  state.roles = [{ id: 'view', name: '仅可见', grants: ['page:portal', visibilityCode('portal.enter')] }, { id: 'use', name: '可用', grants: ['portal.enter'] }]
+  assert.equal(evaluatePermission(state, 'portal.enter').allowed, true)
+  state.bindings.p = ['view']
+  assert.equal(evaluatePermission(state, 'portal.enter').allowed, false)
+  assert.equal(evaluatePermission(state, visibilityCode('portal.enter')).allowed, true)
+  state.roles[0].grants = [visibilityCode('portal.enter')]
+  assert.equal(evaluatePermission(state, visibilityCode('portal.enter')).allowed, false)
+  state.entry.p = false
+  assert.equal(evaluatePermission(state, 'portal.enter').allowed, false)
+})
+
+test('权限树连续切换折叠状态不丢失其他页面状态', () => {
+  let collapsed = ['page:portal']
+  for (let i = 0; i < 20; i++) {
+    collapsed = toggleCollapsed(collapsed, 'page:organization-figma')
+    assert.equal(collapsed.includes('page:organization-figma'), i % 2 === 0)
+    assert.ok(collapsed.includes('page:portal'))
+  }
 })

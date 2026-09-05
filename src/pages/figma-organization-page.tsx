@@ -7,14 +7,21 @@ import { FigmaOrganizationGraph } from '../components/figma-organization/figma-o
 import { applyFigmaAction, filterFigmaGroups, type FigmaAction, type FigmaDepartment, type FigmaDialogAction } from '../components/figma-organization/figma-organization-model'
 import { demoDepartmentData } from '../data/figma-organization'
 import { PersonAccessProvider } from '../components/figma-organization/person-access'
+import { usePermissions } from '../components/permissions/permission-context'
+import { actionPermission } from '../components/permissions/permission-model'
 
 export function FigmaOrganizationPage() {
+  const permissions = usePermissions()
   const [department, setDepartment] = useState<FigmaDepartment>(() => structuredClone(demoDepartmentData))
   const [query, setQuery] = useState('')
   const [action, setAction] = useState<FigmaDialogAction | null>(null)
   const [notice, setNotice] = useState('')
   const [accessVersion, setAccessVersion] = useState(0)
   const groups = useMemo(() => filterFigmaGroups(department, query), [department, query])
+  const subject = permissions?.state.subject
+  const testName = subject?.type === 'role'
+    ? permissions?.state.roles.find((role) => role.id === subject.id)?.name
+    : [...department.managers.map((p) => ({ id: p.personId, name: p.name })), ...department.groups.flatMap((g) => [...g.leaders.map((p) => ({ id: p.personId, name: p.name })), ...g.members])].find((person) => person.id === subject?.id)?.name
 
   useEffect(() => {
     if (!notice) return
@@ -23,6 +30,7 @@ export function FigmaOrganizationPage() {
   }, [notice])
 
   const confirm = (next: FigmaAction) => {
+    if (permissions?.state.mode === 'patrol' || (permissions && !permissions.can(actionPermission[next.type]))) return '当前测试身份没有此操作权限，请关闭弹窗后检查本系统功能角色。'
     const result = applyFigmaAction(department, next)
     if (result.error) return result.error
     setDepartment(result.department)
@@ -35,11 +43,11 @@ export function FigmaOrganizationPage() {
 
   return <div className="figma-replica">
     <header className="fg-top-header" id="figma-header">
-      <div className="fg-brand-bar"><div className="fg-brand"><span className="fg-brand-mark"><Building2 size={16} /></span><strong>尚毅</strong><span className="fg-brand-label">人员与组织中台</span></div><span className="fg-brand-caption">组织架构 · 鲜花事业部</span><div className="fg-header-tools"><div className="fg-search"><Search size={14} aria-hidden /><Input aria-label="搜索组织、姓名或工号" placeholder="搜索员工姓名、工号或组名..." value={query} onChange={(event) => setQuery(event.target.value)} />{query && <Button variant="ghost" title="清除搜索" aria-label="清除组织搜索" onClick={() => setQuery('')}><X size={12} /></Button>}</div><div className="fg-account"><span>管</span><strong>系统管理员</strong><span className="fg-account-demo">示例</span></div></div></div>
+      <div className="fg-brand-bar"><div className="fg-brand"><span className="fg-brand-mark"><Building2 size={16} /></span><strong>尚毅</strong><span className="fg-brand-label">人员与组织中台</span></div><span className="fg-brand-caption">组织架构 · 鲜花事业部</span><div className="fg-header-tools"><div className="fg-search"><Search size={14} aria-hidden /><Input aria-label="搜索组织、姓名或工号" placeholder="搜索员工姓名、工号或组名..." value={query} onChange={(event) => setQuery(event.target.value)} />{query && <Button variant="ghost" title="清除搜索" aria-label="清除组织搜索" onClick={() => setQuery('')}><X size={12} /></Button>}</div><div className="fg-account"><span>管</span><strong>{permissions?.state.mode === 'test' ? testName ?? '测试人员' : '系统管理员'}</strong><span className="fg-account-demo">{permissions?.state.mode === 'test' ? '测试身份' : '示例'}</span></div></div></div>
       <div className="fg-context-bar"><div><span className="fg-context-icon"><Compass size={16} /></span><strong>拓扑结构 · 组织与人员</strong><span className="fg-context-badge">部门 / 业务组 / 成员</span></div><span className="fg-context-caption"><Sparkles size={14} />组织 · 人员 · 绩效</span></div>
     </header>
-    <main className="fg-main"><PersonAccessProvider key={accessVersion} department={department}><FigmaOrganizationGraph department={department} groups={groups} query={query.trim()} onClearSearch={() => setQuery('')} onAction={setAction} /></PersonAccessProvider>
-      <footer className="fg-page-footer"><span>Figma Make · 组织人员管理 UI</span><div><Button variant="ghost" href="/guide#figma-replica"><BookOpen size={13} />组件说明</Button><Button variant="ghost" title="恢复默认示例数据" aria-label="恢复默认示例数据" onClick={() => { setDepartment(structuredClone(demoDepartmentData)); setAccessVersion((v) => v + 1); setQuery(''); setNotice('已恢复默认示例数据') }}><RotateCcw size={13} /></Button></div></footer>
+    <main className="fg-main"><PersonAccessProvider key={accessVersion} department={department}><FigmaOrganizationGraph department={department} groups={groups} query={query.trim()} onClearSearch={() => setQuery('')} onAction={(next) => { if (permissions?.state.mode !== 'patrol' && (permissions?.can(actionPermission[next.type]) ?? true)) setAction(next) }} /></PersonAccessProvider>
+      <footer className="fg-page-footer"><span>Figma Make · 组织人员管理 UI</span><div><Button variant="ghost" href="/guide#figma-replica"><BookOpen size={13} />组件说明</Button><Button variant="ghost" permission="org.reset" title="恢复默认示例数据" aria-label="恢复默认示例数据" onClick={() => { setDepartment(structuredClone(demoDepartmentData)); setAccessVersion((v) => v + 1); setQuery(''); setNotice('已恢复默认示例数据') }}><RotateCcw size={13} /></Button></div></footer>
     </main>
     <FigmaOrganizationDialog department={department} action={action} onClose={() => setAction(null)} onConfirm={confirm} />
     {notice && <div className="fg-toast" role="status">{notice}</div>}

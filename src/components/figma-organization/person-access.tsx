@@ -5,6 +5,7 @@ import { Input } from '../ui/input'
 import { Dialog } from '../ui/dialog'
 import type { FigmaDepartment } from './figma-organization-model'
 import { matchesOrganization } from './organization-search'
+import { FunctionRoleButton } from '../permissions/permission-provider'
 
 const scopes = { self: '看本人', team: '看本人及下级', all: '看本系统全部' }
 type Scope = keyof typeof scopes
@@ -16,7 +17,7 @@ const TagManagerContext = createContext<(() => void) | undefined>(undefined)
 
 export function TagManagerButton() {
   const open = useContext(TagManagerContext)
-  return <Button variant="ghost" className="fg-outline-button" onClick={open}>标签管理</Button>
+  return <Button permission="tags.manage" variant="ghost" className="fg-outline-button" onClick={open}>标签管理</Button>
 }
 
 export function PersonAccess({ person }: { person: Person }) {
@@ -48,8 +49,9 @@ export function PersonAccessProvider({ department, children }: { department: Fig
   const key = (p: Person) => JSON.stringify([p.node, p.leader, p.id])
   const policy = (p: Person): Policy => policies[key(p)] ?? { scope: p.leader ? 'team' : 'self', organizations: [] }
   return <AccessContext.Provider value={(person) => <div className="fg-person-access">
-    <Button variant="outline" aria-label={`权限 ${person.name} ${person.node}`} onClick={() => setEditor({ person, mode: 'scope' })}>权限 · {scopes[policy(person).scope]}{policy(person).scope !== 'all' && policy(person).organizations.length ? ` +${policy(person).organizations.length}组织` : ''}</Button>
-    <Button variant="outline" aria-label={`标签 ${person.name}`} onClick={() => setEditor({ person, mode: 'tags' })}>标签{(bindings[person.id] ?? []).length ? ` · ${(bindings[person.id] ?? []).map((code) => tags.find((t) => t.code === code)?.name ?? code).join('、')}` : ''}</Button>
+    <Button permission="scope.configure" variant="outline" aria-label={`权限 ${person.name} ${person.node}`} onClick={() => setEditor({ person, mode: 'scope' })}>数据范围 · {scopes[policy(person).scope]}{policy(person).scope !== 'all' && policy(person).organizations.length ? ` +${policy(person).organizations.length}组织` : ''}</Button>
+    <FunctionRoleButton person={person} />
+    <Button permission="tags.configure" variant="outline" aria-label={`标签 ${person.name}`} onClick={() => setEditor({ person, mode: 'tags' })}>标签{(bindings[person.id] ?? []).length ? ` · ${(bindings[person.id] ?? []).map((code) => tags.find((t) => t.code === code)?.name ?? code).join('、')}` : ''}</Button>
   </div>}>
     <TagManagerContext.Provider value={() => setManage(true)}>{children}</TagManagerContext.Provider>
     {manage && <TagManager tags={tags} onSave={setTags} onClose={() => setManage(false)} />}
@@ -108,7 +110,7 @@ function AccessEditor({ person, mode, department, policy, tags, selectedTags, on
             {(expanded || !!query) && visible.map((g) => <div className="fg-org-row fg-org-child" key={g.id}><Button variant="outline" role="checkbox" aria-checked={checked(g.id)} aria-label={`选择${g.groupName}`} onClick={() => toggleChild(g.id)}>{checked(g.id) ? '✓' : ' '}</Button><span>{g.groupName}</span></div>)}</div> : <p>没有匹配的组织</p>}
         </div><aside><header><strong>已选范围 · {selected.length}</strong><Button variant="ghost" onClick={() => setSelected([])}>清空</Button></header>{selected.length ? selected.map((id) => <div className="fg-selected-org" key={id}><div><strong>{orgName(id)}</strong><small>{id === root ? '含全部下级及未来新增子组' : department.deptName}</small></div><Button variant="ghost" aria-label={`移除${orgName(id)}`} onClick={() => setSelected(selected.filter((v) => v !== id))}><X size={14} /></Button></div>) : <p>从左侧勾选组织</p>}</aside></div>
       </>}
-      <p className="fg-access-note">只补充查看范围，不改变人员归属或业绩汇总。功能及按钮权限仍由 HRM 管理。</p>
+      <p className="fg-access-note">只补充查看范围，不改变人员归属或业绩汇总。HRM 只管系统准入；页面和按钮权限由本系统功能角色管理。</p>
     </>}
     <footer><span>本页内存演示 · 刷新恢复</span><Button variant="outline" onClick={onClose}>取消</Button><Button onClick={() => onSave({ scope, organizations: selected }, labels)}>保存配置</Button></footer>
   </Dialog>

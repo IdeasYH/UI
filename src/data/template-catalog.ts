@@ -49,6 +49,12 @@ type ComponentEntry = {
 
 export const componentCatalog = [
   {
+    id: 'system-permissions', name: '本系统页面与按钮权限', symbol: 'PermissionProvider / PermissionPage', category: 'business', kind: '业务组件',
+    description: 'HRM 只管系统准入；本系统功能角色、页面权限树、现场配置、人员多角色并集与真实页面测试。仅前端演示。',
+    sources: ['src/components/permissions/permission-provider.tsx', 'src/components/permissions/permission-model.ts', 'src/components/permissions/permission-context.ts', 'src/permissions.css'], preview: 'page',
+    locations: [{ page: 'organization-figma', label: 'A 拓扑结构 / 功能权限入口', href: '/organization/figma#figma-controls' }],
+  },
+  {
     id: 'figma-organization-canvas', name: 'Figma 组织连线画布', symbol: 'FigmaOrganizationGraph', category: 'business', kind: '业务组件',
     description: '部门、业务组和成员三级连线；包含展开收起、平移、缩放、适应画布与组织人员搜索。',
     sources: ['src/components/figma-organization/figma-organization-graph.tsx', 'src/figma-organization.css'], preview: 'page',

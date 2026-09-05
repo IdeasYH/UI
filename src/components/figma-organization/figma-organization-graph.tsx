@@ -3,6 +3,7 @@ import { BookOpen, ChevronDown, ChevronRight, ChevronUp, Database, GitFork, Hand
 import { Button } from '../ui/button'
 import { Card } from '../ui/card'
 import { PersonAccess, TagManagerButton } from './person-access'
+import { PermissionLauncher } from '../permissions/permission-provider'
 import { OrganizationBddGuide } from './organization-bdd-guide'
 import type { GroupMember, ResponsiblePerson } from '../../data/figma-organization'
 import { canvasScale, crossLevelResponsiblePersonIds, fitFigmaCanvas, kpiTone, type FigmaDepartment, type FigmaDialogAction, type FigmaGroup } from './figma-organization-model'
@@ -50,11 +51,11 @@ function ArchitecturePermissionGuide({ expanded, onToggle }: { expanded: boolean
         <section><span>01</span><div><h3>组织节点定义范围</h3><p>“部”和“组”是数据与权限的所辖节点，不是单人岗位。父节点覆盖其下辖子节点，同级节点保持各自范围。</p></div></section>
         <section><span>02</span><div><h3>负责人是任职关系</h3><p>节点允许多名平级负责人，默认看本人及下级。每个任职可单独配置看本人、看本人及下级或看本系统全部。</p></div></section>
         <section><span>03</span><div><h3>允许跨层与多节点任职</h3><p>同一人员可以跨层任职。权限按各次任职保存，基础范围与额外组织范围合并；组织树勾选上级包含全部下级。</p></div></section>
-        <section><span>04</span><div><h3>查看范围与操作权限分开</h3><p>读取数据须同时满足 HRM 查看权限和数据查看范围。编辑、删除、审批另须动作专属的数据范围，不能把这里的查看范围直接当作修改范围。</p></div></section>
+        <section><span>04</span><div><h3>查看范围与操作权限分开</h3><p>读取数据须同时满足 HRM 系统准入、本系统查看权限和数据查看范围。编辑、删除、审批另须动作专属的数据范围，不能把这里的查看范围直接当作修改范围。</p></div></section>
         <section><span>05</span><div><h3>汇总按稳定实体去重</h3><p>节点人数和业务指标按其自身及下级范围汇聚；跨层负责人按人员 ID 去重，负责人任职本身不增加人员总数。</p></div></section>
-        <section><span>06</span><div><h3>特殊角色使用人员标签</h3><p>KA 等标签按人员身份共享，以稳定编码供其他程序识别。标签不授予权限；功能、按钮权限统一由 HRM 管理，额外查看范围不改变业绩归属。</p></div></section>
+        <section><span>06</span><div><h3>特殊角色使用人员标签</h3><p>KA 等标签按人员身份共享，以稳定编码供其他程序识别。标签不授予权限；HRM 只管系统准入，功能角色、页面和按钮权限由本系统管理，额外查看范围不改变业绩归属。</p></div></section>
       </div>
-      <div className="fg-architecture-formulas"><code>个人查看范围 = 并集（各有效任职的基础范围 + 额外组织范围）</code><code>读取须满足 HRM 对应读取权限与查看范围；写入范围另行定义</code></div>
+      <div className="fg-architecture-formulas"><code>个人查看范围 = 并集（各有效任职的基础范围 + 额外组织范围）</code><code>读取须满足 HRM 系统准入、本系统读取权限与查看范围；写入范围另行定义</code></div>
       <p className="fg-architecture-boundary"><ShieldCheck size={12} />当前页面只表达 UI 与组织权限模型。生产接入必须由后端校验稳定人员 ID、组织 ID、有效任职关系、功能权限和数据范围；前端标签本身不授予权限。</p>
       <OrganizationBddGuide />
     </div>}
@@ -71,9 +72,9 @@ function MemberCard({ member, onAction, node }: { member: GroupMember; onAction:
       </div>
       <PersonAccess person={{ id: member.id, name: member.name, node, leader: false }} />
       <div className="fg-member-bottom"><span className="fg-position" title={member.position}>{member.position}</span><div className="fg-member-actions">
-        <Button variant="ghost" className="fg-transfer-button" title="跨组调岗" aria-label={`调岗 ${member.name}`} onClick={() => onAction({ type: 'transfer-member', memberId: member.id })}>调岗</Button>
-        <Button variant="ghost" className="fg-edit-button" title="编辑资料" aria-label={`编辑 ${member.name}`} onClick={() => onAction({ type: 'edit-member', memberId: member.id })}>编辑</Button>
-        <Button variant="ghost" className="fg-departure-button" title="办理离职" aria-label={`离职 ${member.name}`} onClick={() => onAction({ type: 'departure', memberId: member.id })}>离职</Button>
+        <Button variant="ghost" className="fg-transfer-button" title="跨组调岗" aria-label={`调岗 ${member.name}`} permission="member.transfer" onClick={() => onAction({ type: 'transfer-member', memberId: member.id })}>调岗</Button>
+        <Button variant="ghost" className="fg-edit-button" title="编辑资料" aria-label={`编辑 ${member.name}`} permission="member.edit" onClick={() => onAction({ type: 'edit-member', memberId: member.id })}>编辑</Button>
+        <Button variant="ghost" className="fg-departure-button" title="办理离职" aria-label={`离职 ${member.name}`} permission="member.departure" onClick={() => onAction({ type: 'departure', memberId: member.id })}>离职</Button>
       </div></div>
     </div>
   </Card>
@@ -229,9 +230,9 @@ export function FigmaOrganizationGraph({ department, groups, query, onClearSearc
       <div className="fg-canvas-actions"><div className="fg-zoom-control"><Button variant="ghost" aria-label="缩小画布" title="缩小画布" disabled={view.scale <= 0.1} onClick={() => zoom(-0.1)}><Minus size={12} /></Button><output aria-label="画布缩放比例">{percentage}%</output><Button variant="ghost" aria-label="放大画布" title="放大画布" disabled={view.scale >= 1.4} onClick={() => zoom(0.1)}><Plus size={12} /></Button></div>
         <Button variant="ghost" className="fg-outline-button fg-reset-view" title="复位画布位置" onClick={resetView}><RotateCcw size={13} /><span>复位画布</span></Button>
         <Button ref={fullscreenButtonRef} variant="ghost" className="fg-outline-button fg-fit-view" aria-label={fullscreen ? '退出网页全屏' : '网页内全屏'} title={fullscreen ? '退出网页全屏（Esc）' : '网页内全屏'} aria-pressed={fullscreen} onClick={() => setFullscreen((value) => !value)}>{fullscreen ? <Minimize2 size={14} /> : <Maximize2 size={14} />}{fullscreen ? '退出全屏' : '网页全屏'}</Button>
-        <TagManagerButton />
+        <TagManagerButton /><PermissionLauncher />
         <Button variant="ghost" className="fg-outline-button" aria-expanded={guideExpanded} aria-controls="figma-architecture-guide" onClick={() => setGuideExpanded((value) => !value)}><BookOpen size={14} />{guideExpanded ? '收起说明书' : '组织与权限说明书'}</Button>
-        <Button variant="ghost" className="fg-primary-button" onClick={() => onAction({ type: 'add-group' })}><Plus size={14} />新增业务组</Button>
+        <Button variant="ghost" className="fg-primary-button" permission="org.create" onClick={() => onAction({ type: 'add-group' })}><Plus size={14} />新增业务组</Button>
         <Button variant="ghost" className="fg-outline-button" onClick={() => { setDepartmentCollapsed(false); setCollapsed(new Set()) }}>展开全部</Button>
         <Button variant="ghost" className="fg-outline-button" onClick={() => { onClearSearch(); setDepartmentCollapsed(true); setCollapsed(new Set(department.groups.map((group) => group.id))) }}>折叠全部</Button>
       </div>
@@ -255,8 +256,8 @@ export function FigmaOrganizationGraph({ department, groups, query, onClearSearc
             <div className="fg-progress-fill" style={{ width: `${department.kpiRate}%` }} aria-hidden />
             <div className="fg-node-foreground"><div className="fg-manager-top"><div><span className="fg-role-badge">L1 · 部门节点</span><h2>{department.deptName}</h2></div><div><span className="fg-manager-kpi">部门绩效: {department.kpiRate}%</span><Button variant="ghost" className="fg-purple-button" aria-expanded={expanded} disabled={!!query} onClick={() => setDepartmentCollapsed((value) => !value)}>{expanded ? '折叠部门' : '展开组树'}{expanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}</Button></div></div>
               <ResponsiblePeople people={department.managers} label="部门负责人" tone="department" crossLevelIds={crossLevelIds} node="department" />
-              <div className="fg-manager-bottom"><span><ShieldCheck size={12} />数据与权限范围 · 下辖 {department.groups.length} 组 / 汇聚 {department.totalCount} 人</span><Button variant="ghost" className="fg-soft-purple-button" onClick={() => onAction({ type: 'add-group' })}><Plus size={12} />新增业务组</Button></div>
-              <div className="fg-node-actions"><Button variant="ghost" aria-label={`编辑部门${department.deptName}`} onClick={() => onAction({ type: 'rename-department' })}><SquarePen size={13} />编辑节点</Button><Button variant="ghost" className="fg-node-delete" aria-label={`删除部门${department.deptName}`} onClick={() => onAction({ type: 'delete-department' })}><Trash2 size={13} />删除节点</Button></div>
+              <div className="fg-manager-bottom"><span><ShieldCheck size={12} />数据与权限范围 · 下辖 {department.groups.length} 组 / 汇聚 {department.totalCount} 人</span><Button variant="ghost" className="fg-soft-purple-button" permission="org.create" onClick={() => onAction({ type: 'add-group' })}><Plus size={12} />新增业务组</Button></div>
+              <div className="fg-node-actions"><Button variant="ghost" aria-label={`编辑部门${department.deptName}`} permission="org.edit" onClick={() => onAction({ type: 'rename-department' })}><SquarePen size={13} />编辑节点</Button><Button variant="ghost" className="fg-node-delete" aria-label={`删除部门${department.deptName}`} permission="org.delete" onClick={() => onAction({ type: 'delete-department' })}><Trash2 size={13} />删除节点</Button></div>
             </div>
           </Card>
           {expanded && <div className="fg-department-line" aria-hidden />}
@@ -270,10 +271,10 @@ export function FigmaOrganizationGraph({ department, groups, query, onClearSearc
                 <div className="fg-group-top"><span className="fg-group-name">{group.groupName}</span><div><KpiBadge rate={group.kpiRate} prefix="组KPI: " /><Button variant="ghost" className="fg-indigo-button" aria-label={`${isCollapsed ? '展开' : '折叠'}${group.groupName}组员`} aria-expanded={!isCollapsed} disabled={!!query} onClick={() => toggleGroup(group.id)}>{isCollapsed ? '展开组员' : '折叠组'}{isCollapsed ? <ChevronRight size={12} /> : <ChevronDown size={12} />}</Button></div></div>
                 <ResponsiblePeople people={group.leaders} label="组负责人" tone="group" crossLevelIds={crossLevelIds} node={group.id} />
                 <div className="fg-group-scope"><span><ShieldCheck size={11} />数据与权限范围 · 汇聚 {group.memberCount} 人</span></div>
-                <div className="fg-group-bottom"><Button variant="ghost" className="fg-add-member-button" onClick={() => onAction({ type: 'add-member', groupId: group.id })}><Plus size={12} />直接加组员</Button></div>
-                <div className="fg-node-actions"><Button variant="ghost" aria-label={`编辑业务组${group.groupName}`} onClick={() => onAction({ type: 'rename-group', groupId: group.id })}><SquarePen size={13} />编辑节点</Button><Button variant="ghost" className="fg-node-delete" aria-label={`删除业务组${group.groupName}`} onClick={() => onAction({ type: 'delete-group', groupId: group.id })}><Trash2 size={13} />删除节点</Button></div>
+                <div className="fg-group-bottom"><Button variant="ghost" className="fg-add-member-button" permission="member.create" onClick={() => onAction({ type: 'add-member', groupId: group.id })}><Plus size={12} />直接加组员</Button></div>
+                <div className="fg-node-actions"><Button variant="ghost" aria-label={`编辑业务组${group.groupName}`} permission="org.edit" onClick={() => onAction({ type: 'rename-group', groupId: group.id })}><SquarePen size={13} />编辑节点</Button><Button variant="ghost" className="fg-node-delete" aria-label={`删除业务组${group.groupName}`} permission="org.delete" onClick={() => onAction({ type: 'delete-group', groupId: group.id })}><Trash2 size={13} />删除节点</Button></div>
               </div></Card>
-              {!isCollapsed && <><div className="fg-members-line" aria-hidden /><div className="fg-member-list"><div className="fg-member-list-heading"><h3><Users size={14} />{group.groupName} · 组员名录</h3><Button variant="ghost" className="fg-add-member-link" onClick={() => onAction({ type: 'add-member', groupId: group.id })}><Plus size={10} />新增组员</Button></div><div className="fg-member-rows">{group.members.map((member) => <MemberCard key={member.id} member={member} node={group.id} onAction={onAction} />)}{!group.members.length && <div className="fg-no-members">暂无组员</div>}</div></div></>}
+              {!isCollapsed && <><div className="fg-members-line" aria-hidden /><div className="fg-member-list"><div className="fg-member-list-heading"><h3><Users size={14} />{group.groupName} · 组员名录</h3><Button variant="ghost" className="fg-add-member-link" permission="member.create" onClick={() => onAction({ type: 'add-member', groupId: group.id })}><Plus size={10} />新增组员</Button></div><div className="fg-member-rows">{group.members.map((member) => <MemberCard key={member.id} member={member} node={group.id} onAction={onAction} />)}{!group.members.length && <div className="fg-no-members">暂无组员</div>}</div></div></>}
             </section>
           })}
         </div></div>}

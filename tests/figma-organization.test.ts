@@ -1,11 +1,22 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { demoDepartmentData } from '../src/data/figma-organization.ts'
-import { applyFigmaAction, canvasScale, filterFigmaGroups, findFigmaMember, fitFigmaCanvas, kpiTone, nextDemoCode, type FigmaDepartment } from '../src/components/figma-organization/figma-organization-model.ts'
+import { applyFigmaAction, canvasScale, crossLevelResponsiblePersonIds, filterFigmaGroups, findFigmaMember, fitFigmaCanvas, kpiTone, nextDemoCode, responsibleAssignmentCounts, type FigmaDepartment } from '../src/components/figma-organization/figma-organization-model.ts'
 import { componentCatalog, examplePages, resolveTemplatePage } from '../src/data/template-catalog.ts'
 
 const fixture = (): FigmaDepartment => structuredClone(demoDepartmentData)
 const draft = { name: '示例新员工', code: 'E000350', position: '运营专员', level: 'P6-1' }
+
+test('组织搜索支持中文和拼音缩写，新增及改名后按当前名称匹配', () => {
+  const department = fixture()
+  assert.deepEqual(filterFigmaGroups(department, ' KFZ ').map((g) => g.groupName), ['客服组'])
+  assert.deepEqual(filterFigmaGroups(department, 'xsdcz').map((g) => g.groupName), ['新商督查组'])
+  assert.equal(filterFigmaGroups(department, 'xhmtyyb').length, 5)
+  const renamed = applyFigmaAction(department, { type: 'rename-group', groupId: department.groups[0].id, name: '内容运营组' }).department
+  assert.deepEqual(filterFigmaGroups(renamed, 'nryyz').map((g) => g.groupName), ['内容运营组'])
+  assert.equal(filterFigmaGroups(renamed, 'kfz').length, 0)
+  assert.equal(filterFigmaGroups(department, 'zzzz').length, 0)
+})
 
 test('Figma 复刻有独立路由、预览与三个可检索组件入口', () => {
   assert.equal(resolveTemplatePage('/organization/figma/'), 'organization-figma')
@@ -31,14 +42,14 @@ test('源稿汇总人数与节选名录保持独立，新增时只增加一人�
 
 test('工号在成员、组长和经理之间均不可重复，自动编号跳过已用值', () => {
   const original = fixture()
-  const codes = [original.manager.code, original.groups[0].leader!.code, original.groups[2].members[0].code]
+  const codes = [original.managers[0].code, original.groups[0].leaders[0].code, original.groups[2].members[0].code]
   for (const code of codes) {
     const result = applyFigmaAction(original, { type: 'add-member', groupId: original.groups[0].id, id: 'new-member', draft: { ...draft, code: ` ${code.toLowerCase()} ` } })
     assert.match(result.error!, /工号已存在/)
     assert.equal(result.department, original)
   }
-  original.manager.code = 'e000350'
-  original.groups[0].leader!.code = 'E000351'
+  original.managers[0].code = 'e000350'
+  original.groups[0].leaders[0].code = 'E000351'
   original.groups[0].members[0].code = 'E000352'
   assert.equal(nextDemoCode(original), 'E000353')
 })
@@ -49,7 +60,8 @@ test('业务组新增为空组织；重命名不改变人员，拒绝空白、�
   assert.equal(added.error, null)
   const group = added.department.groups.at(-1)!
   assert.equal(group.groupName, '运营七组')
-  assert.equal(group.leader, null)
+  assert.equal(group.kpiRate, null)
+  assert.deepEqual(group.leaders, [])
   assert.equal(group.memberCount, 0)
   assert.deepEqual(group.members, [])
   assert.equal(added.department.totalCount, original.totalCount)
@@ -59,6 +71,67 @@ test('业务组新增为空组织；重命名不改变人员，拒绝空白、�
     assert.ok(applyFigmaAction(original, { type: 'add-group', id: 'new-group', name }).error)
   }
   assert.ok(applyFigmaAction(original, { type: 'rename-group', groupId: 'missing', name: '内容运营组' }).error)
+})
+
+test('编辑部门名称保留组织身份、任职及汇总；拒绝空白和超长名称', () => {
+  const original = fixture()
+  const before = structuredClone(original)
+  const result = applyFigmaAction(original, { type: 'rename-department', name: ' 鲜花运营中心 ' })
+  assert.equal(result.error, null)
+  assert.equal(result.department.deptName, '鲜花运营中心')
+  assert.equal(result.department.groups, original.groups)
+  assert.equal(result.department.managers, original.managers)
+  assert.equal(result.department.totalCount, original.totalCount)
+  assert.equal(result.department.kpiRate, original.kpiRate)
+  assert.deepEqual(original, before)
+  for (const name of ['', '   ', '长'.repeat(41)]) {
+    const rejected = applyFigmaAction(original, { type: 'rename-department', name })
+    assert.match(rejected.error!, /部门名称/)
+    assert.equal(rejected.department, original)
+  }
+})
+
+test('只有空业务组可以删除，人数汇总及原始数据不变，重复删除被拒绝', () => {
+  const original = applyFigmaAction(fixture(), { type: 'add-group', id: 'empty-group', name: '临时空组' }).department
+  const before = structuredClone(original)
+  const result = applyFigmaAction(original, { type: 'delete-group', groupId: 'empty-group' })
+  assert.equal(result.error, null)
+  assert.equal(result.department.groups.length, original.groups.length - 1)
+  assert.ok(!result.department.groups.some((group) => group.id === 'empty-group'))
+  assert.equal(result.department.totalCount, original.totalCount)
+  assert.deepEqual(original, before)
+  const again = applyFigmaAction(result.department, { type: 'delete-group', groupId: 'empty-group' })
+  assert.match(again.error!, /已不存在/)
+  assert.equal(again.department, result.department)
+})
+
+test('负责人、非零汇总人数、节选名录任一存在均阻止删除，不级联移除人员', () => {
+  const source = fixture().groups[0]
+  const blockers = [
+    { leaders: source.leaders, memberCount: 0, members: [] },
+    { leaders: [], memberCount: 1, members: [] },
+    { leaders: [], memberCount: 0, members: source.members },
+  ]
+  for (const blocker of blockers) {
+    const original = fixture()
+    original.groups[0] = { ...source, ...blocker }
+    const before = structuredClone(original)
+    const result = applyFigmaAction(original, { type: 'delete-group', groupId: source.id })
+    assert.match(result.error!, /先迁移人员并解除负责人任职/)
+    assert.equal(result.department, original)
+    assert.deepEqual(original, before)
+  }
+})
+
+test('根部门不支持删除：非空提示迁移解除，清空后也不会伪装为删除成功', () => {
+  const populated = fixture()
+  const blocked = applyFigmaAction(populated, { type: 'delete-department' })
+  assert.match(blocked.error!, /先迁移人员与子组并解除负责人任职/)
+  assert.equal(blocked.department, populated)
+  const empty = { ...fixture(), totalCount: 0, managers: [], groups: [] }
+  const unsupported = applyFigmaAction(empty, { type: 'delete-department' })
+  assert.match(unsupported.error!, /不支持删除根部门/)
+  assert.equal(unsupported.department, empty)
 })
 
 test('编辑仅更新指定人员资料，保留工号和绩效', () => {
@@ -112,9 +185,9 @@ test('搜索组织、经理、组长、姓名、工号与登录账号，空查�
   const group = original.groups[0]
   const member = group.members[0]
   assert.equal(filterFigmaGroups(original, '   '), original.groups)
-  assert.equal(filterFigmaGroups(original, original.manager.name), original.groups)
+  assert.equal(filterFigmaGroups(original, original.managers[0].name), original.groups)
   assert.deepEqual(filterFigmaGroups(original, group.groupName), [group])
-  assert.deepEqual(filterFigmaGroups(original, group.leader!.name), [group])
+  assert.deepEqual(filterFigmaGroups(original, group.leaders[0].name), [group])
   for (const query of [member.name, member.code.toLowerCase(), member.loginAccount]) {
     const found = filterFigmaGroups(original, query)
     assert.equal(found.length, 1)
@@ -122,6 +195,19 @@ test('搜索组织、经理、组长、姓名、工号与登录账号，空查�
     assert.equal(found[0].memberCount, group.memberCount)
   }
   assert.deepEqual(filterFigmaGroups(original, '未找到的名字'), [])
+})
+
+test('部和组支持多个平级负责人，同一稳定人员可跨层任职且不改变人数汇总', () => {
+  const original = fixture()
+  const operationGroup = original.groups.find((group) => group.id === 'grp-op4')!
+  const zhouLin = original.managers.find((person) => person.name === '周林')!
+  assert.equal(original.managers.length, 2)
+  assert.equal(operationGroup.leaders.length, 2)
+  assert.ok(operationGroup.leaders.some((person) => person.personId === zhouLin.personId))
+  assert.equal(responsibleAssignmentCounts(original).get(zhouLin.personId), 2)
+  assert.ok(crossLevelResponsiblePersonIds(original).has(zhouLin.personId))
+  assert.equal(original.totalCount, 36)
+  assert.equal(operationGroup.memberCount, 10)
 })
 
 test('绩效阈值包含 0、75、90，空值与无效值不被伪装成零', () => {

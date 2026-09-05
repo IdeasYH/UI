@@ -1,4 +1,30 @@
 /* Figma Make v12 geometry and palette, isolated from the Home-based templates. */
+.fg-person-access { display:flex; flex-wrap:wrap; gap:5px; margin-top:8px; grid-column:1 / -1; }
+.fg-person-access .ui-button { font-size:11px; padding:4px 6px; min-height:28px; height:auto; white-space:normal; overflow-wrap:anywhere; border:1px solid #cbd5e1; background:white; color:#334155; border-radius:6px; }
+.ui-dialog-content.fg-access-dialog { width:min(860px, calc(100vw - 32px)); max-height:calc(100dvh - 32px); overflow:auto; padding:24px; background:white; color:#1e293b; font-size:14px; }
+.fg-access-dialog header, .fg-access-dialog footer { display:flex; gap:12px; align-items:center; justify-content:space-between; }
+.fg-access-dialog h2 { font-size:20px; margin:0; }
+.fg-access-dialog p { font-size:14px; color:#52637a; line-height:1.65; }
+.fg-access-dialog .ui-button { min-height:34px; height:auto; white-space:normal; padding:7px 12px; }
+.fg-access-dialog footer { margin-top:20px; padding-top:16px; border-top:1px solid #e2e8f0; flex-wrap:wrap; }
+.fg-access-dialog footer span { margin-right:auto; font-size:12px; color:#64748b; }
+.fg-scope-options, .fg-tag-options { display:flex; gap:10px; flex-wrap:wrap; margin:20px 0 12px; }
+.fg-access-dialog [aria-pressed=true], .fg-access-dialog [aria-checked=true], .fg-access-dialog [aria-checked=mixed] { background:#eef2ff; color:#4338ca; border-color:#818cf8; }
+.fg-org-picker { display:grid; grid-template-columns:1.2fr 1fr; border:1px solid #cbd5e1; border-radius:10px; overflow:hidden; }
+.fg-org-picker > div, .fg-org-picker aside { padding:16px; min-width:0; }
+.fg-org-picker aside { border-left:1px solid #e2e8f0; background:#f8fafc; }
+.fg-org-tree { margin-top:12px; max-height:320px; overflow:auto; }
+.fg-org-row { display:flex; align-items:center; gap:8px; min-height:44px; }
+.fg-org-row .ui-button { padding:2px; width:28px; min-width:28px; min-height:28px; }
+.fg-org-child { padding-left:36px; border-left:1px solid #e2e8f0; margin-left:14px; }
+.fg-selected-org { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:10px; padding:10px; border:1px solid #dbe4f0; border-radius:8px; background:white; }
+.fg-selected-org small { display:block; color:#64748b; margin-top:4px; }
+.fg-tag-catalog label { display:flex; align-items:center; gap:16px; margin:10px 0; }
+.fg-tag-catalog code { min-width:100px; overflow-wrap:anywhere; }
+.fg-tag-create { display:flex; gap:8px; flex-wrap:wrap; margin-top:20px; }
+.fg-tag-create .ui-input { flex:1 1 180px; }
+.fg-tag-options code { margin-left:8px; color:#64748b; }
+@media(max-width:767px) { .fg-org-picker { grid-template-columns:1fr; } .fg-org-picker aside { border-left:0; border-top:1px solid #e2e8f0; } .ui-dialog-content.fg-access-dialog { padding:16px; } }
 .figma-replica, .fg-dialog, .fg-group-menu {
   --fg-blue: #155dfb;
   --fg-indigo: #4f39f6;
@@ -74,6 +100,30 @@
 .figma-replica .fg-primary-button { gap: 4px; min-height: 32px; padding: 6px 12px; border-radius: 12px; font-weight: 700; color: #fff; background: var(--fg-blue); box-shadow: 0 1px 3px rgb(0 0 0 / 10%); }
 .figma-replica .fg-primary-button:hover { background: #1447e6; }
 
+.figma-replica .fg-architecture-guide { margin-top: 12px; padding: 14px 16px; border: 1px solid #d8e2f0; border-radius: 14px; background: #fff; box-shadow: 0 1px 2px rgb(15 23 43 / 4%); }
+.fg-architecture-guide-header { display: flex; align-items: center; gap: 10px; }
+.fg-architecture-guide-icon { display: grid; place-items: center; width: 34px; height: 34px; flex-shrink: 0; border-radius: 10px; color: #432dd7; background: #eef2ff; }
+.fg-architecture-guide-header > div { min-width: 0; }
+.fg-architecture-guide-header > div > div { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; }
+.fg-architecture-guide-header h2 { color: #0f172b; font-size: 15px; font-weight: 850; }
+.fg-architecture-guide-header > div > div > span { padding: 2px 8px; border-radius: 999px; color: #432dd7; background: #eef2ff; font-size: 11px; font-weight: 800; }
+.fg-architecture-guide-header p { margin-top: 3px; color: #62748e; font-size: 12px; }
+.figma-replica .fg-architecture-guide-toggle { gap: 4px; min-height: 32px; margin-left: auto; padding: 6px 10px; border-radius: 7px; color: #45556c; font-size: 12px; font-weight: 700; }
+.figma-replica .fg-architecture-guide-toggle:hover { background: #f1f5f9; }
+.fg-architecture-guide-content { margin-top: 12px; padding-top: 12px; border-top: 1px solid #edf2f7; }
+.fg-architecture-flow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px; padding: 8px; border: 1px solid #dbe4ff; border-radius: 10px; color: #7c86ff; background: #f8faff; }
+.fg-architecture-flow > span { display: inline-flex; align-items: center; gap: 5px; padding: 6px 9px; border-radius: 6px; color: #312c85; background: #fff; font-size: 11px; font-weight: 800; box-shadow: 0 1px 1px rgb(15 23 43 / 5%); }
+.fg-architecture-rules { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+.fg-architecture-rules section { display: flex; align-items: flex-start; gap: 9px; min-width: 0; padding: 12px; border-left: 3px solid #c6d2ff; background: #f8fafc; }
+.fg-architecture-rules section > span { color: #4f39f6; font-family: ui-monospace, monospace; font-size: 11px; font-weight: 900; }
+.fg-architecture-rules section > div { min-width: 0; }
+.fg-architecture-rules h3 { color: #1d293d; font-size: 12px; font-weight: 850; }
+.fg-architecture-rules p { margin-top: 4px; color: #62748e; font-size: 11px; line-height: 1.65; }
+.fg-architecture-formulas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.fg-architecture-formulas code { flex: 1 1 360px; padding: 8px 11px; border: 1px solid #e2e8f0; border-radius: 7px; color: #312c85; background: #fff; font-size: 11px; font-weight: 750; }
+.fg-architecture-boundary { display: flex; align-items: flex-start; gap: 6px; margin-top: 11px; padding-top: 10px; border-top: 1px solid #edf2f7; color: #62748e; font-size: 11px; line-height: 1.6; }
+.fg-architecture-boundary svg { flex-shrink: 0; margin-top: 1px; color: #4f39f6; }
+
 .fg-canvas { position: relative; overflow: hidden; min-height: 750px; margin-top: 16px; padding: 32px; border: 1px solid rgb(226 232 240 / 90%); border-radius: 16px; background-color: rgb(241 245 249 / 60%); background-image: radial-gradient(circle, #cbd5e1 1px, transparent 1px); background-size: 24px 24px; box-shadow: inset 0 2px 4px rgb(0 0 0 / 5%); cursor: grab; user-select: none; touch-action: none; }
 .fg-canvas.is-dragging { cursor: grabbing; }
 .fg-canvas:focus-visible { outline: 2px solid #51a2ff; outline-offset: 3px; }
@@ -98,6 +148,24 @@
 .fg-manager-kpi { padding: 2px 10px; border-radius: 999px; font-family: ui-monospace, monospace; font-size: 12px; line-height: 16px; font-weight: 900; background: var(--fg-purple); color: #fff; }
 .figma-replica .fg-purple-button { gap: 4px; padding: 4px 8px; border-radius: 8px; background: var(--fg-purple); color: #fff; font-weight: 700; font-size: 12px; line-height: 16px; }
 .figma-replica .fg-purple-button:hover { background: #8200db; }
+.fg-responsible-block { margin-top: 10px; padding: 8px; border: 1px solid; border-radius: 10px; }
+.fg-responsible-block[data-responsible-tone="department"] { border-color: #e9d4ff; background: rgb(250 245 255 / 78%); }
+.fg-responsible-block[data-responsible-tone="group"] { border-color: #dbe4ff; background: rgb(238 242 255 / 78%); }
+.fg-responsible-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-bottom: 6px; border-bottom: 1px solid rgb(203 213 225 / 55%); }
+.fg-responsible-heading > span { color: #1d293d; font-size: 10px; font-weight: 800; }
+.fg-responsible-heading > strong { color: #432dd7; font-size: 9px; font-weight: 800; }
+.fg-responsible-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 6px; margin-top: 6px; }
+.fg-responsible-person { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 6px; min-width: 0; padding: 6px; border: 1px solid rgb(255 255 255 / 90%); border-radius: 8px; background: rgb(255 255 255 / 78%); box-shadow: 0 1px 2px rgb(15 23 43 / 5%); }
+.fg-responsible-avatar { display: grid; place-items: center; width: 28px; height: 28px; flex-shrink: 0; border-radius: 8px; color: #fff; background: linear-gradient(145deg, var(--fg-purple), var(--fg-indigo)); font-size: 11px; font-weight: 800; }
+.fg-responsible-block[data-responsible-tone="group"] .fg-responsible-avatar { background: var(--fg-indigo); }
+.fg-responsible-identity { min-width: 0; }
+.fg-responsible-identity > div { display: flex; align-items: center; flex-wrap: wrap; gap: 3px; min-width: 0; }
+.fg-responsible-identity strong { color: #0f172b; font-size: 11px; font-weight: 900; }
+.fg-responsible-identity span { padding: 0 4px; border-radius: 4px; color: #432dd7; background: #eef2ff; font-family: ui-monospace, monospace; font-size: 8px; font-weight: 700; }
+.fg-responsible-identity em { padding: 1px 4px; border: 1px solid #f5b8ff; border-radius: 999px; color: #8200db; background: #fae8ff; font-size: 8px; font-style: normal; font-weight: 800; white-space: nowrap; }
+.fg-responsible-identity p { margin-top: 2px; color: #62748e; font-family: ui-monospace, monospace; font-size: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fg-responsible-person > .fg-kpi-badge { padding: 1px 5px; font-size: 8px; }
+.fg-responsible-empty { padding: 10px 0 4px; text-align: center; color: #62748e; font-size: 10px; }
 .fg-manager-details { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 12px; }
 .fg-manager-details > div:first-child { display: flex; align-items: center; gap: 12px; min-width: 0; }
 .fg-manager-avatar { display: grid; place-items: center; width: 44px; height: 48px; flex-shrink: 0; border-radius: 12px; background: linear-gradient(45deg, var(--fg-purple), var(--fg-indigo)); color: #fff; font-size: 16px; font-weight: 700; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%); }
@@ -109,7 +177,7 @@
 .fg-manager-rate > span { display: block; color: #314158; font-size: 11px; font-weight: 700; }
 .fg-manager-rate > strong { display: block; color: #8200db; font-family: ui-monospace, monospace; font-size: 16px; font-weight: 900; }
 .fg-manager-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; padding-top: 8px; border-top: 1px solid rgb(233 212 255 / 60%); }
-.fg-manager-bottom > span { color: #45556c; font-size: 11px; font-weight: 700; }
+.fg-manager-bottom > span { display: flex; align-items: center; gap: 4px; color: #45556c; font-size: 11px; font-weight: 700; }
 .figma-replica .fg-soft-purple-button { gap: 4px; padding: 4px 10px; border-radius: 8px; background: #f3e8ff; color: #6e11b0; font-weight: 700; line-height: 16px; }
 .figma-replica .fg-soft-purple-button:hover { background: #e9d4ff; }
 .fg-department-line { width: 2px; height: 40px; background: #c27aff; }
@@ -139,6 +207,8 @@
 .fg-leader-name > span { padding: 0 4px; border-radius: 4px; color: #432dd7; background: #eef2ff; font-family: ui-monospace, monospace; font-size: 10px; font-weight: 700; }
 .fg-group-details p { color: #62748e; font-family: ui-monospace, monospace; font-size: 10px; }
 .fg-group-count { flex-shrink: 0; color: #432dd7; font-family: ui-monospace, monospace; font-size: 12px; font-weight: 700; }
+.fg-group-scope { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; color: #45556c; font-size: 9px; font-weight: 700; }
+.fg-group-scope > span { display: flex; align-items: center; gap: 4px; }
 .fg-group-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; padding-top: 8px; border-top: 1px solid #e0e7ff; font-size: 11px; }
 .figma-replica .fg-add-member-button { gap: 4px; padding: 2px 8px; border-radius: 4px; background: #e0e7ff; color: #372aac; font-weight: 700; }
 .figma-replica .fg-add-member-button:hover { background: #c6d2ff; }
@@ -223,6 +293,7 @@
 @media (max-width: 1100px) {
   .fg-brand-caption { display: none; }
   .fg-toolbar-heading { flex-basis: 100%; }
+  .fg-architecture-rules { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 767px) {
   .fg-main { padding: 16px; }
@@ -236,6 +307,10 @@
   .fg-context-badge { margin-left: 36px; }
   .fg-context-caption { display: none; }
   .fg-toolbar { gap: 12px; padding: 12px; }
+  .fg-architecture-guide-header { align-items: flex-start; flex-wrap: wrap; }
+  .figma-replica .fg-architecture-guide-toggle { margin-left: 44px; }
+  .fg-architecture-rules { grid-template-columns: minmax(0, 1fr); }
+  .fg-architecture-flow { justify-content: flex-start; }
   .fg-kpi-legend { gap: 4px; }
   .fg-kpi-legend > span { padding: 3px 6px; gap: 4px; font-size: 10px; }
   .fg-canvas-actions { gap: 6px; }
@@ -248,3 +323,31 @@
 @media (prefers-reduced-motion: reduce) {
   .figma-replica *, .fg-dialog * { transition: none; }
 }
+
+/* Toolbar-only guide entry and page-local fullscreen; dialogs stay above it. */
+.figma-replica .fg-fit-view { width: auto; min-width: 96px; white-space: nowrap; flex-shrink: 0; }
+.fg-graph-workspace.is-page-fullscreen { position: fixed; inset: 0; z-index: 90; display: flex; flex-direction: column; gap: 10px; padding: 12px; height: 100dvh; background: #f5f7fa; }
+.fg-graph-workspace.is-page-fullscreen > .fg-toolbar { flex-shrink: 0; max-height: 35dvh; overflow: auto; }
+.fg-graph-workspace.is-page-fullscreen > .fg-canvas { flex: 1 1 0; min-height: 0; height: auto; margin-top: 0; }
+.figma-replica .is-page-fullscreen > .fg-architecture-guide { flex: 0 1 auto; min-height: 0; max-height: 45dvh; overflow: auto; margin: 0; }
+.fg-node-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px; padding-top: 8px; margin-top: 8px; border-top: 1px solid #e2e8f0; }
+.figma-replica .fg-node-actions .ui-button { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; padding: 5px 8px; min-height: 30px; border: 1px solid #dbe2ee; border-radius: 6px; color: #45556c; background: white; }
+.figma-replica .fg-node-actions .fg-node-delete { color: #b42318; border-color: #f5d0ce; }
+.figma-replica .fg-architecture-guide { padding: 20px; }
+.fg-bdd-guide { max-width: 1200px; margin: 24px auto 0; color: #334155; font-size: 16px; line-height: 1.8; user-select: text; }
+.fg-bdd-guide h1 { margin: 24px 0 12px; font-size: 24px; line-height: 1.4; color: #0f172a; }
+.fg-bdd-guide h2 { margin: 32px 0 14px; padding-top: 20px; border-top: 1px solid #e2e8f0; font-size: 21px; line-height: 1.5; color: #0f172a; scroll-margin-top: 20px; }
+.fg-bdd-guide h3 { margin: 24px 0 10px; font-size: 18px; color: #1e293b; }
+.fg-bdd-guide h4 { margin: 22px 0 8px; font-size: 17px; line-height: 1.6; color: #1e293b; }
+.fg-bdd-guide p, .fg-bdd-guide ul, .fg-bdd-guide ol { margin: 10px 0; }
+.fg-bdd-guide ul, .fg-bdd-guide ol { padding-left: 24px; }
+.fg-bdd-guide ul { list-style: disc; }
+.fg-bdd-guide ol { list-style: decimal; }
+.fg-bdd-guide a { color: #4338ca; text-decoration: underline; text-underline-offset: 3px; }
+.fg-bdd-guide code { font-size: .9em; overflow-wrap: anywhere; }
+.fg-bdd-guide pre { padding: 16px; margin: 16px 0; overflow-x: auto; border: 1px solid #dde5f0; border-radius: 8px; background: #f8fafc; white-space: pre-wrap; overflow-wrap: anywhere; }
+.fg-bdd-toc { display: flex; flex-wrap: wrap; gap: 8px 16px; padding: 16px; border: 1px solid #dde5f0; background: #f8fafc; border-radius: 8px; }
+.fg-bdd-table { overflow-x: auto; margin: 16px 0; }
+.fg-bdd-guide table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.fg-bdd-guide th, .fg-bdd-guide td { padding: 10px 12px; border: 1px solid #dbe3ee; vertical-align: top; text-align: left; min-width: 100px; }
+.fg-bdd-guide th { background: #f1f5f9; font-weight: 650; }

@@ -1,20 +1,27 @@
 import type { GroupMember, GroupNode, SingleDepartmentDemo } from '../../data/figma-organization.ts'
 import { normalizePersonSearch } from '../person-picker/person-search.ts'
+import { matchesOrganization } from './organization-search.ts'
 
-export type FigmaGroup = Omit<GroupNode, 'leader'> & { leader: GroupNode['leader'] | null }
-export type FigmaDepartment = Omit<SingleDepartmentDemo, 'groups'> & { groups: FigmaGroup[] }
+export type FigmaGroup = GroupNode
+export type FigmaDepartment = SingleDepartmentDemo
 export type MemberDraft = Pick<GroupMember, 'name' | 'code' | 'position' | 'level'>
 export type FigmaAction =
+  | { type: 'rename-department'; name: string }
+  | { type: 'delete-department' }
   | { type: 'add-group'; id: string; name: string }
   | { type: 'rename-group'; groupId: string; name: string }
+  | { type: 'delete-group'; groupId: string }
   | { type: 'add-member'; groupId: string; id: string; draft: MemberDraft }
   | { type: 'edit-member'; memberId: string; draft: Pick<MemberDraft, 'name' | 'position' | 'level'> }
   | { type: 'transfer-member'; memberId: string; groupId: string }
   | { type: 'departure'; memberId: string }
 
 export type FigmaDialogAction =
+  | { type: 'rename-department' }
+  | { type: 'delete-department' }
   | { type: 'add-group' }
   | { type: 'rename-group'; groupId: string }
+  | { type: 'delete-group'; groupId: string }
   | { type: 'add-member'; groupId: string }
   | { type: 'edit-member'; memberId: string }
   | { type: 'transfer-member'; memberId: string }
@@ -33,20 +40,33 @@ export function findFigmaMember(department: FigmaDepartment, memberId: string) {
   return null
 }
 
+export function responsibleAssignmentCounts(department: FigmaDepartment) {
+  const counts = new Map<string, number>()
+  const record = (personId: string) => counts.set(personId, (counts.get(personId) ?? 0) + 1)
+  department.managers.forEach((person) => record(person.personId))
+  department.groups.forEach((group) => group.leaders.forEach((person) => record(person.personId)))
+  return counts
+}
+
+export function crossLevelResponsiblePersonIds(department: FigmaDepartment) {
+  const departmentIds = new Set(department.managers.map((person) => person.personId))
+  return new Set(department.groups.flatMap((group) => group.leaders).filter((person) => departmentIds.has(person.personId)).map((person) => person.personId))
+}
+
 export function filterFigmaGroups(department: FigmaDepartment, query: string): FigmaGroup[] {
   const keyword = normalizePersonSearch(query)
   if (!keyword) return department.groups
   const matches = (...values: (string | undefined)[]) => values.some((value) => normalizePersonSearch(value).includes(keyword))
-  if (matches(department.deptName, department.manager.name, department.manager.code)) return department.groups
+  if (matchesOrganization(department.deptName, query) || matches(...department.managers.flatMap((person) => [person.name, person.code]))) return department.groups
   return department.groups.flatMap((group) => {
-    if (matches(group.groupName, group.leader?.name, group.leader?.code)) return [group]
+    if (matchesOrganization(group.groupName, query) || matches(...group.leaders.flatMap((person) => [person.name, person.code]))) return [group]
     const members = group.members.filter((member) => matches(member.name, member.code, member.loginAccount))
     return members.length ? [{ ...group, members }] : []
   })
 }
 
 export function nextDemoCode(department: FigmaDepartment) {
-  const used = new Set([department.manager.code, ...department.groups.flatMap((group) => [group.leader?.code ?? '', ...group.members.map((member) => member.code)])].map((code) => code.toUpperCase()))
+  const used = new Set([...department.managers.map((person) => person.code), ...department.groups.flatMap((group) => [...group.leaders.map((person) => person.code), ...group.members.map((member) => member.code)])].map((code) => code.toUpperCase()))
   let number = 350
   while (used.has(`E${String(number).padStart(6, '0')}`)) number++
   return `E${String(number).padStart(6, '0')}`
@@ -56,13 +76,37 @@ export function applyFigmaAction(department: FigmaDepartment, action: FigmaActio
   const reject = (error: string) => ({ department, error })
   const accept = (groups: FigmaGroup[], totalCount = department.totalCount) => ({ department: { ...department, groups, totalCount }, error: null })
 
+  if (action.type === 'rename-department') {
+    const name = action.name.trim()
+    if (!name || name.length > 40) return reject('请输入 1 至 40 个字符的部门名称。')
+    return { department: { ...department, deptName: name }, error: null }
+  }
+
+  if (action.type === 'delete-department') {
+    // The demo has one mandatory root; deleting it must not pretend to succeed or cascade.
+    if (department.groups.length || department.managers.length || department.totalCount !== 0) {
+      return reject('部门仍有子组、负责人或人员，请先迁移人员与子组并解除负责人任职；当前单根示例不支持删除根部门。')
+    }
+    return reject('当前单根示例不支持删除根部门；本次没有删除任何组织或人员。')
+  }
+
+  if (action.type === 'delete-group') {
+    const group = department.groups.find((item) => item.id === action.groupId)
+    if (!group) return reject('业务组已不存在。')
+    // memberCount is a source summary, while members is only a sample list: check both.
+    if (group.leaders.length || group.memberCount !== 0 || group.members.length) {
+      return reject('业务组仍有负责人或人员，请先迁移人员并解除负责人任职，再删除空组织；删除不会自动移除人员。')
+    }
+    return accept(department.groups.filter((item) => item.id !== action.groupId))
+  }
+
   if (action.type === 'add-group' || action.type === 'rename-group') {
     const name = action.name.trim()
     if (!name || name.length > 40) return reject('请输入 1 至 40 个字符的业务组名称。')
     if (department.groups.some((group) => normalizePersonSearch(group.groupName) === normalizePersonSearch(name) && (action.type === 'add-group' || group.id !== action.groupId))) return reject('已有同名业务组，请使用其他名称。')
     if (action.type === 'add-group') {
       if (department.groups.some((group) => group.id === action.id)) return reject('业务组编号重复。')
-      return accept([...department.groups, { id: action.id, groupName: name, leader: null, memberCount: 0, members: [] }])
+      return accept([...department.groups, { id: action.id, groupName: name, kpiRate: null, leaders: [], memberCount: 0, members: [] }])
     }
     if (!department.groups.some((group) => group.id === action.groupId)) return reject('业务组已不存在。')
     return accept(department.groups.map((group) => group.id === action.groupId ? { ...group, groupName: name } : group))
@@ -79,7 +123,7 @@ export function applyFigmaAction(department: FigmaDepartment, action: FigmaActio
     const code = action.draft.code.trim()
     if (!code || code.length > 30) return reject('请输入有效工号，最多 30 个字符。')
     if (!department.groups.some((group) => group.id === action.groupId)) return reject('业务组已不存在。')
-    const codes = [department.manager.code, ...department.groups.flatMap((group) => [group.leader?.code, ...group.members.map((member) => member.code)])]
+    const codes = [...department.managers.map((person) => person.code), ...department.groups.flatMap((group) => [...group.leaders.map((person) => person.code), ...group.members.map((member) => member.code)])]
     if (codes.some((value) => normalizePersonSearch(value) === normalizePersonSearch(code))) return reject('工号已存在，请检查后重新填写。')
     if (findFigmaMember(department, action.id)) return reject('人员编号重复。')
     const member: GroupMember = { id: action.id, name: name.trim(), code, position: position.trim(), level: level.trim(), joinDate: '', accountStatus: 'unopened', loginAccount: '未开通', onboardingDocs: 'pending', kpiRate: null }

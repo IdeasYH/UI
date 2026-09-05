@@ -1,5 +1,5 @@
 import { useId, useRef, useState, type FormEvent } from 'react'
-import { ArrowRightLeft, Check, ChevronDown, Plus, SquarePen, UserMinus, UserPlus, X } from 'lucide-react'
+import { ArrowRightLeft, Check, ChevronDown, Plus, SquarePen, Trash2, UserMinus, UserPlus, X } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Dialog } from '../ui/dialog'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu'
@@ -24,7 +24,7 @@ function ActionForm({ department, action, onClose, onConfirm }: Props & { action
   const id = useId()
   const current = 'memberId' in action ? findFigmaMember(department, action.memberId) : null
   const group = 'groupId' in action ? department.groups.find((item) => item.id === action.groupId) : current?.group
-  const [name, setName] = useState(action.type === 'rename-group' ? group?.groupName ?? '' : current?.member.name ?? '')
+  const [name, setName] = useState(action.type === 'rename-department' ? department.deptName : action.type === 'rename-group' ? group?.groupName ?? '' : current?.member.name ?? '')
   const [code, setCode] = useState(current?.member.code ?? nextDemoCode(department))
   const [position, setPosition] = useState(current?.member.position ?? '运营专员')
   const [level, setLevel] = useState(current?.member.level ?? 'P6-1')
@@ -34,11 +34,16 @@ function ActionForm({ department, action, onClose, onConfirm }: Props & { action
   const targetRef = useRef<HTMLButtonElement>(null)
   const target = department.groups.find((item) => item.id === targetId)
   const isMemberForm = action.type === 'add-member' || action.type === 'edit-member'
-  const icons = { 'add-group': Plus, 'rename-group': SquarePen, 'add-member': UserPlus, 'edit-member': SquarePen, 'transfer-member': ArrowRightLeft, departure: UserMinus }
+  const isNodeDelete = action.type === 'delete-department' || action.type === 'delete-group'
+  const isNodeForm = action.type === 'add-group' || action.type === 'rename-group' || action.type === 'rename-department'
+  const icons = { 'rename-department': SquarePen, 'delete-department': Trash2, 'add-group': Plus, 'rename-group': SquarePen, 'delete-group': Trash2, 'add-member': UserPlus, 'edit-member': SquarePen, 'transfer-member': ArrowRightLeft, departure: UserMinus }
   const Icon = icons[action.type]
   const titles = {
+    'rename-department': `编辑部门【${department.deptName}】`,
+    'delete-department': `删除部门【${department.deptName}】`,
     'add-group': `在【${department.deptName}】下新增业务组`,
     'rename-group': `重命名业务组【${group?.groupName ?? ''}】`,
+    'delete-group': `删除业务组【${group?.groupName ?? ''}】`,
     'add-member': '录入在职人员',
     'edit-member': '编辑员工资料',
     'transfer-member': '为员工办理组织调动',
@@ -51,6 +56,9 @@ function ActionForm({ department, action, onClose, onConfirm }: Props & { action
     switch (action.type) {
       case 'add-group': result = { type: action.type, id: `demo-group-${crypto.randomUUID()}`, name }; break
       case 'rename-group': result = { ...action, name }; break
+      case 'rename-department': result = { ...action, name }; break
+      case 'delete-department':
+      case 'delete-group': result = action; break
       case 'add-member': result = { ...action, id: `demo-member-${crypto.randomUUID()}`, draft: { name, code, position, level } }; break
       case 'edit-member': result = { ...action, draft: { name, position, level } }; break
       case 'transfer-member': result = { ...action, groupId: targetId }; break
@@ -63,7 +71,7 @@ function ActionForm({ department, action, onClose, onConfirm }: Props & { action
     <header className="fg-dialog-header"><span className="fg-dialog-icon"><Icon size={16} /></span><h2 id={`${id}-title`}>{titles[action.type]}</h2><Button variant="ghost" className="fg-dialog-close" title="关闭弹窗" aria-label="关闭弹窗" onClick={onClose}><X size={16} /></Button></header>
     <form onSubmit={submit} className="fg-dialog-form">
       {current && <div className="fg-current-member"><strong>{current.member.name}</strong><code>{current.member.code}</code><span>{current.group.groupName}</span></div>}
-      {(action.type === 'add-group' || action.type === 'rename-group') && <div className="fg-field"><label htmlFor={`${id}-name`}>{action.type === 'add-group' ? '新子部门 / 业务组名称' : '修改业务组名称'}</label><Input id={`${id}-name`} data-autofocus required maxLength={40} value={name} onChange={(event) => setName(event.target.value)} placeholder="如：运营七组、短视频运营组" /></div>}
+      {isNodeForm && <div className="fg-field"><label htmlFor={`${id}-name`}>{action.type === 'rename-department' ? '部门名称' : action.type === 'add-group' ? '新子部门 / 业务组名称' : '修改业务组名称'}</label><Input id={`${id}-name`} data-autofocus required maxLength={40} value={name} onChange={(event) => setName(event.target.value)} placeholder={action.type === 'rename-department' ? '请输入部门名称' : '如：运营七组、短视频运营组'} /></div>}
       {isMemberForm && <div className="fg-form-grid">
         <div className="fg-field"><label htmlFor={`${id}-name`}>员工姓名 <span>*</span></label><Input id={`${id}-name`} data-autofocus required maxLength={20} value={name} onChange={(event) => setName(event.target.value)} placeholder="请输入姓名" /></div>
         {action.type === 'add-member' && <div className="fg-field"><label htmlFor={`${id}-code`}>员工编号 <span>*</span></label><Input id={`${id}-code`} required maxLength={30} value={code} onChange={(event) => setCode(event.target.value)} placeholder="E000350" /></div>}
@@ -78,9 +86,14 @@ function ActionForm({ department, action, onClose, onConfirm }: Props & { action
         </DropdownMenuContent>
       </DropdownMenu></div>}
       {action.type === 'departure' && <p className="fg-departure-confirmation">确认将 <strong>{current?.member.name}</strong> 移出当前示例名录？</p>}
+      {isNodeDelete && <div className="fg-departure-confirmation">
+        <p>确认删除组织节点 <strong>{action.type === 'delete-department' ? department.deptName : group?.groupName}</strong>？</p>
+        <p>仅允许删除无负责人、无人员、无下级组织的空节点。请先迁移人员与子组并解除负责人任职；不会连带删除人员或业务数据。</p>
+        {action.type === 'delete-department' && <p>当前页面是单根部门示例，暂不支持删除根部门。确认后会保留现有结构并提示原因。</p>}
+      </div>}
       <p id={`${id}-scope`} className="fg-demo-scope">仅修改本页示例数据，刷新后恢复；不影响 HRM 人员或账号。</p>
       {error && <p role="alert" className="fg-form-error">{error}</p>}
-      <footer className="fg-dialog-actions"><Button variant="outline" onClick={onClose}>取消</Button><Button type="submit" className={action.type === 'departure' ? 'fg-confirm-departure' : ''}>{action.type === 'edit-member' ? '保存资料' : action.type === 'add-member' ? '确认提交' : action.type === 'departure' ? '确认离职' : '确认操作'}</Button></footer>
+      <footer className="fg-dialog-actions"><Button type="button" variant="outline" onClick={onClose}>取消</Button><Button type="submit" className={action.type === 'departure' || isNodeDelete ? 'fg-confirm-departure' : ''}>{isNodeDelete ? '确认删除' : action.type === 'edit-member' ? '保存资料' : action.type === 'add-member' ? '确认提交' : action.type === 'departure' ? '确认离职' : '确认操作'}</Button></footer>
     </form>
   </Dialog>
 }

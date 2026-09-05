@@ -12,16 +12,22 @@ export interface GroupMember {
   kpiRate: number | null; // Newly added demo members have no performance data yet.
 }
 
+export interface ResponsiblePerson {
+  personId: string;
+  name: string;
+  code: string;
+  position: string;
+  level: string;
+  kpiRate: number;
+  phone?: string;
+  email?: string;
+}
+
 export interface GroupNode {
   id: string;
   groupName: string;
-  leader: {
-    name: string;
-    code: string;
-    position: string;
-    level: string;
-    kpiRate: number;
-  };
+  kpiRate: number | null;
+  leaders: ResponsiblePerson[];
   memberCount: number;
   members: GroupMember[];
 }
@@ -29,41 +35,49 @@ export interface GroupNode {
 export interface SingleDepartmentDemo {
   deptName: string;
   totalCount: number;
-  manager: {
-    name: string;
-    code: string;
-    position: string;
-    level: string;
-    phone: string;
-    email: string;
-    kpiRate: number;
-  };
+  kpiRate: number;
+  managers: ResponsiblePerson[];
   groups: GroupNode[];
+}
+
+const tianJing: ResponsiblePerson = {
+  personId: 'person-tian-jing',
+  name: '田靖',
+  code: 'E000050',
+  position: '运营部经理',
+  level: 'P9-2',
+  phone: '138****8821',
+  email: 'tianjing@shangyi.com',
+  kpiRate: 94
+}
+
+const zhouLin: ResponsiblePerson = {
+  personId: 'person-zhou-lin',
+  name: '周林',
+  code: 'E000088',
+  position: '运营负责人',
+  level: 'P8-1',
+  kpiRate: 95
 }
 
 export const demoDepartmentData: SingleDepartmentDemo = {
   deptName: '鲜花美团运营部',
   totalCount: 36,
-  manager: {
-    name: '田靖',
-    code: 'E000050',
-    position: '运营部经理',
-    level: 'P9-2',
-    phone: '138****8821',
-    email: 'tianjing@shangyi.com',
-    kpiRate: 94
-  },
+  kpiRate: 94,
+  managers: [tianJing, zhouLin],
   groups: [
     {
       id: 'grp-cs',
       groupName: '客服组',
-      leader: {
+      kpiRate: 92,
+      leaders: [{
+        personId: 'person-chen-ruoxi',
         name: '陈若溪',
         code: 'E000128',
         position: '客服组长',
         level: 'P6-2',
         kpiRate: 92
-      },
+      }],
       memberCount: 6,
       members: [
         {
@@ -107,13 +121,15 @@ export const demoDepartmentData: SingleDepartmentDemo = {
     {
       id: 'grp-inspect',
       groupName: '新商督查组',
-      leader: {
+      kpiRate: 88,
+      leaders: [{
+        personId: 'person-zhang-liqiang',
         name: '张立强',
         code: 'E000155',
         position: '新商督查组长',
         level: 'P7-3',
         kpiRate: 88
-      },
+      }],
       memberCount: 5,
       members: [
         {
@@ -157,13 +173,15 @@ export const demoDepartmentData: SingleDepartmentDemo = {
     {
       id: 'grp-op4',
       groupName: '运营四组',
-      leader: {
-        name: '周林',
-        code: 'E000088',
-        position: '运营四组组长',
-        level: 'P8-1',
-        kpiRate: 95
-      },
+      kpiRate: 95,
+      leaders: [zhouLin, {
+        personId: 'person-lin-zhixia',
+        name: '林知夏',
+        code: 'E000176',
+        position: '运营负责人',
+        level: 'P7-2',
+        kpiRate: 89
+      }],
       memberCount: 10,
       members: [
         {
@@ -207,13 +225,15 @@ export const demoDepartmentData: SingleDepartmentDemo = {
     {
       id: 'grp-op5',
       groupName: '运营五组',
-      leader: {
+      kpiRate: 81,
+      leaders: [{
+        personId: 'person-wei-dayong',
         name: '魏大勇',
         code: 'E000105',
         position: '运营五组组长',
         level: 'P8-1',
         kpiRate: 81
-      },
+      }],
       memberCount: 8,
       members: [
         {
@@ -257,13 +277,15 @@ export const demoDepartmentData: SingleDepartmentDemo = {
     {
       id: 'grp-op6',
       groupName: '运营六组',
-      leader: {
+      kpiRate: 76,
+      leaders: [{
+        personId: 'person-qian-hongfa',
         name: '钱宏发',
         code: 'E000012',
         position: '运营六组组长',
         level: 'P7-1',
         kpiRate: 76
-      },
+      }],
       memberCount: 7,
       members: [
         {

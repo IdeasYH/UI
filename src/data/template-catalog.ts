@@ -49,27 +49,27 @@ type ComponentEntry = {
 
 export const componentCatalog = [
   {
-    id: 'system-permissions', name: '本系统页面与按钮权限', symbol: 'PermissionProvider / PermissionPage', category: 'business', kind: '业务组件',
-    description: 'HRM 只管系统准入；本系统功能角色、页面权限树、现场配置、人员多角色并集与真实页面测试。仅前端演示。',
-    sources: ['src/components/permissions/permission-provider.tsx', 'src/components/permissions/permission-model.ts', 'src/components/permissions/permission-context.ts', 'src/permissions.css'], preview: 'page',
+    id: 'system-permissions', name: '角色与组织授权', symbol: 'TopologyWorkspace / allowedFact', category: 'business', kind: '业务组件',
+    description: '角色统一配置页面、按钮三态和数据范围，按节点或任职复用；全页及例外、允许并集和动作范围绑定。',
+    sources: ['src/components/permissions/topology-workspace.tsx', 'src/components/permissions/topology-model.ts', 'src/topology-authorization.css'], preview: 'page',
     locations: [{ page: 'organization-figma', label: 'A 拓扑结构 / 功能权限入口', href: '/organization/figma#figma-controls' }],
   },
   {
-    id: 'figma-organization-canvas', name: 'Figma 组织连线画布', symbol: 'FigmaOrganizationGraph', category: 'business', kind: '业务组件',
-    description: '部门、业务组和成员三级连线；包含展开收起、平移、缩放、适应画布与组织人员搜索。',
-    sources: ['src/components/figma-organization/figma-organization-graph.tsx', 'src/figma-organization.css'], preview: 'page',
+    id: 'figma-organization-canvas', name: '组织授权拓扑', symbol: 'TopologyWorkspace', category: 'business', kind: '业务组件',
+    description: '递归组织连线与 L 层级数字，组织和任职点选、授权期间荧光高亮、展开收起与缩放搜索。',
+    sources: ['src/components/permissions/topology-workspace.tsx', 'src/topology-authorization.css'], preview: 'page',
     locations: [{ page: 'organization-figma', label: 'A 拓扑结构 / 组织连线画布', href: '/organization/figma#figma-canvas' }, { page: 'organization-figma', label: 'A 拓扑结构 / 画布工具栏', href: '/organization/figma#figma-controls' }],
   },
   {
-    id: 'figma-performance-card', name: '绩效进度人员卡片', symbol: 'MemberCard / KpiBadge', category: 'display', kind: '业务组件',
-    description: '全宽绩效填充、三级完成率颜色、职级与工号标签；没有绩效数据时显示待统计。',
-    sources: ['src/components/figma-organization/figma-organization-graph.tsx', 'src/components/figma-organization/figma-organization-model.ts'], preview: 'page',
+    id: 'figma-performance-card', name: '任职授权人员卡片', symbol: 'TopologyWorkspace / sources', category: 'display', kind: '业务组件',
+    description: '人员卡片对应稳定任职，支持查看当前任职与全部任职合并权限，并解释授权来源。',
+    sources: ['src/components/permissions/topology-workspace.tsx', 'src/components/permissions/topology-model.ts'], preview: 'page',
     locations: [{ page: 'organization-figma', label: 'A 拓扑结构 / 组员名录', href: '/organization/figma#figma-canvas' }],
   },
   {
-    id: 'figma-organization-actions', name: '组织与人员操作弹窗', symbol: 'FigmaOrganizationDialog', category: 'overlay', kind: '业务组件',
-    description: '新增与重命名业务组、录入与编辑人员、组间调岗和离职确认，仅更新页面内存。',
-    sources: ['src/components/figma-organization/figma-organization-dialog.tsx', 'src/components/figma-organization/figma-organization-model.ts'], preview: 'page',
+    id: 'figma-organization-actions', name: '组织与人员操作弹窗', symbol: 'TopologyWorkspace / moveOrg', category: 'overlay', kind: '业务组件',
+    description: '组织新增、改名与移动，按 HRM 示例角色选人、添加和结束任职、调组；不自动转移业务事实。',
+    sources: ['src/components/permissions/topology-workspace.tsx', 'src/components/permissions/topology-model.ts'], preview: 'page',
     locations: [{ page: 'organization-figma', label: 'A 拓扑结构 / 节点操作按钮', href: '/organization/figma#figma-canvas' }],
   },
   {
@@ -231,7 +231,7 @@ export function componentPreviewHref(component: CatalogComponent): string {
 export const examplePages = [
   { id: 'portal', title: '门户首页', href: '/', image: '/previews/portal.png', source: 'Home', description: '完整门户、系统入口与配置编辑', sections: [{ label: '顶部导航', href: '/?menu=system' }, { label: '主视觉', href: '/#portal-hero' }, { label: '系统矩阵', href: '/#systems' }, { label: '业务链路', href: '/#workflow' }, { label: '门户配置', href: '/?panel=admin' }] },
   { id: 'people', title: '人员分配', href: '/components/person-picker', image: '/previews/people.png', source: 'Operator', description: '人员选框、状态筛选与数据表格', sections: [{ label: '负责人选框', href: '/components/person-picker#people-owners' }, { label: '筛选工具栏', href: '/components/person-picker#people-filters' }, { label: '分配表格', href: '/components/person-picker#people-assignments' }] },
-  { id: 'organization-figma', title: '组织人员 A · 拓扑结构', href: '/organization/figma', image: '/previews/organization-figma.png', source: 'Figma Make', description: '三级组织连线、绩效卡片与人员管理弹窗', sections: [{ label: '画布工具栏', href: '/organization/figma#figma-controls' }, { label: '组织与人员', href: '/organization/figma#figma-canvas' }, { label: '复刻说明', href: '/guide#figma-replica' }] },
+  { id: 'organization-figma', title: '组织人员 A · 拓扑结构', href: '/organization/figma', image: '/previews/organization-figma.png', source: 'Figma Make', description: '组织拓扑、可复用角色与荧光授权预览', sections: [{ label: '画布工具栏', href: '/organization/figma#figma-controls' }, { label: '组织与人员', href: '/organization/figma#figma-canvas' }, { label: '复刻说明', href: '/guide#figma-replica' }] },
   { id: 'organization-personnel', title: '组织人员 B · 经典结构', href: '/organization/personnel', image: '/previews/organization-personnel.png', source: '用户 HTML', description: '人员统计、组织树、账号资料状态与人员表格', sections: [{ label: '人员概览', href: '/organization/personnel#personnel-overview' }, { label: '组织与人数', href: '/organization/personnel#personnel-organization' }, { label: '人员列表', href: '/organization/personnel#personnel-roster' }] },
   { id: 'organization-tree', title: '组织人员 C · 树表工作台', href: '/organization/tree', image: '/previews/organization-tree.png', source: 'HRM / Home', description: '左侧组织树、紧凑关联图与人员表格', sections: [{ label: '组织树', href: '/organization/tree#organization-tree' }, { label: '关联图', href: '/organization/tree#organization-chart' }, { label: '人员表格', href: '/organization/tree#organization-roster' }] },
 ] as const

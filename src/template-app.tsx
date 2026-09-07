@@ -1,3 +1,4 @@
+import { TopologyOnsiteBridge } from './components/permissions/topology-onsite'
 import { useEffect, type ComponentType } from 'react'
 import App from './App'
 import { TemplateNavigation } from './components/template-navigation'
@@ -36,8 +37,10 @@ export function TemplateApp() {
     return () => window.cancelAnimationFrame(frame)
   }, [currentPage])
 
-  return <PermissionProvider><div className="reference-shell">
+  if (currentPage === 'organization-figma') return <div className="reference-shell"><TemplateNavigation currentPage={currentPage}/><Page/></div>
+
+  return <PermissionProvider><TopologyOnsiteBridge pageId={currentPage}><div className="reference-shell">
     <TemplateNavigation currentPage={currentPage} />
     <PermissionPage pageId={currentPage}><Page /></PermissionPage>
-  </div></PermissionProvider>
+  </div></TopologyOnsiteBridge></PermissionProvider>
 }

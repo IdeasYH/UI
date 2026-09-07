@@ -48,7 +48,7 @@ export function GuidePage() {
         <section className="reference-section" id="organization-variants" aria-labelledby="organization-variants-title">
           <div className="reference-section-heading"><h2 id="organization-variants-title">组织人员 · {organizationVariants.length} 版对照</h2><span>拓扑结构、经典结构、树表工作台</span></div>
           <dl className="reference-notes">
-            <div><dt>A · 拓扑结构</dt><dd>按 Figma Make 源码还原部门、业务组和成员的独立节点、绩效进度底色与连线画布，支持示例人员维护。<Button href="/organization/figma" variant="ghost" className="reference-text-link">打开 A 版<ArrowUpRight size={12} /></Button></dd></div>
+            <div><dt>A · 拓扑结构</dt><dd>组织与任职拓扑、角色复用、组织批量授权和荧光范围预览，支持示例权限试用。<Button href="/organization/figma" variant="ghost" className="reference-text-link">打开 A 版<ArrowUpRight size={12} /></Button></dd></div>
             <div><dt>B · 经典结构</dt><dd>四项人员统计、组织树、账号与资料状态、可变页数的人员表格，右侧操作列吸附。导入、入职和人员操作均为演示提示。<Button href="/organization/personnel" variant="ghost" className="reference-text-link">打开 B 版<ArrowUpRight size={12} /></Button></dd></div>
             <div><dt>C · 树表工作台</dt><dd>左侧组织树定位部门，紧凑关联图展示直属组织，下方人员表格支持排序、分页与详情。<Button href="/organization/tree" variant="ghost" className="reference-text-link">打开 C 版<ArrowUpRight size={12} /></Button></dd></div>
             <div><dt>数据与交互</dt><dd>A 使用 Figma 演示快照，支持平移缩放与组员维护。B / C 共用虚构组织与人员，支持任职状态和人员搜索；B 始终包含下级，C 提供包含下级开关与人员详情。</dd></div>
@@ -58,10 +58,10 @@ export function GuidePage() {
         <section className="reference-section" id="figma-replica" aria-labelledby="figma-replica-title">
           <div className="reference-section-heading"><h2 id="figma-replica-title">A · 拓扑结构</h2><Button href="/organization/figma" variant="ghost" className="reference-text-link">查看页面<ArrowUpRight size={12} /></Button></div>
           <dl className="reference-notes">
-            <div><dt>画布与卡片</dt><dd>原稿的 480px 部门节点、五列业务组、彩色关联线、网点背景和三级绩效填充均保留。按住空白处可拖动画布，工具栏提供缩放、复位和适应画布；移动端默认定位部门节点。</dd></div>
-            <div><dt>操作与搜索</dt><dd>顶部搜索组织、姓名、工号和已有登录账号。节点上可新增组员、编辑、调岗、离职；业务组可新增与重命名。所有修改只在当前页面内存生效，刷新或点击页底恢复图标即可还原。</dd></div>
-            <div><dt>数据边界</dt><dd>采用 Figma 源文件的示例快照。36 人是原稿汇总数，15 条成员记录是展示节选，并非完整名册。新增人员的绩效为“待统计”，不会补造完成率。这里不连接真实 HRM，也不执行账号权限变更。</dd></div>
-            <div><dt>复用文件</dt><dd><code>src/components/figma-organization/</code><p>图形、弹窗和纯数据操作分开；样式单独放在 <code>src/figma-organization.css</code>。源码来源、改动边界和接入约定见 <code>docs/FIGMA-ORGANIZATION.md</code>。</p></dd></div>
+            <div><dt>画布与卡片</dt><dd>递归组织树显示 L1、L2 等实际深度，支持继续新增下级。点击节点批量选择接收人员，点击人员卡选择任职；荧光仅在分配角色时出现。</dd></div>
+            <div><dt>操作与搜索</dt><dd>先在角色库配置页面、按钮三态和数据范围，再分配给组织或任职。支持同级快捷勾选、节点移动、HRM 示例选人和调组。配置保存在本标签页，刷新可恢复。</dd></div>
+            <div><dt>数据边界</dt><dd>当前名册从原虚构样本按人员去重：22 人、23 条任职；不沿用原稿 36 人汇总来表示授权人数。初始只给 admin 全部权限，其余人员从空授权开始。权限试用使用独立虚构记录，不连接业务系统。</dd></div>
+            <div><dt>复用文件</dt><dd><code>src/components/permissions/topology-workspace.tsx</code><p>授权计算位于 <code>topology-model.ts</code>，样式位于 <code>src/topology-authorization.css</code>。当前规则与验收见 <code>docs/ORGANIZATION-PERMISSIONS-BDD.md</code>。</p></dd></div>
           </dl>
         </section>
 
@@ -95,7 +95,7 @@ export function GuidePage() {
             <div><dt>基础组件</dt><dd><code>src/components/ui/</code><p>沿用当前项目的 Button、Input、Card、Badge、Table、Dialog 与 DropdownMenu，不需要新增组件依赖。</p></dd></div>
             <div><dt>人员选择器</dt><dd><code>src/components/person-picker/</code><p>使用稳定 personId；拼音和首字母由数据源提供。具体字段、键盘操作和复用接口见项目文档 <code>docs/PERSON-PICKER.md</code>。</p></dd></div>
             <div><dt>组织与人员</dt><dd><code>src/components/organization/</code><p>B / C 复用虚构组织数据，B 额外补充虚构账号与资料状态；A 使用独立的 Figma 演示快照。接口与数据边界见 <code>docs/ORGANIZATION-UI.md</code> 和 <code>docs/FIGMA-ORGANIZATION.md</code>。</p></dd></div>
-            <div><dt>样式归属</dt><dd><p><code>src/index.css</code> 保留 Home 样式；<code>src/template.css</code> 是模板适配；<code>src/reference.css</code> 用于参考导航、说明书和组件总览；A 使用 <code>src/figma-organization.css</code>，B 使用 <code>src/personnel-management.css</code>，C 使用 <code>src/organization.css</code>。</p></dd></div>
+            <div><dt>样式归属</dt><dd><p><code>src/index.css</code> 保留 Home 样式；<code>src/template.css</code> 是模板适配；<code>src/reference.css</code> 用于参考导航、说明书和组件总览；A 使用 <code>src/topology-authorization.css</code>，B 使用 <code>src/personnel-management.css</code>，C 使用 <code>src/organization.css</code>。</p></dd></div>
             <div><dt>维护目录</dt><dd><code>src/data/template-catalog.ts</code><p>新增界面或组件时，在这里登记分类、文件与位置，顶部导航、组件分类和说明书共用同一份目录。</p></dd></div>
           </dl>
           <div className="reference-boundary"><ShieldCheck size={18} /><div><strong>仅为 UI 参考，不是业务后台</strong><p>使用本地示例与 Figma 演示快照，不读取业务系统名册。组件操作、登录和门户配置仅影响当前页面内存；只有首页收藏使用此模板来源下的 localStorage。真实身份、权限、接口和数据持久化需要在目标系统接入。</p></div></div>

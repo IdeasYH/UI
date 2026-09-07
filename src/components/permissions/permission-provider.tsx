@@ -106,6 +106,7 @@ export function PermissionProvider({ children }: { children: ReactNode }) {
 
 export function PermissionLauncher() {
   const permissions = usePermissions()
+  if (window.location.pathname.replace(/\/+$/, '') === '/organization/figma') return <Button variant="outline" className="perm-launcher" onClick={() => window.dispatchEvent(new Event('topology-roles'))}><ShieldCheck size={14}/>角色与授权</Button>
   return <Button variant="outline" className="perm-launcher" onClick={permissions?.launch}><ShieldCheck size={14} />功能权限</Button>
 }
 

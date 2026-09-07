@@ -57,3 +57,5 @@
 .perm-access-options { display:flex; gap:6px; flex-wrap:wrap; }
 .perm-access-options [aria-pressed="true"] { background:#eef2ff; border-color:#818cf8; color:#3730a3; }
 .perm-tree { overflow-anchor:none; }
+
+.topology-cross-editor{position:sticky;top:0;z-index:80;background:#f5f3ff;border-bottom:1px solid #c4b5fd;padding:12px 24px;color:#334155;font-size:13px}.topology-cross-editor nav{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0}.topology-cross-editor a{color:#6d28d9}.topology-cross-editor label{display:inline-flex;gap:8px;margin:8px 16px}.topology-cross-editor button,.topology-cross-editor select{padding:6px;border:1px solid #c4b5fd;border-radius:4px;background:white}.topology-cross-editor p{margin:5px 0;font-size:12px}

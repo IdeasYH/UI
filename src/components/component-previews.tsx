@@ -4,7 +4,11 @@ import { type CatalogComponent } from '../data/template-catalog'
 import { demoPeople, demoStores } from '../data/demo-people'
 import { PersonPicker } from './person-picker'
 import { Button } from './ui/button'
+import { ActionStateButton, ActionStateNotice, FormActionButton } from './ui/action-state-button'
 import { Input } from './ui/input'
+import { FocusLabelPreview, DateRangePreview, ColorPreview, UploadPreview, StatusPreview, StatisticsPreview } from './data-control-previews'
+import { SwitchPreview, RatingPreview, SelectPreview, CascaderPreview, TreePreview } from './selection-previews'
+import { ValidationPreview, TextareaPreview, RadioPreview, CheckboxPreview, PrerequisitePreview } from './form-control-previews'
 import { Badge } from './ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { Dialog } from './ui/dialog'
@@ -20,12 +24,23 @@ function ButtonPreview() {
     <Button variant="ghost" href="/#systems">查看系统<ArrowRight size={14} /></Button>
     <Button variant="icon" aria-label={favorite ? '取消示例收藏' : '收藏示例'} title={favorite ? '取消收藏' : '收藏'} aria-pressed={favorite} onClick={() => setFavorite(!favorite)}><Star size={18} fill={favorite ? 'currentColor' : 'none'} /></Button>
     <Button disabled>不可用</Button>
-  </div><div className="sample-feedback" role="status">{saved ? '已保存当前示例' : '尚未保存'}</div></div>
+  </div><div className="sample-feedback" role="status">{saved ? '已保存当前示例' : '尚未保存'}</div>
+    <div className="form-action-examples" role="group" aria-label="提交与取消按钮">
+      <FormActionButton action="submit" type="button" />
+      <FormActionButton action="cancel" />
+    </div>
+    <div className="action-state-examples" aria-label="提交与保存状态按钮">
+      {(['submitting', 'success', 'error'] as const).map((state) => <div className="action-state-example" key={state}>
+        <ActionStateNotice state={state} />
+        <ActionStateButton state={state} />
+      </div>)}
+    </div>
+  </div>
 }
 
 function InputPreview() {
   const [value, setValue] = useState('青禾果园')
-  return <div className="sample-fields"><label>门店名称<Input value={value} onChange={(event) => setValue(event.target.value)} className="sample-input" /></label><label>只读编号<Input value="DEMO-S001" readOnly className="sample-input" /></label><div className="sample-search-field"><Search size={16} /><Input aria-label="输入框搜索示例" placeholder="搜索门店" className="sample-input" /></div><div className="sample-feedback" role="status">{value ? `当前门店：${value}` : '尚未填写门店名称'}</div></div>
+  return <div className="sample-fields"><label><span className="input-focus-label">门店名称</span><Input value={value} onChange={(event) => setValue(event.target.value)} className="sample-input" /></label><label><span className="input-focus-label">只读编号</span><Input value="DEMO-S001" readOnly className="sample-input" /></label><div className="sample-search-field"><Search size={16} /><Input aria-label="输入框搜索示例" placeholder="搜索门店" className="sample-input" /></div><div className="sample-feedback" role="status">{value ? `当前门店：${value}` : '尚未填写门店名称'}</div></div>
 }
 
 function CardPreview() {
@@ -61,7 +76,21 @@ function PersonPickerPreview() {
 export function ComponentPreview({ component }: { component: CatalogComponent }) {
   switch (component.id) {
     case 'button': return <ButtonPreview />
-    case 'input': return <InputPreview />
+    case 'date-range': return <DateRangePreview />
+    case 'color-picker': return <ColorPreview />
+    case 'upload-progress': return <UploadPreview />
+    case 'status-pills': return <StatusPreview />
+    case 'statistics': return <StatisticsPreview />
+    case 'switch': return <SwitchPreview />
+    case 'rating': return <RatingPreview />
+    case 'search-select': return <SelectPreview />
+    case 'cascader': return <CascaderPreview />
+    case 'tree-select': return <TreePreview />
+    case 'input': return <div className="prerequisite-examples"><FocusLabelPreview /><InputPreview /><ValidationPreview /></div>
+    case 'textarea': return <TextareaPreview />
+    case 'radio-cards': return <RadioPreview />
+    case 'checkbox-cards': return <CheckboxPreview />
+    case 'prerequisite-action': return <PrerequisitePreview />
     case 'badge': return <div className="sample-actions"><Badge>核心系统</Badge><Badge>运营团队</Badge><span className="people-state"><Check size={11} />已签约</span><span className="people-unassigned">尚未分配</span><span className="people-province">浙江省</span></div>
     case 'card': return <CardPreview />
     case 'table': return <TablePreview />

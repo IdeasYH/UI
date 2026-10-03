@@ -1,0 +1,30 @@
+.form-control-field { display: grid; gap: 10px; max-width: 720px; }
+.form-control-field > label, .form-choice-fieldset legend { color: #273548; font-size: 14px; font-weight: 600; }
+.form-control-field .ui-input { width: 100%; min-height: 48px; padding: 12px 16px; border: 1px solid #cfd6df; border-radius: 10px; background: #fff; font-size: 16px; }
+.form-control-field .ui-input[aria-invalid="true"] { border-color: #c13e35; box-shadow: 0 0 0 3px #c13e3514; }
+.form-control-error { display: flex; align-items: center; gap: 6px; color: #b3342d; font-size: 14px; font-weight: 600; }
+.counted-textarea { position: relative; border: 1px solid #cfd6df; border-radius: 10px; background: #fff; overflow: hidden; }
+.counted-textarea:focus-within { outline: 2px solid #2563eb; outline-offset: 2px; }
+.counted-textarea textarea { display: block; width: 100%; min-height: 170px; padding: 16px 18px 42px; border: 0; outline: none; resize: vertical; background: transparent; color: #273548; font: inherit; line-height: 1.8; }
+.textarea-count { position: absolute; right: 20px; bottom: 10px; color: #35746d; background: #fff; font-size: 13px; font-variant-numeric: tabular-nums; pointer-events: none; }
+.form-choice-fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+.form-choice-fieldset legend { margin-bottom: 12px; }
+.radio-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.choice-card { display: flex; align-items: center; gap: 14px; min-height: 78px; padding: 16px 20px; border: 1px solid #cfd6df; border-radius: 10px; background: #fff; cursor: pointer; }
+.choice-card[data-selected="true"] { border-color: #d85b35; background: #fff0e9; box-shadow: 0 0 0 1px #d85b35; }
+.choice-card strong { color: #273548; font-size: 17px; }
+.choice-card[data-selected="true"] strong { color: #c44925; }
+.choice-card small { display: block; margin-top: 4px; color: #77818d; font-size: 13px; }
+.choice-card input[type="radio"] { width: 22px; height: 22px; margin: 0; accent-color: #d85b35; flex-shrink: 0; }
+.choice-card:focus-within, .checkbox-all:focus-within { outline: 2px solid #2563eb; outline-offset: 3px; }
+.checkbox-cards { display: grid; gap: 12px; max-width: 720px; }
+.checkbox-all { display: flex; align-items: center; gap: 14px; padding: 12px 20px; border-radius: 10px; background: #f2f0e7; cursor: pointer; }
+.checkbox-all > span:last-child { margin-left: auto; color: #737d8a; font-size: 13px; }
+.checkbox-card { min-height: 62px; }
+.checkbox-card > small { margin: 0 0 0 auto; padding: 5px 12px; border-radius: 20px; background: #f5f3e9; }
+.prerequisite-examples { display: grid; gap: 24px; }
+.prerequisite-example-title { margin: 0 0 12px; font-size: 14px; color: #273548; }
+.form-preview-result { margin: 8px 0 0; color: #35746d; font-size: 13px; min-height: 20px; }
+@media (max-width: 650px) {
+  .radio-cards { grid-template-columns: 1fr; }
+}

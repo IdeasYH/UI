@@ -1,0 +1,8 @@
+.portable-button { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; border: 0; border-radius: 10px; padding: 0 18px; color: #19263b; font-family: inherit; font-size: 14px; font-weight: 600; line-height: 1.2; cursor: pointer; overflow-wrap: anywhere; transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, color 180ms ease; }
+.portable-button:hover:not(:disabled) { transform: translateY(-1px); }
+.portable-button-primary { color: #fff; background: linear-gradient(135deg, #357bf6, #5d63e8); box-shadow: 0 10px 22px rgba(55, 106, 234, .22); }
+.portable-button-primary:hover:not(:disabled) { box-shadow: 0 13px 28px rgba(55, 106, 234, .3); }
+.portable-button-outline { color: #3473df; background: rgba(255, 255, 255, .72); border: 1px solid #b8d0f4; }
+.portable-button-outline:hover:not(:disabled) { background: #fff; box-shadow: 0 8px 24px rgba(38, 70, 120, .08); }
+.portable-button:focus-visible { outline: 3px solid rgba(52, 120, 246, .32); outline-offset: 3px; }
+.portable-button:disabled { cursor: not-allowed; }

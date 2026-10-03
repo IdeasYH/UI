@@ -42,7 +42,9 @@ test('每个目录项都有独立锚点、有效分类、真实源码和界面�
 
 test('组件搜索匹配中文、组件标识和用途，多个关键词同时满足', () => {
   assert.deepEqual(filterComponentCatalog('人员 拼音').map((entry) => entry.id), ['person-picker'])
-  assert.deepEqual(filterComponentCatalog('  button  ').map((entry) => entry.id), ['button'])
+  // 完整依赖清单也可被检索，例如日期样板使用独立的 portable-button。
+  assert.ok(filterComponentCatalog('  button  ').some((entry) => entry.id === 'button'))
+  assert.deepEqual(filterComponentCatalog('  button  '), filterComponentCatalog('BUTTON'))
   assert.ok(filterComponentCatalog('门户配置').some((entry) => entry.id === 'portal-menu-editor'))
   assert.deepEqual(filterComponentCatalog('不会存在的组件'), [])
 })

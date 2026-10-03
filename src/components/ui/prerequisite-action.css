@@ -1,0 +1,26 @@
+.prerequisite-action, .prerequisite-action * { box-sizing: border-box; }
+.prerequisite-condition-list { display: grid; gap: 18px; min-width: 0; width: 100%; }
+.prerequisite-condition-list > div { min-width: 0; overflow-wrap: anywhere; }
+.prerequisite-action[data-connect-each="true"] { position: relative; padding-bottom: 36px; }
+.prerequisite-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.prerequisite-lines path { fill: none; stroke: #aa9b78; stroke-width: 1; stroke-dasharray: 4 4; }
+.prerequisite-action[data-ready="true"] .prerequisite-lines { opacity: .35; }
+.prerequisite-action { display: grid; grid-template-columns: minmax(0, 1fr) 200px; column-gap: 32px; padding: 24px; border: 1px solid #dedacb; border-radius: 12px; background: #faf8ee; }
+.prerequisite-control { display: flex; align-items: center; min-width: 0; }
+.prerequisite-control label { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; font-weight: 600; color: #273548; }
+.prerequisite-control select { min-height: 42px; max-width: 100%; padding: 8px 12px; border: 1px solid #b9c3cd; border-radius: 8px; background: white; font: inherit; }
+.prerequisite-action :is(button, input, select, textarea):focus-visible { outline: 3px solid rgba(52, 120, 246, .32); outline-offset: 3px; }
+.prerequisite-submit { display: grid; gap: 10px; text-align: center; align-self: center; min-width: 0; }
+.prerequisite-submit .portable-button { min-height: 48px; background: #2563eb; color: white; }
+.prerequisite-submit .portable-button:disabled { background: #d8d0bd; opacity: 1; cursor: not-allowed; }
+.prerequisite-submit > span { font-size: 12px; color: #777567; overflow-wrap: anywhere; }
+/* 引导线从按钮下方沿底部折回前置控件，网格列变化时也保持两端对齐。 */
+.prerequisite-connector { grid-column: 1 / -1; height: 24px; margin: 4px 100px 0 13px; border: 1px dashed #aa9b78; border-top: 0; border-radius: 0 0 8px 8px; position: relative; }
+.prerequisite-connector::before { content: ''; position: absolute; top: 0; left: -4px; width: 6px; height: 6px; border-top: 1px solid #aa9b78; border-left: 1px solid #aa9b78; transform: rotate(45deg); }
+.prerequisite-action[data-ready="true"] .prerequisite-connector { visibility: hidden; }
+@media (max-width: 650px) {
+  .prerequisite-action { grid-template-columns: minmax(0, 1fr); gap: 18px; position: relative; padding: 20px 20px 20px 40px; }
+  .prerequisite-connector { position: absolute; left: 17px; top: 36px; bottom: 16px; width: 16px; height: auto; margin: 0; border-right: 0; }
+  .prerequisite-submit { justify-items: start; text-align: left; }
+  .prerequisite-submit .portable-button { width: 100%; }
+}

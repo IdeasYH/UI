@@ -1,0 +1,21 @@
+.action-state-examples { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 24px; }
+.action-state-example { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.action-state-submitting { --action-color: #f0a000; --action-tint: #fff8e8; --action-border: #f1d79f; }
+.action-state-success { --action-color: #10b981; --action-tint: #eafaf4; --action-border: #a9dece; }
+.action-state-error { --action-color: #dc4040; --action-tint: #fff0f0; --action-border: #efbbbb; }
+.action-state-notice { display: flex; align-items: center; justify-content: center; gap: 9px; width: 100%; min-height: 60px; padding: 12px; border: 1px solid var(--action-border); border-radius: 10px; background: var(--action-tint); color: var(--action-color); font-size: 16px; font-weight: 700; text-align: center; }
+.ui-button.action-state-button { min-width: 160px; min-height: 48px; padding: 12px 22px; border: 1px solid var(--action-color); border-radius: 10px; background: var(--action-color); color: white; font-size: 18px; font-weight: 700; box-shadow: 0 3px 8px #172b4d14; }
+.ui-button.action-state-button:disabled { opacity: 1; cursor: wait; }
+.ui-button.action-state-button:hover { background: var(--action-color); }
+.ui-button.action-state-error { animation: action-error-pulse 1.8s ease-in-out infinite; box-shadow: none; }
+@keyframes action-error-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .68; }
+}
+@media (prefers-reduced-motion: reduce) { .ui-button.action-state-error { animation: none; } }
+.form-action-examples { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 24px; }
+.form-action-submit, .form-action-cancel { --action-color: #2563eb; }
+.ui-button.form-action-cancel, .ui-button.form-action-cancel:hover { background: #fff; color: var(--action-color); box-shadow: none; }
+.action-state-spinner { flex-shrink: 0; animation: action-state-spin .85s linear infinite; }
+@keyframes action-state-spin { to { transform: rotate(360deg); } }
+@media (max-width: 1000px) { .action-state-examples { grid-template-columns: 1fr; } }

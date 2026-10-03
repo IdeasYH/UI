@@ -1,3 +1,5 @@
+import { componentReferences, interactionKeywords } from './component-references.ts'
+
 export const organizationVariants = [
   { id: 'organization-figma', title: '组织人员 A · 拓扑结构', href: '/organization/figma', variant: 'figma', version: 'A', label: '拓扑结构' },
   { id: 'organization-personnel', title: '组织人员 B · 经典结构', href: '/organization/personnel', variant: 'personnel', version: 'B', label: '经典结构' },
@@ -30,7 +32,7 @@ export const componentCategories = [
 export type ComponentCategoryId = typeof componentCategories[number]['id']
 
 type ComponentLocation = {
-  page: Exclude<TemplatePageId, 'guide' | 'components'>
+  page: Exclude<TemplatePageId, 'guide'>
   label: string
   href: string
 }
@@ -48,6 +50,66 @@ type ComponentEntry = {
 }
 
 export const componentCatalog = [
+  {
+    id: 'date-range', name: '日期区间选择', symbol: 'DateRangePicker', category: 'interaction', kind: '基础组件',
+    description: '快捷日期点击即确认并关闭；支持上年下年与双月选择，区间无数据的日期保持白色。',
+    sources: [...componentReferences['date-range'].files, componentReferences['date-range'].example], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 日期区间选择', href: '/components?category=interaction#date-range' }],
+  },
+  {
+    id: 'color-picker', name: '颜色选择器', symbol: 'ColorPicker', category: 'interaction', kind: '基础组件',
+    description: '一条白色 → 彩色 → 黑色渐变滑条，拖动实时选色；保留 24 种标准色、HEX 和自定义颜色。',
+    sources: ['src/components/ui/data-controls.tsx', 'src/components/ui/data-controls.css', 'src/components/ui/color-model.ts', 'src/components/data-control-previews.tsx'], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 颜色选择器', href: '/components?category=interaction#color-picker' }],
+  },
+  {
+    id: 'upload-progress', name: '文件上传进度', symbol: 'UploadProgress', category: 'display', kind: '基础组件',
+    description: '文件名、大小、进度条与百分比，完成后显示勾号；仅本地模拟。',
+    sources: ['src/components/ui/data-controls.tsx', 'src/components/ui/data-controls.css', 'src/components/ui/color-model.ts', 'src/components/data-control-previews.tsx'], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 文件上传进度', href: '/components?category=display#upload-progress' }],
+  },
+  {
+    id: 'status-pills', name: '状态显示', symbol: 'StatusPill', category: 'display', kind: '基础组件',
+    description: '不同状态配套文字和背景色：进行中、已完成、高优、默认和停用。',
+    sources: ['src/components/ui/data-controls.tsx', 'src/components/ui/data-controls.css', 'src/components/ui/color-model.ts', 'src/components/data-control-previews.tsx'], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 状态显示', href: '/components?category=display#status-pills' }],
+  },
+  {
+    id: 'statistics', name: '统计数值', symbol: 'StatisticCard', category: 'display', kind: '基础组件',
+    description: '突出主数字，附单位和涨跌箭头；上涨红色，下跌绿色。',
+    sources: ['src/components/ui/data-controls.tsx', 'src/components/ui/data-controls.css', 'src/components/ui/color-model.ts', 'src/components/data-control-previews.tsx'], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 统计数值', href: '/components?category=display#statistics' }],
+  },
+  {
+    id: 'switch', name: '开关', symbol: 'ToggleSwitch', category: 'interaction', kind: '基础组件',
+    description: '关闭为浅色，开启为绿色，点击即时切换。',
+    sources: ['src/components/ui/selection-controls.tsx', 'src/components/ui/selection-model.ts', 'src/components/selection-previews.tsx'], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 开关', href: '/components?category=interaction#switch' }],
+  },
+  {
+    id: 'rating', name: '半星评分', symbol: 'StarRating', category: 'interaction', kind: '基础组件',
+    description: '跟随鼠标预览评分，支持半颗星，点击确认，移出恢复已确认分数。',
+    sources: ['src/components/ui/selection-controls.tsx', 'src/components/ui/selection-model.ts', 'src/components/selection-previews.tsx'], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 半星评分', href: '/components?category=interaction#rating' }],
+  },
+  {
+    id: 'search-select', name: '可搜索下拉选框', symbol: 'SearchSelect', category: 'interaction', kind: '基础组件',
+    description: '选中高亮并显示勾号；超过 5 项自动支持中文、拼音全拼和首字母即时筛选。',
+    sources: [...componentReferences['search-select'].files, componentReferences['search-select'].example], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 可搜索下拉选框', href: '/components?category=interaction#search-select' }],
+  },
+  {
+    id: 'cascader', name: '多级联动选择', symbol: 'Cascader', category: 'interaction', kind: '基础组件',
+    description: '单一面板逐级选择省市区；切换上级清除旧下级草稿，选到末级确认。',
+    sources: ['src/components/ui/selection-controls.tsx', 'src/components/ui/selection-model.ts', 'src/components/selection-previews.tsx'], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 多级联动选择', href: '/components?category=interaction#cascader' }],
+  },
+  {
+    id: 'tree-select', name: '树选择', symbol: 'TreeSelect', category: 'interaction', kind: '基础组件',
+    description: '勾选父节点带上全部后代，部分选中显示减号，支持展开收起。',
+    sources: ['src/components/ui/selection-controls.tsx', 'src/components/ui/selection-model.ts', 'src/components/selection-previews.tsx'], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 树选择', href: '/components?category=interaction#tree-select' }],
+  },
   {
     id: 'system-permissions', name: '角色与组织授权', symbol: 'TopologyWorkspace / allowedFact', category: 'business', kind: '业务组件',
     description: '角色统一配置页面、按钮三态和数据范围，按节点或任职复用；全页及例外、允许并集和动作范围绑定。',
@@ -74,15 +136,39 @@ export const componentCatalog = [
   },
   {
     id: 'button', name: '按钮', symbol: 'Button', category: 'interaction', kind: '基础组件',
-    description: '主要、描边、轻量、图标及禁用状态。',
-    sources: ['src/components/ui/button.tsx'], preview: 'live',
+    description: '主要、描边、轻量、图标及禁用状态；蓝色提交、白底取消、提交中旋转防连点、保存成功和红色出错按钮。',
+    sources: ['src/components/ui/button.tsx', 'src/components/ui/action-state-button.tsx', 'src/components/ui/action-state-button.css'], preview: 'live',
     locations: [{ page: 'portal', label: '门户首页 / 系统卡片', href: '/#systems' }, { page: 'people', label: '人员分配 / 工具栏', href: '/components/person-picker#people-filters' }],
   },
   {
     id: 'input', name: '输入框', symbol: 'Input', category: 'interaction', kind: '基础组件',
-    description: '文本输入、带搜索图标的输入及只读状态。',
-    sources: ['src/components/ui/input.tsx'], preview: 'live',
+    description: '文本输入、带搜索图标的输入及只读状态；格式错误时显示红色边框和框下错误提示。',
+    sources: ['src/components/ui/input.tsx', 'src/components/ui/form-controls.tsx'], preview: 'live',
     locations: [{ page: 'portal', label: '门户首页 / 系统搜索', href: '/?panel=search' }, { page: 'people', label: '人员分配 / 门店搜索', href: '/components/person-picker#people-filters' }],
+  },
+  {
+    id: 'textarea', name: '长文本与字数统计', symbol: 'CountedTextarea', category: 'interaction', kind: '基础组件',
+    description: '长文本框右下角实时显示当前字数与上限，最多输入 200 字。',
+    sources: ['src/components/ui/form-controls.tsx', 'src/components/form-control-previews.tsx'], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 长文本与字数统计', href: '/components?category=interaction#textarea' }],
+  },
+  {
+    id: 'radio-cards', name: '卡片式单选框', symbol: 'RadioCards', category: 'interaction', kind: '基础组件',
+    description: '带辅助说明的单选卡片，选中显示橙色边框和浅色底，同组只能选中一项。',
+    sources: ['src/components/ui/form-controls.tsx', 'src/components/form-control-previews.tsx'], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 卡片式单选框', href: '/components?category=interaction#radio-cards' }],
+  },
+  {
+    id: 'checkbox-cards', name: '复选框与全选', symbol: 'CheckboxCards / TriStateCheckbox', category: 'interaction', kind: '基础组件',
+    description: '支持多选、全选与取消全选；部分选中时全选框显示减号，全部未选时为空框。',
+    sources: ['src/components/ui/form-controls.tsx', 'src/components/form-control-previews.tsx'], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 复选框与全选', href: '/components?category=interaction#checkbox-cards' }],
+  },
+  {
+    id: 'prerequisite-action', name: '前置条件提交', symbol: 'PrerequisiteAction', category: 'interaction', kind: '基础组件',
+    description: '勾选或下拉选择满足条件后才可提交；禁用按钮下方以虚线引导到前置控件。',
+    sources: [...componentReferences['prerequisite-action'].files, componentReferences['prerequisite-action'].example], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 前置条件提交', href: '/components?category=interaction#prerequisite-action' }],
   },
   {
     id: 'badge', name: '标签与状态', symbol: 'Badge', category: 'display', kind: '基础组件',
@@ -219,7 +305,7 @@ export function filterComponentCatalog(query = '', category = 'all'): readonly C
   return componentCatalog.filter((component) => {
     if (activeCategory !== 'all' && component.category !== activeCategory) return false
     const categoryTitle = componentCategories.find((item) => item.id === component.category)?.title ?? ''
-    const searchable = [component.name, component.symbol, component.kind, component.description, categoryTitle, ...component.sources, ...component.locations.map((location) => location.label)].join(' ').toLowerCase()
+    const searchable = [component.name, component.symbol, component.kind, component.description, categoryTitle, ...(interactionKeywords[component.id] ?? []), ...component.sources, ...component.locations.map((location) => location.label)].join(' ').toLowerCase()
     return keywords.every((keyword) => searchable.includes(keyword))
   })
 }

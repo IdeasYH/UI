@@ -1,0 +1,31 @@
+.date-range-demo, .date-range-demo * { box-sizing: border-box; }
+.date-range-demo { min-width: 0; }
+.date-range-demo > .portable-button { max-width: 100%; }
+.date-range-demo :is(button, input):focus-visible { outline: 3px solid rgba(52, 120, 246, .32); outline-offset: 3px; }
+.date-range-demo .data-demo-note { color: #778397; font-size: 12px; line-height: 1.7; }
+.date-range-panel { margin-top: 14px; padding: 16px; border: 1px solid #e2dcf1; border-radius: 14px; background: white; }
+.date-range-toolbar { display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
+.date-shortcuts, .date-month-nav { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+.date-range-toolbar .date-today-shortcut { display: inline-flex; flex-direction: column; align-items: center; gap: 3px; }
+.date-today-shortcut svg { color: #e6a019; }
+.date-month-nav { padding: 5px; border: 1px solid #bfd5ee; border-radius: 9px; background: #edf5ff; gap: 3px; }
+.date-range-toolbar .date-month-nav button { min-height: 32px; border-color: transparent; background: transparent; color: #2565a8; font-weight: 600; }
+.date-range-toolbar .date-month-nav button:hover { background: #d6e8fc; border-color: #b8d1ef; }
+.date-range-toolbar .date-month-nav input { border-color: #bfd5ee; color: #245b92; background: #fff; font-weight: 600; text-align: center; }
+.date-range-toolbar button { padding: 8px; border: 1px solid #e1dbf3; border-radius: 6px; background: #f6f3fd; color: #685786; font: inherit; font-size: 12px; cursor: pointer; }
+.date-range-toolbar button[aria-pressed="true"] { background: #7753cf; color: white; }
+.date-month-nav input { min-width: 0; max-width: 145px; padding: 7px; border: 1px solid #ddd6ee; border-radius: 6px; background: white; font: inherit; font-size: 12px; }
+.date-months { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 20px; }
+.date-month { min-width: 0; }
+.date-month h3 { font-size: 13px; color: #6c6088; text-align: center; margin: 0 0 14px; }
+.date-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; }
+.date-weekday { text-align: center; padding: 7px 0; font-size: 12px; color: #8c83a2; }
+.date-day { min-width: 0; min-height: 35px; border: 2px solid transparent; border-radius: 6px; background: #fff; color: #6b6180; font-family: inherit; font-size: 12px; cursor: pointer; }
+.date-day[data-filled="true"] { background: #eee6ff; color: #7041c5; }
+.date-day[data-endpoint="true"] { border-color: #8057d9; font-weight: 700; }
+.date-day[data-endpoint="true"][data-filled="true"] { background: #8057d9; color: white; }
+.date-day[aria-current="date"] { text-decoration: underline; text-underline-offset: 4px; }
+.date-day:hover { outline: 1px solid #a589dd; }
+.date-range-footer { border-top: 1px solid #eee8f7; padding-top: 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 12px; color: #6c6088; }
+.date-range-footer > span { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 650px) { .date-months { grid-template-columns: 1fr; } .date-range-footer { flex-wrap: wrap; } }

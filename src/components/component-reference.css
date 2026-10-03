@@ -1,0 +1,28 @@
+.reuse-panel, .reuse-unverified { padding: 20px 24px; border-top: 1px solid #e3e9f2; color: #334155; font-size: 13px; line-height: 1.8; }
+.reuse-panel { background: #fcfdff; }
+.reuse-panel-heading { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.reuse-panel a, .reuse-unverified a, .reuse-document a { color: #1d60cf; text-decoration: underline; text-underline-offset: 3px; }
+.reuse-panel > p { color: #64748b; margin: 8px 0 16px; }
+.reuse-panel details { border-top: 1px solid #e7edf4; padding: 10px 0; min-width: 0; }
+.reuse-panel summary { cursor: pointer; font-weight: 600; overflow-wrap: anywhere; }
+.reuse-panel summary:focus-visible, .reuse-panel a:focus-visible, .reuse-copy-button:focus-visible { outline: 2px solid #2563eb; outline-offset: 3px; }
+.reuse-panel pre, .reuse-document pre { max-width: 100%; overflow: auto; max-height: 480px; padding: 16px; background: #f2f5fa; border: 1px solid #dce4ef; border-radius: 8px; line-height: 1.65; font-size: 12px; tab-size: 2; }
+.reuse-copy-button { margin-top: 10px; padding: 5px 12px; border: 1px solid #ced9e8; border-radius: 6px; background: white; color: #1d60cf; font: inherit; cursor: pointer; }
+.reuse-copy-status { color: #147665; overflow-wrap: anywhere; }
+.reuse-fingerprint { font-size: 11px; color: #64748b; overflow-wrap: anywhere; }
+.reuse-example { padding: 20px 0; }
+.reuse-unverified { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; color: #64748b; }
+.reuse-document { max-width: 100%; font-size: 14px; line-height: 1.9; overflow-wrap: anywhere; }
+.reuse-document h3 { font-size: 17px; color: #1e3a5f; margin: 28px 0 10px; }
+.reuse-document h4 { font-size: 15px; margin: 20px 0 8px; }
+.reuse-document p { margin: 10px 0; }
+.reuse-document ul, .reuse-document ol { padding-left: 24px; }
+.reuse-document li { margin: 7px 0; }
+.reuse-document code { font-size: .88em; background: #edf2f8; padding: 2px 4px; border-radius: 3px; }
+.reuse-table-scroll { overflow-x: auto; width: 100%; }
+.reuse-document table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+.reuse-document th, .reuse-document td { border: 1px solid #dce4ef; padding: 10px 12px; min-width: 120px; vertical-align: top; }
+.reuse-document th { background: #f1f5fb; }
+.reuse-intro { padding: 18px 22px; border: 1px solid #d3e0f2; border-left: 4px solid #2563eb; background: #f5f8ff; border-radius: 8px; margin: 18px 0; font-size: 14px; line-height: 1.8; }
+.reuse-intro a { color: #1d60cf; text-decoration: underline; }
+@media (max-width: 600px) { .reuse-panel, .reuse-unverified { padding: 16px; } .reuse-document { font-size: 13px; } }

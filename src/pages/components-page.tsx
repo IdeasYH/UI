@@ -1,6 +1,7 @@
 import { ArrowRight, ArrowUpRight, BookOpen, Component, FileCode2 } from 'lucide-react'
 import { CatalogSearch, CategoryNavigation, categoryIcons } from '../components/catalog-navigation'
 import { ComponentPreview } from '../components/component-previews'
+import { ComponentReferencePanel } from '../components/component-reference-panel'
 import { Button } from '../components/ui/button'
 import { componentCatalog, componentCategories, filterComponentCatalog, normalizeComponentCategory } from '../data/template-catalog'
 import { useCatalogQuery } from '../lib/use-catalog-query'
@@ -17,6 +18,7 @@ export function ComponentsPage() {
     <main className="reference-main" id="components-top">
       <div className="reference-page-heading"><div><div className="reference-eyebrow">UIModel / Components</div><h1>组件总览</h1><p>{componentCatalog.length} 项组件与组合，按用途分类。</p></div><Button variant="outline" href="/guide" className="reference-action"><BookOpen size={15} />说明书</Button></div>
       <div className="catalog-toolbar"><div><strong>{title}</strong><span aria-live="polite">{components.length} 项</span></div><CatalogSearch value={query} onChange={setQuery} /></div>
+      <div className="reuse-intro"><strong>从交互结构找参考，业务示例不是适用范围清单。</strong><br />先判断单选 / 多选、平铺 / 层级、即时生效 / 确认后生效、独立操作 / 条件依赖。未找到同名业务时，可组合邻近组件。<a href="/guide#reuse-method">阅读通用选型与迁移方法 →</a></div>
       <nav className="catalog-jump-list" aria-label="当前分类组件导航">{components.map((component) => <Button key={component.id} variant="ghost" href={`#${component.id}`} className="reference-text-link">{component.name}</Button>)}</nav>
       <div className="catalog-examples">
         {components.map((component) => {
@@ -24,11 +26,12 @@ export function ComponentsPage() {
           return <section key={component.id} id={component.id} className="catalog-example" aria-labelledby={`${component.id}-title`}>
             <div className="catalog-example-heading"><div className="catalog-component-icon" data-category={component.category}><Icon size={17} /></div><div><h2 id={`${component.id}-title`}>{component.name}<code>{component.symbol}</code></h2><p>{component.description}</p></div><span className="catalog-kind">{component.kind}</span></div>
             <div className="catalog-sample"><ComponentPreview component={component} /></div>
+            <ComponentReferencePanel id={component.id} />
             <div className="catalog-example-footer"><div className="catalog-source"><FileCode2 size={13} /><div>{component.sources.map((source) => <code key={source}>{source}</code>)}</div></div><nav aria-label={`${component.name}所在界面`}>{component.locations.map((location) => <Button key={location.href} variant="ghost" href={location.href} className="reference-text-link">{location.label}<ArrowUpRight size={12} /></Button>)}</nav></div>
           </section>
         })}
       </div>
-      {!components.length && <div className="reference-empty"><Component size={28} /><h2>没有匹配的组件</h2><p>当前分类：{title}</p><div className="sample-actions"><Button variant="outline" onClick={() => setQuery('')} disabled={!query}>清除搜索</Button><Button variant="ghost" href="/components">查看全部组件<ArrowRight size={14} /></Button></div></div>}
+      {!components.length && <div className="reference-empty"><Component size={28} /><h2>没有同名结果，也可以找到相似模式</h2><p>当前分类：{title}。去掉业务名词，改搜“单值”“层级路径”“连续区间”“前置条件”，或清除分类查看相邻组件。</p><div className="sample-actions"><Button variant="outline" onClick={() => setQuery('')} disabled={!query}>清除搜索</Button><Button variant="ghost" href="/components">查看全部组件<ArrowRight size={14} /></Button><Button variant="ghost" href="/guide#reuse-method">按交互结构选型</Button></div></div>}
       <footer className="reference-footer"><span>示例操作仅在当前页面内存中生效</span><Button variant="ghost" href="#components-top" className="reference-text-link">回到顶部<ArrowRight size={13} /></Button></footer>
     </main>
   </div></div>

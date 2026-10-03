@@ -7,6 +7,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../components/ui/table'
 import { componentCatalog, componentCategories, componentPreviewHref, examplePages, filterComponentCatalog, organizationVariants } from '../data/template-catalog'
 import { useCatalogQuery } from '../lib/use-catalog-query'
+import reuseMethod from '../../docs/UI-REUSE.md?raw'
+import { ReferenceDocument } from '../components/reference-document'
+import '../components/component-reference.css'
 
 export function GuidePage() {
   const [query, setQuery] = useCatalogQuery()
@@ -17,6 +20,7 @@ export function GuidePage() {
       <aside className="reference-sidebar">
         <div className="reference-sidebar-heading"><BookOpen size={15} />模板说明书</div>
         <nav className="reference-chapter-list" aria-label="说明书目录">
+          <Button variant="nav" href="#reuse-method"><BookOpen size={15} />从新需求选择与迁移</Button>
           <Button variant="nav" href="#page-map"><LayoutTemplate size={15} />界面地图</Button>
           <Button variant="nav" href="#organization-variants"><Network size={15} />组织人员版本</Button>
           <Button variant="nav" href="#figma-replica"><FileCode2 size={15} />拓扑结构</Button>
@@ -34,8 +38,11 @@ export function GuidePage() {
         </div>
         <div className="reference-summary"><span>{examplePages.length} 个参考界面</span><span>{componentCategories.length} 个组件分类</span><span>{componentCatalog.length} 项组件与组合</span></div>
 
+        <section className="reference-section" id="reuse-method" aria-label="从新需求选择与迁移">
+          <ReferenceDocument source={reuseMethod} />
+        </section>
         <section className="reference-section" id="page-map" aria-labelledby="page-map-title">
-          <div className="reference-section-heading"><h2 id="page-map-title">界面地图</h2><span>从完整页面开始</span></div>
+          <div className="reference-section-heading"><h2 id="page-map-title">界面地图</h2><span>参考组件如何组成完整页面</span></div>
           <div className="reference-screen-grid">
             {examplePages.map((page) => <Card key={page.id} className="reference-screen-card">
               <a className="reference-screen-image" href={page.href} aria-label={`打开${page.title}`}><img src={page.image} alt={`${page.title}界面预览`} width="1440" height="900" /></a>
@@ -66,7 +73,7 @@ export function GuidePage() {
         </section>
 
         <section className="reference-section" id="component-index" aria-labelledby="component-index-title">
-          <div className="reference-section-heading"><div><h2 id="component-index-title">组件索引</h2><p>基础组件可独立复用；页面组合保留在所属界面文件中。</p></div><span aria-live="polite">{filtered.length} 项</span></div>
+          <div className="reference-section-heading"><div><h2 id="component-index-title">组件索引</h2><p>三个样板提供完整源码包；其余组件可参考交互与样式，独立复制前需核对依赖。</p></div><span aria-live="polite">{filtered.length} 项</span></div>
           <CatalogSearch value={query} onChange={setQuery} label="搜索组件说明" />
           <Table containerClassName="guide-index-table" aria-label="组件与界面对应表">
             <TableHeader><TableRow><TableHead>组件</TableHead><TableHead>所在界面 / 位置</TableHead><TableHead>预览</TableHead></TableRow></TableHeader>
@@ -98,7 +105,7 @@ export function GuidePage() {
             <div><dt>样式归属</dt><dd><p><code>src/index.css</code> 保留 Home 样式；<code>src/template.css</code> 是模板适配；<code>src/reference.css</code> 用于参考导航、说明书和组件总览；A 使用 <code>src/topology-authorization.css</code>，B 使用 <code>src/personnel-management.css</code>，C 使用 <code>src/organization.css</code>。</p></dd></div>
             <div><dt>维护目录</dt><dd><code>src/data/template-catalog.ts</code><p>新增界面或组件时，在这里登记分类、文件与位置，顶部导航、组件分类和说明书共用同一份目录。</p></dd></div>
           </dl>
-          <div className="reference-boundary"><ShieldCheck size={18} /><div><strong>仅为 UI 参考，不是业务后台</strong><p>使用本地示例与 Figma 演示快照，不读取业务系统名册。组件操作、登录和门户配置仅影响当前页面内存；只有首页收藏使用此模板来源下的 localStorage。真实身份、权限、接口和数据持久化需要在目标系统接入。</p></div></div>
+          <div className="reference-boundary"><ShieldCheck size={18} /><div><strong>仅为 UI 参考，不是业务后台</strong><p>使用本地示例与 Figma 演示快照，不读取业务系统名册。基础交互示例使用页面内存；首页收藏使用 localStorage，A 拓扑配置使用当前标签页 sessionStorage。真实身份、权限、接口和数据持久化需要在目标系统接入。</p></div></div>
         </section>
         <footer className="reference-footer"><span>UIModel · 本地前端参考模板</span><Button variant="ghost" href="#guide-top" className="reference-text-link">回到顶部<ArrowRight size={13} /></Button></footer>
       </main>

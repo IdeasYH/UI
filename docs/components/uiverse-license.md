@@ -7,6 +7,27 @@
 
 - `honest-bobcat-61`：Copyright - 2026 Tsiangana (Tsiangana Zau)。
 
+2026-10-05 新补收藏项在各自原作页面显示的版权行如下。部分页面的署名与发布账号不同，按页面版权行保留，不自行改写：
+
+- `stupid-panther-7`：Copyright - 2026 xerith_8140 (Xerith)。
+- `serious-turkey-52`：Copyright - 2026 abrahamcalsin (Abraham Calsin)。
+- `strong-squid-82`：Copyright - 2026 https://youtu.be/S6T6hrc8cQo。
+- `chilly-eagle-55`：Copyright - 2026 PriyanshuGupta28 (Priyanshu Gupta)。
+- `slimy-quail-55`：Copyright - 2026 andrew-demchenk0 (A)。
+- `ugly-bulldog-75`：Copyright - 2026 satyamchaudharydev (satyam)。
+- `horrible-zebra-60`：Copyright - 2026 chase2k25 (chandu.exe)。
+- `quiet-goat-67`：Copyright - 2026 ahmed150up (Ahmed Mostafa)。
+- `terrible-gecko-91`、`yellow-puma-19`：Copyright - 2026 nazar-gavrylyk (Nazar)。
+- `ordinary-lizard-16`：Copyright - 2026 andrew-demchenk0 (A)。
+- `cowardly-quail-47`：Copyright - 2026 Faizuddinq (Faizuddin)。
+- `silent-cougar-84`：Copyright - 2026 SelfMadeSystem (SelfMadeSystem)。
+- `horrible-quail-18`：Copyright - 2026 Cobp (Fabio Cobb)。
+- `plastic-panther-15`：Copyright - 2026 anest_6070 (Anest Petollari)。
+- `wicked-liger-39`：Copyright - 2026 ayman-ashine (Ayman Ashine)。
+- `jolly-liger-24`：Copyright - 2026 Cybercom682。
+
+两项 Tailwind 原作的 `.adapter.css` 保存原站生成的 Tailwind CSS 3.4.17，另保留其署名：Copyright (c) Tailwind Labs, Inc.；适用下方同一 MIT 许可，来源为 [Tailwind 3.4.17 LICENSE](https://github.com/tailwindlabs/tailwindcss/blob/v3.4.17/LICENSE)。
+
 上述 Uiverse 原作页面标注 MIT License：
 
 > Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:

@@ -3,6 +3,7 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { ArrowRight, ArrowUpDown, Check, ChevronDown, LayoutTemplate, RotateCcw, Save, Search, Star, X } from 'lucide-react'
 import { type CatalogComponent } from '../data/template-catalog'
 import { reactBitsFavoriteIds } from '../data/react-bits-favorites'
+import { uiverseNewFavoriteIds } from '../data/uiverse-new-favorites.ts'
 import { demoPeople, demoStores } from '../data/demo-people'
 import { PersonPicker } from './person-picker'
 import { Button } from './ui/button'
@@ -104,7 +105,7 @@ function PersonPickerPreview() {
 }
 
 export function ComponentPreview({ component }: { component: CatalogComponent }) {
-  if (reactBitsFavoriteIds.has(component.id)) return <FavoritePreview id={component.id} />
+  if (reactBitsFavoriteIds.has(component.id) || uiverseNewFavoriteIds.has(component.id)) return <FavoritePreview id={component.id} />
   switch (component.id) {
     case 'uiverse-social-tooltip': return <UiverseSocialTooltipExample />
     case 'uiverse-message-composer': return <UiverseMessageComposerExample />

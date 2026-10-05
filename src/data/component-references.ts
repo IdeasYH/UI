@@ -83,7 +83,15 @@ export const componentReferences: Record<string, ReferenceEntry> = {
     document: `docs/components/${item.id}.md`,
     example: `src/examples/${item.id}-example.tsx`,
     exportName: item.exampleExport,
-    files: [`src/components/uiverse/${item.fileStem}.tsx`, `src/components/uiverse/${item.fileStem}.css`, 'docs/components/uiverse-license.md'],
+    files: 'rawSlug' in item
+      ? [
+          `src/components/uiverse/${item.fileStem}.tsx`, 'src/components/uiverse/original-frame.tsx',
+          `public/uiverse-originals/${item.rawSlug}.source.html`, `public/uiverse-originals/${item.rawSlug}.css`,
+          `public/uiverse-originals/${item.rawSlug}.preview.html`,
+          ...(['ayman-ashine--wicked-liger-39', 'Cybercom682--jolly-liger-24'].includes(item.rawSlug) ? [`public/uiverse-originals/${item.rawSlug}.adapter.css`] : []),
+          'docs/components/uiverse-license.md', 'docs/UIVERSE-SOURCE-SNAPSHOT.json',
+        ]
+      : [`src/components/uiverse/${item.fileStem}.tsx`, `src/components/uiverse/${item.fileStem}.css`, 'docs/components/uiverse-license.md'],
     dependencies: ['react', 'react-dom'],
   }])),
   ...Object.fromEntries(reactBitsFavorites.map(item => [item.id, {

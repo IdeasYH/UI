@@ -8,7 +8,7 @@ UIModel 为其他项目提供界面、交互和组件参考，使用本地示例
 | --- | --- | --- |
 | 新页面、未列举的业务、搜索没有命中 | [通用复用方法](UI-REUSE.md) | 明确值形状、层级、确认时机、依赖及邻近模式 |
 | 需要 React Bits 收藏的动效组件 | [收藏组件选型](REACT-BITS-FAVORITES.md) | 按导航、输入、反馈和展示寻找原型，继续读单项契约和源码 |
-| 需要 Uiverse 收藏的展开动作、消息框或光晕开关 | [Uiverse 收藏组件选型](UIVERSE-FAVORITES.md) | 按值与动作边界选型，继续读原作、契约和真实示例 |
+| 需要 Uiverse 收藏的动效、菜单、表单、状态或色板 | [Uiverse 收藏组件选型](UIVERSE-FAVORITES.md) | 按交互结构和状态选型，继续读原作、契约和真实示例 |
 | 平铺选项中选择一个值 | [SearchSelect 契约](components/search-select.md) | 清楚数据映射、过滤与选择提交的边界 |
 | 选择连续日期期间 | [DateRangePicker 契约](components/date-range.md) | 分清显示月份、草稿、已确认值和数据标记 |
 | 多项条件决定动作是否可用 | [PrerequisiteAction 契约](components/prerequisite-action.md) | 条件有稳定 ID，宿主判定与 UI 引导职责清楚 |

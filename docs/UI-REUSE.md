@@ -41,7 +41,7 @@ UIModel 提供可操作的交互原型、源码和使用契约。城市、报名
 | 整数等级评分且需要悬停提示 | [PeekRating](components/peek-rating.md) | React Bits 动效；0.5 分精度看 StarRating |
 | 导航项需要空间动效 | [React Bits 收藏组件选型](REACT-BITS-FAVORITES.md) | CardNav / PillNav / GooeyNav / FlowingMenu / Dock / BranchedMenu 各有不同层级与链接语义 |
 | 轻量动效输入、动作与反馈 | [React Bits 收藏组件选型](REACT-BITS-FAVORITES.md) | 先判断值形状及真实确认时机；动效不替代请求、权限或保存 |
-| 展开式保存、退出、删除动作，或带附件的消息输入 | [Uiverse 收藏组件选型](UIVERSE-FAVORITES.md) | 对照原作的悬停、按下和聚焦动效；实际保存、退出、删除、发送由宿主接入 |
+| 原作动效、加载反馈、表单、色板、菜单或提示 | [Uiverse 收藏组件选型](UIVERSE-FAVORITES.md) | 先按结构和状态选型，再对照原作的悬停、按下和聚焦；实际请求、提交与导航由宿主接入 |
 | 持续浮动光晕的即时布尔状态 | [Uiverse GlowSwitch](components/uiverse-floating-glow-switch.md) | 宿主持有布尔值；需克制动效时看 ToggleSwitch |
 | 信息展示或页面组织 | Card / Table / Badge、完整参考页 | 页面组合未必已抽成可独立复制的组件 |
 

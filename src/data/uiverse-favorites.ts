@@ -1,4 +1,6 @@
-/** 2026-10-04 从用户 Uiverse 收藏页核对的五个公开原作，2026-10-05 增加用户指定的 Tsiangana 原作。ID 描述形状与用途，并兼作稳定锚点。 */
+import { uiverseNewFavorites } from './uiverse-new-favorites.ts'
+
+/** 组件 ID 描述形状与用途，并兼作稳定锚点。新增收藏快照见 uiverse-new-favorites。 */
 export const uiverseFavorites = [
   {
     id: 'uiverse-message-composer', name: '附件消息输入框', symbol: 'MessageBox', fileStem: 'message-box', exampleExport: 'UiverseMessageComposerExample', author: 'vinodjangid07',
@@ -36,6 +38,7 @@ export const uiverseFavorites = [
     description: '蓝色纸飞机悬停后展开八个环形社交图标，保留原作 SVG、品牌色和位移动画。',
     keywords: ['社交', '分享', '环形', '展开', '悬停', 'tooltip', 'Tsiangana'],
   },
+  ...uiverseNewFavorites,
 ] as const
 
 export const uiverseFavoriteIds = new Set<string>(uiverseFavorites.map(item => item.id))

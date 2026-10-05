@@ -72,10 +72,10 @@ export const componentCatalog = [
     locations: [{ page: 'components', label: '组件总览 / 颜色选择器', href: '/components?category=interaction#color-picker' }],
   },
   ...uiverseFavorites.map(item => ({
-    id: item.id, name: item.name, symbol: item.symbol, category: 'interaction' as const, kind: '基础组件' as const,
+    id: item.id, name: item.name, symbol: item.symbol, category: 'category' in item ? item.category : 'interaction' as const, kind: '基础组件' as const,
     description: item.description,
     sources: [...componentReferences[item.id].files.filter(file => file.startsWith('src/')), componentReferences[item.id].example], preview: 'live' as const,
-    locations: [{ page: 'components' as const, label: `组件总览 / ${item.name}`, href: `/components?category=interaction#${item.id}` }],
+    locations: [{ page: 'components' as const, label: `组件总览 / ${item.name}`, href: `/components?category=${'category' in item ? item.category : 'interaction'}#${item.id}` }],
   })),
   {
     id: 'swatch-color-picker', name: '悬停色板选色器', symbol: 'SwatchColorPicker', category: 'interaction', kind: '基础组件',

@@ -1,0 +1,3 @@
+# Preserve captured upstream source bytes for the Uiverse fidelity checks.
+public/uiverse-originals/*.source.html -text
+public/uiverse-originals/*.css -text

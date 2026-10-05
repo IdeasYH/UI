@@ -1,0 +1,235 @@
+{
+  "capturedOn": "2026-10-05",
+  "note": "HTML/CSS read from original page code editors; adapter CSS read from the original Tailwind preview stylesheet.",
+  "entries": [
+    {
+      "sourceUrl": "https://uiverse.io/abrahamcalsin/serious-turkey-52",
+      "files": [
+        {
+          "path": "public/uiverse-originals/abrahamcalsin--serious-turkey-52.source.html",
+          "sha256": "0bda4d2abd6ce06075c3233494d61fee8b831ffdbb438d79e111f6e5fd8fef1f"
+        },
+        {
+          "path": "public/uiverse-originals/abrahamcalsin--serious-turkey-52.css",
+          "sha256": "bee5d7a8e158517ce7aa43d8a43fac7ddf4d93b8402f04a1240176355c88d0c5"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/ahmed150up/quiet-goat-67",
+      "files": [
+        {
+          "path": "public/uiverse-originals/ahmed150up--quiet-goat-67.source.html",
+          "sha256": "685bce991455244ee6cf37c072578c79e44cc533bced68278209cc6accf76055"
+        },
+        {
+          "path": "public/uiverse-originals/ahmed150up--quiet-goat-67.css",
+          "sha256": "858a2e0ec825237cc9f3f76d3cdbe7520a33a9480d6831d751a33c01fcd00424"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/andrew-demchenk0/ordinary-lizard-16",
+      "files": [
+        {
+          "path": "public/uiverse-originals/andrew-demchenk0--ordinary-lizard-16.source.html",
+          "sha256": "8cd6b4cc968c3c510d0a4f699aa014a3c44d7f0a3a6d80f2f53c6b3389fbfa2d"
+        },
+        {
+          "path": "public/uiverse-originals/andrew-demchenk0--ordinary-lizard-16.css",
+          "sha256": "e283bd6daf8b3b3bb35ecf54917492cc682c4382dab5c3d8553b3469a3603d5f"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/anest_6070/plastic-panther-15",
+      "files": [
+        {
+          "path": "public/uiverse-originals/anest_6070--plastic-panther-15.source.html",
+          "sha256": "a68834138ec1fbb23ea94a9f703340aae2f62e62603db94feec825685e05e371"
+        },
+        {
+          "path": "public/uiverse-originals/anest_6070--plastic-panther-15.css",
+          "sha256": "c8484e98694a35240f6c6e30245d396f251a51b085e4a5f0d0ca57dcfee6f971"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/ayman-ashine/wicked-liger-39",
+      "files": [
+        {
+          "path": "public/uiverse-originals/ayman-ashine--wicked-liger-39.source.html",
+          "sha256": "8acc2b6c08b54b6cbc30f07ee9362d8442f785d876a60ef54b576eae73629d38"
+        },
+        {
+          "path": "public/uiverse-originals/ayman-ashine--wicked-liger-39.css",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "public/uiverse-originals/ayman-ashine--wicked-liger-39.adapter.css",
+          "sha256": "d318e66914beaeb1f80b354e75cd58728d0665e9eb8b911d1a971d3f4fe63a4d"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/chase2k25/horrible-zebra-60",
+      "files": [
+        {
+          "path": "public/uiverse-originals/chase2k25--horrible-zebra-60.source.html",
+          "sha256": "4df35ef86ec658cf32af55968e6e8ee2b087450bc1427a3cdbd7be7bda128938"
+        },
+        {
+          "path": "public/uiverse-originals/chase2k25--horrible-zebra-60.css",
+          "sha256": "d13aaa89b2a1603b3fab8e91ebb07cd1b9380ffeb315ec9bcba0b79b7ab2c71b"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/Cobp/horrible-quail-18",
+      "files": [
+        {
+          "path": "public/uiverse-originals/Cobp--horrible-quail-18.source.html",
+          "sha256": "220c3c504fedf4aee848caa7c5d86c11e159a3dbed7a67e2cb7afeac1ce22076"
+        },
+        {
+          "path": "public/uiverse-originals/Cobp--horrible-quail-18.css",
+          "sha256": "928c5af29420ce1eb7b1e90ae329fb48c7ed697e38c45ec44fa807a383753438"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/Cybercom682/jolly-liger-24",
+      "files": [
+        {
+          "path": "public/uiverse-originals/Cybercom682--jolly-liger-24.source.html",
+          "sha256": "4bb026a2c18a00a1ff5cf18982c786b523bc998f11b474efd0e807575f4898c2"
+        },
+        {
+          "path": "public/uiverse-originals/Cybercom682--jolly-liger-24.css",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "public/uiverse-originals/Cybercom682--jolly-liger-24.adapter.css",
+          "sha256": "db768d06cde8f0963fd147f0743128407c85d2a4ad2c632c2d781bf5a19986ff"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/Faizuddinq/cowardly-quail-47",
+      "files": [
+        {
+          "path": "public/uiverse-originals/Faizuddinq--cowardly-quail-47.source.html",
+          "sha256": "9623b9253e2bf3b061160c4e9747ef96cfa4d8dd760bdeffd543677508997046"
+        },
+        {
+          "path": "public/uiverse-originals/Faizuddinq--cowardly-quail-47.css",
+          "sha256": "14eba639d73b76175b24e0ef010903e229271a91b86858d9029cc9b8d817ea11"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/Galahhad/strong-squid-82",
+      "files": [
+        {
+          "path": "public/uiverse-originals/Galahhad--strong-squid-82.source.html",
+          "sha256": "5aa12367ad30cc49a4457af729fa7fea15d1bfd29ba25799afb228648819376d"
+        },
+        {
+          "path": "public/uiverse-originals/Galahhad--strong-squid-82.css",
+          "sha256": "f0311749c54906a893d56f110a4aa72286b0d00708776631471690eee42938c4"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/MBerkayHamurcu/slimy-quail-55",
+      "files": [
+        {
+          "path": "public/uiverse-originals/MBerkayHamurcu--slimy-quail-55.source.html",
+          "sha256": "8189efc9a6bc9014265388640e0b7e4db5472fed615dc097d4061d34f4d8c4ba"
+        },
+        {
+          "path": "public/uiverse-originals/MBerkayHamurcu--slimy-quail-55.css",
+          "sha256": "4e5015d309219aa39631fdb9781ea2b97c5811b6edd23ccd434abb4159fc58ba"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/nazar-gavrylyk/terrible-gecko-91",
+      "files": [
+        {
+          "path": "public/uiverse-originals/nazar-gavrylyk--terrible-gecko-91.source.html",
+          "sha256": "29d9d8338a5ca1de84895bf807f249c009720cf4f7568b40870ca8f427f03cf6"
+        },
+        {
+          "path": "public/uiverse-originals/nazar-gavrylyk--terrible-gecko-91.css",
+          "sha256": "b0052b6a9fba040eca407214dcbc024cabbfe16b12675b01f2d7cb7c382ef260"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/nazar-gavrylyk/yellow-puma-19",
+      "files": [
+        {
+          "path": "public/uiverse-originals/nazar-gavrylyk--yellow-puma-19.source.html",
+          "sha256": "23706f4cee6d9c45f83c636c4191a1a86fdfcda12b8c932f31661df2918cc864"
+        },
+        {
+          "path": "public/uiverse-originals/nazar-gavrylyk--yellow-puma-19.css",
+          "sha256": "36213524259fda94ec037e499801c28306f897983b9c90131041b7081c24dfa8"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/PriyanshuGupta28/chilly-eagle-55",
+      "files": [
+        {
+          "path": "public/uiverse-originals/PriyanshuGupta28--chilly-eagle-55.source.html",
+          "sha256": "b8ef20c6d4affa1cde99a73e18c47c4714b93d610a1b2a9f8f84e8599d1196f6"
+        },
+        {
+          "path": "public/uiverse-originals/PriyanshuGupta28--chilly-eagle-55.css",
+          "sha256": "051ef15a110db17631a9e15956f93d60eeb35eb9f5af32a4d4b6211c931c21ff"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/satyamchaudharydev/ugly-bulldog-75",
+      "files": [
+        {
+          "path": "public/uiverse-originals/satyamchaudharydev--ugly-bulldog-75.source.html",
+          "sha256": "bd3d811c51c9400b362d7e6c0a443add943a3f56cf426176d1143fefd854978a"
+        },
+        {
+          "path": "public/uiverse-originals/satyamchaudharydev--ugly-bulldog-75.css",
+          "sha256": "51519f5de644f5a86de7c90f841636b1ac7a732459e9828223f0592048d3c2c8"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/SelfMadeSystem/silent-cougar-84",
+      "files": [
+        {
+          "path": "public/uiverse-originals/SelfMadeSystem--silent-cougar-84.source.html",
+          "sha256": "c5eabd5342989e1dc00227281b92ed046b6f57d137e1a2deab17ade2c2c9c48d"
+        },
+        {
+          "path": "public/uiverse-originals/SelfMadeSystem--silent-cougar-84.css",
+          "sha256": "cfae7f9da8ed9e1f31d71fe0b7423064463b6c03972d72c26a82fa161827a23d"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/xerith_8140/stupid-panther-7",
+      "files": [
+        {
+          "path": "public/uiverse-originals/xerith_8140--stupid-panther-7.source.html",
+          "sha256": "1056474ae11df44bca6fa41cc24dec0275ccccd0e26491a31185174283099840"
+        },
+        {
+          "path": "public/uiverse-originals/xerith_8140--stupid-panther-7.css",
+          "sha256": "50aaa61f1c20a102b0eed5fb06f904d0fef5e9f19028ad07b1597d34b03687a5"
+        }
+      ]
+    }
+  ]
+}

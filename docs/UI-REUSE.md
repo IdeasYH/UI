@@ -25,16 +25,27 @@ UIModel 提供可操作的交互原型、源码和使用契约。城市、报名
 | --- | --- | --- |
 | 一个即时布尔状态 | ToggleSwitch | 需要提交前确认的同意条款可用复选框并组合前置条件 |
 | 少量平铺选项，只选一个，需同时比较 | RadioCards | 较长选项集或需要搜索时查看 SearchSelect |
+| 少量互斥选项，切换同一区域内容 | [SegmentedControl](components/segmented-control.md) | 每项有独立导航/复杂面板时考虑 Tabs；只收集一个表单值可用 RadioCards |
 | 平铺选项，只选一个，可按文字筛选 | [SearchSelect](components/search-select.md) | 当前本地过滤；多选或远程加载需要另行设计 |
+| 固定少量颜色，只选一个并立即生效 | [SwatchColorPicker](components/swatch-color-picker.md) | 可并列比较、悬停预览；任意颜色和精确 HEX 使用 ColorPicker |
 | 平铺选项，选多个 | CheckboxCards / TriStateCheckbox | 父子关系的多选查看 TreeSelect |
 | 沿层级选择一条路径 | Cascader | 当前选到叶子才确认；需要多个分支时查看 TreeSelect |
 | 树中选择多个对象 | TreeSelect | 当前保存叶子 ID，父节点状态由后代推导 |
 | 一段连续日期，先调整再应用 | [DateRangePicker](components/date-range.md) | 多个不连续日期或时间点不属于当前契约 |
 | 多项条件决定能否执行动作 | [PrerequisiteAction](components/prerequisite-action.md) | 负责条件引导；请求、权限和结果状态由宿主负责 |
 | 请求进行中、成功或失败 | ActionStateButton / ActionStateNotice | 展示调用方提供的状态，不自行请求或推断成功 |
+| 按需显示一组标题下的详情 | [CollapsePanel](components/collapse-panel.md) | 当前同一时刻只展开一项；需要并行展开须扩展契约 |
+| 有先后顺序的事件或进度 | [Timeline](components/timeline.md) | 传入已发生事件与完成数；普通状态标签不需要时间轴 |
+| 图片作品的空间浏览 | [FlexCarousel](components/flex-carousel.md) | React Bits WebGL 动效；需图片、明确高度与 `ogl` |
+| 多参数即时调整视觉材质、内容与空间交互 | [Luminary Card](components/luminary-card.md) | 个人收藏的完整定制页；React 容器隔离原版样式，含本地配置与素材来源边界 |
+| 整数等级评分且需要悬停提示 | [PeekRating](components/peek-rating.md) | React Bits 动效；0.5 分精度看 StarRating |
+| 导航项需要空间动效 | [React Bits 收藏组件选型](REACT-BITS-FAVORITES.md) | CardNav / PillNav / GooeyNav / FlowingMenu / Dock / BranchedMenu 各有不同层级与链接语义 |
+| 轻量动效输入、动作与反馈 | [React Bits 收藏组件选型](REACT-BITS-FAVORITES.md) | 先判断值形状及真实确认时机；动效不替代请求、权限或保存 |
+| 展开式保存、退出、删除动作，或带附件的消息输入 | [Uiverse 收藏组件选型](UIVERSE-FAVORITES.md) | 对照原作的悬停、按下和聚焦动效；实际保存、退出、删除、发送由宿主接入 |
+| 持续浮动光晕的即时布尔状态 | [Uiverse GlowSwitch](components/uiverse-floating-glow-switch.md) | 宿主持有布尔值；需克制动效时看 ToggleSwitch |
 | 信息展示或页面组织 | Card / Table / Badge、完整参考页 | 页面组合未必已抽成可独立复制的组件 |
 
-三份详细契约是复用方法的样板。其他目录项也可以参考，但需继续读实现确认接口和依赖，不能把“有预览”当作“已具备完整跨项目复制契约”。
+上表链接的组件有详细契约、真实示例和源码清单。其他目录项也可以参考，但需继续读实现确认接口和依赖，不能把“有预览”当作“已具备完整跨项目复制契约”。
 
 ## 3. 搜索没有命中时继续找结构
 
@@ -74,7 +85,7 @@ UIModel 提供可操作的交互原型、源码和使用契约。城市、报名
 
 同仓库复用时，按真实示例 import，先用自己的状态和数据运行。跨项目复用时，从组件契约的清单取得实现、模型、样式及基础控件；保持相对目录，或逐项修改 import。完成条件：目标文件的每个 import 能解析，样式已加载，外部依赖由目标项目明确提供。
 
-宿主需要提供 React 的 automatic JSX runtime。TypeScript 设置 `jsx: "react-jsx"`，浏览器构建工具也要采用相同模式；例如 Vite 使用目标项目已有的 React 插件，或显式设置 `esbuild: { jsx: "automatic" }`。只通过类型检查不能证明浏览器已经正确转换 JSX。还需有 HTML 挂载点、React DOM 入口及组件 CSS 导入处理；三个用例是组件调用示例，不包含整套项目脚手架。依赖应声明在宿主项目中；临时验证目录若放在 `node_modules` 内，Vite 可能跳过自动扫描，可显式声明预构建依赖或在正常项目目录验证。
+宿主需要提供 React 的 automatic JSX runtime。TypeScript 设置 `jsx: "react-jsx"`，浏览器构建工具也要采用相同模式；例如 Vite 使用目标项目已有的 React 插件，或显式设置 `esbuild: { jsx: "automatic" }`。React Bits 原版 `.jsx` 还需要宿主支持 JS/JSX 导入；本仓库设置了 `allowJs`，并为收藏组件附上 `.d.ts` 适配。新引入收藏项的声明只保证模块可被 TypeScript 项目引用，具体参数仍以契约和原版函数签名为准。只通过类型检查不能证明浏览器已经正确转换 JSX。还需有 HTML 挂载点、React DOM 入口及组件 CSS 导入处理；用例是组件调用示例，不包含整套项目脚手架。依赖应声明在宿主项目中；临时验证目录若放在 `node_modules` 内，Vite 可能跳过自动扫描，可显式声明预构建依赖或在正常项目目录验证。
 
 网站的说明、示例代码和源码展示来自仓库文件；源码路径用于定位，真正复制时应展开并读取文件内容。`src/examples/` 是可编译调用示例，不是需要连同业务数据照搬的运行依赖。
 
@@ -93,4 +104,8 @@ UIModel 提供可操作的交互原型、源码和使用契约。城市、报名
 - 业务：真实请求、授权、持久化和计算口径接在宿主；UI 可用性不代替服务端校验。
 - 泛化：用一个未在说明中列举的业务重新描述值、层级、确认时机和依赖，说明保留与修改了哪些规则。
 
-继续阅读：[可搜索选框](components/search-select.md)、[日期区间](components/date-range.md)、[前置条件动作](components/prerequisite-action.md)。目录、页面和维护约定见 [模板导航与说明书](TEMPLATE-GUIDE.md)，运行验收记录见 [ACCEPTANCE.md](ACCEPTANCE.md)。
+继续阅读：[可搜索选框](components/search-select.md)、[日期区间](components/date-range.md)、[前置条件动作](components/prerequisite-action.md)、[分段控件](components/segmented-control.md)、[折叠面板](components/collapse-panel.md)、[时间轴](components/timeline.md)、[React Bits 收藏组件选型](REACT-BITS-FAVORITES.md)、[Uiverse 收藏组件选型](UIVERSE-FAVORITES.md)。目录、页面和维护约定见 [模板导航与说明书](TEMPLATE-GUIDE.md)，运行验收记录见 [ACCEPTANCE.md](ACCEPTANCE.md)。
+
+### 环形社交动作入口
+
+一个入口悬停展开八个动作时，可参考 [SocialTooltip](components/uiverse-social-tooltip.md)。保留 Tsiangana 的公开 SVG/CSS；宿主接管动作回调，不会自动分享、跳转或赋权。它不是任意层级菜单或多选器。

@@ -11,7 +11,8 @@ export function referenceAssets() {
     const paths = ['docs/UI-REUSE.md', entry.document, entry.example, ...entry.files]
     const files = paths.map(path => ({ path, content: readFileSync(resolve(root, path), 'utf8') }))
     const fingerprint = createHash('sha256').update(JSON.stringify(files)).digest('hex')
-    return JSON.stringify({ id, title: entry.title, fingerprint, environment: { framework: 'React', jsx: 'automatic runtime: TypeScript jsx=react-jsx; Vite use its React plugin or esbuild.jsx=automatic', dependencies: id === 'prerequisite-action' ? ['react', 'react-dom'] : ['react', 'react-dom', 'lucide-react'], note: '宿主提供 HTML 挂载点、React DOM 入口和 CSS 加载。按原相对路径保存 files；示例数据仅为演示。临时目录若在 node_modules 内，可显式配置 Vite optimizeDeps.include。' }, example: entry.example, exportName: entry.exportName, files }, null, 2)
+    const hasJavaScript = entry.files.some(path => path.endsWith('.jsx'))
+    return JSON.stringify({ id, title: entry.title, fingerprint, environment: { framework: 'React', jsx: `automatic runtime: TypeScript jsx=react-jsx; Vite use its React plugin or esbuild.jsx=automatic.${hasJavaScript ? ' 原版 .jsx 需要 allowJs=true 或宿主提供对应声明。' : ''}`, dependencies: entry.dependencies ?? (id === 'prerequisite-action' || id === 'segmented-control' ? ['react', 'react-dom'] : ['react', 'react-dom', 'lucide-react']), note: '宿主提供 HTML 挂载点、React DOM 入口和 CSS 加载。按原相对路径保存 files；示例数据仅为演示。图片地址由宿主提供。临时目录若在 node_modules 内，可显式配置 Vite optimizeDeps.include。' }, example: entry.example, exportName: entry.exportName, files }, null, 2)
   }
   return {
     name: 'uimodel-reference-assets',

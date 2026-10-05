@@ -1,11 +1,13 @@
 import { Fragment, type ReactNode } from 'react'
+import { componentCatalog, componentPreviewHref } from '../data/template-catalog'
 
 function hrefFor(path: string): string | undefined {
   if (/^https?:\/\//.test(path) || path.startsWith('#')) return path
   if (/UI-REUSE\.md/.test(path)) return '/guide#reuse-method'
-  for (const id of ['search-select', 'date-range', 'prerequisite-action']) {
-    if (path.includes(`${id}.md`)) return `/components?category=interaction#${id}`
-  }
+  if (/REACT-BITS-FAVORITES\.md/.test(path)) return '/guide#react-bits-favorites'
+  const id = /(?:^|\/)([a-z0-9-]+)\.md(?:#.*)?$/.exec(path)?.[1]
+  const component = componentCatalog.find(item => item.id === id)
+  if (component) return componentPreviewHref(component)
   return undefined
 }
 

@@ -1,4 +1,6 @@
 import { componentReferences, interactionKeywords } from './component-references.ts'
+import { reactBitsFavorites } from './react-bits-favorites.ts'
+import { uiverseFavorites } from './uiverse-favorites.ts'
 
 export const organizationVariants = [
   { id: 'organization-figma', title: '组织人员 A · 拓扑结构', href: '/organization/figma', variant: 'figma', version: 'A', label: '拓扑结构' },
@@ -11,6 +13,7 @@ export const templatePages = [
   { id: 'components', title: '组件总览', href: '/components' },
   { id: 'portal', title: '门户首页', href: '/' },
   { id: 'people', title: '人员分配', href: '/components/person-picker' },
+  { id: 'luminary-card', title: '全息卡片', href: '/examples/luminary-card' },
   ...organizationVariants,
 ] as const
 
@@ -51,6 +54,12 @@ type ComponentEntry = {
 
 export const componentCatalog = [
   {
+    id: 'luminary-card', name: '全息卡片定制器', symbol: 'LuminaryCardCustomizer', category: 'display', kind: '页面组合',
+    description: '个人收藏：3D 倾斜、金属反光、独立标记视差与纹理；实时调整颜色和内容，支持本地保存、图片上传及 JSON 导入导出。',
+    sources: ['src/components/luminary-card/luminary-card.tsx', 'src/components/luminary-card/src/app.js', 'src/components/luminary-card/src/config.js', 'src/components/luminary-card/src/motion.js', 'src/components/luminary-card/src/aurora.js', 'src/components/luminary-card/src/styles.css', 'src/components/luminary-card/workspace.html', 'src/examples/luminary-card-example.tsx', 'src/pages/luminary-card-page.tsx', 'src/pages/luminary-card-page.css'], preview: 'page',
+    locations: [{ page: 'luminary-card', label: '全息卡片 / 完整定制器', href: '/examples/luminary-card' }],
+  },
+  {
     id: 'date-range', name: '日期区间选择', symbol: 'DateRangePicker', category: 'interaction', kind: '基础组件',
     description: '快捷日期点击即确认并关闭；支持上年下年与双月选择，区间无数据的日期保持白色。',
     sources: [...componentReferences['date-range'].files, componentReferences['date-range'].example], preview: 'live',
@@ -61,6 +70,18 @@ export const componentCatalog = [
     description: '一条白色 → 彩色 → 黑色渐变滑条，拖动实时选色；保留 24 种标准色、HEX 和自定义颜色。',
     sources: ['src/components/ui/data-controls.tsx', 'src/components/ui/data-controls.css', 'src/components/ui/color-model.ts', 'src/components/data-control-previews.tsx'], preview: 'live',
     locations: [{ page: 'components', label: '组件总览 / 颜色选择器', href: '/components?category=interaction#color-picker' }],
+  },
+  ...uiverseFavorites.map(item => ({
+    id: item.id, name: item.name, symbol: item.symbol, category: 'interaction' as const, kind: '基础组件' as const,
+    description: item.description,
+    sources: [...componentReferences[item.id].files.filter(file => file.startsWith('src/')), componentReferences[item.id].example], preview: 'live' as const,
+    locations: [{ page: 'components' as const, label: `组件总览 / ${item.name}`, href: `/components?category=interaction#${item.id}` }],
+  })),
+  {
+    id: 'swatch-color-picker', name: '悬停色板选色器', symbol: 'SwatchColorPicker', category: 'interaction', kind: '基础组件',
+    description: 'Uiverse 漫画色板：黑色粗描边与硬阴影，色块悬停放大上移、邻项联动，聚焦显示 COPIED!。',
+    sources: [...componentReferences['swatch-color-picker'].files, componentReferences['swatch-color-picker'].example], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 悬停色板选色器', href: '/components?category=interaction#swatch-color-picker' }],
   },
   {
     id: 'upload-progress', name: '文件上传进度', symbol: 'UploadProgress', category: 'display', kind: '基础组件',
@@ -81,6 +102,36 @@ export const componentCatalog = [
     locations: [{ page: 'components', label: '组件总览 / 统计数值', href: '/components?category=display#statistics' }],
   },
   {
+    id: 'timeline', name: '时间轴', symbol: 'Timeline', category: 'display', kind: '基础组件',
+    description: '按顺序串联事件，已完成项显示紫色节点与连线；标题、时间和说明由调用方提供。',
+    sources: [...componentReferences.timeline.files, componentReferences.timeline.example], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 时间轴', href: '/components?category=display#timeline' }],
+  },
+  {
+    id: 'collapse-panel', name: '折叠面板', symbol: 'CollapsePanel', category: 'display', kind: '基础组件',
+    description: '标题点击展开或收起内容；当前一次只展开一项，适合问答和分组详情。',
+    sources: [...componentReferences['collapse-panel'].files, componentReferences['collapse-panel'].example], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 折叠面板', href: '/components?category=display#collapse-panel' }],
+  },
+  {
+    id: 'flex-carousel', name: '弹性图片画廊', symbol: 'FlexCarousel', category: 'display', kind: '基础组件',
+    description: 'React Bits JS/CSS 原版：液态视觉、上升入场、点击聚焦和图片标题；需要 WebGL 与明确高度。',
+    sources: [...componentReferences['flex-carousel'].files, componentReferences['flex-carousel'].example], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 弹性图片画廊', href: '/components?category=display#flex-carousel' }],
+  },
+  ...reactBitsFavorites.map(item => ({
+    id: item.id, name: item.name, symbol: item.symbol, category: item.category, kind: '基础组件' as const,
+    description: item.description,
+    sources: [...componentReferences[item.id].files, componentReferences[item.id].example], preview: 'live' as const,
+    locations: [{ page: 'components' as const, label: `组件总览 / ${item.name}`, href: `/components?category=${item.category}#${item.id}` }],
+  })),
+  {
+    id: 'segmented-control', name: '分段控件', symbol: 'SegmentedControl', category: 'interaction', kind: '基础组件',
+    description: '少量互斥选项切换同一块内容；选中高亮块滑动到目标项，支持方向键。',
+    sources: [...componentReferences['segmented-control'].files, componentReferences['segmented-control'].example], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 分段控件', href: '/components?category=interaction#segmented-control' }],
+  },
+  {
     id: 'switch', name: '开关', symbol: 'ToggleSwitch', category: 'interaction', kind: '基础组件',
     description: '关闭为浅色，开启为绿色，点击即时切换。',
     sources: ['src/components/ui/selection-controls.tsx', 'src/components/ui/selection-model.ts', 'src/components/selection-previews.tsx'], preview: 'live',
@@ -91,6 +142,12 @@ export const componentCatalog = [
     description: '跟随鼠标预览评分，支持半颗星，点击确认，移出恢复已确认分数。',
     sources: ['src/components/ui/selection-controls.tsx', 'src/components/ui/selection-model.ts', 'src/components/selection-previews.tsx'], preview: 'live',
     locations: [{ page: 'components', label: '组件总览 / 半星评分', href: '/components?category=interaction#rating' }],
+  },
+  {
+    id: 'peek-rating', name: '弹出提示评分', symbol: 'PeekRating', category: 'interaction', kind: '基础组件',
+    description: 'React Bits JS/CSS 原版：悬停抬升和提示、点击确认整数星级，允许清除。',
+    sources: [...componentReferences['peek-rating'].files, componentReferences['peek-rating'].example], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 弹出提示评分', href: '/components?category=interaction#peek-rating' }],
   },
   {
     id: 'search-select', name: '可搜索下拉选框', symbol: 'SearchSelect', category: 'interaction', kind: '基础组件',
@@ -315,6 +372,7 @@ export function componentPreviewHref(component: CatalogComponent): string {
 }
 
 export const examplePages = [
+  { id: 'luminary-card', title: '全息卡片定制器', href: '/examples/luminary-card', image: '/previews/luminary-card.jpg', source: '个人收藏 / Luminary Card', description: '全息材质、3D 视差与实时定制面板', sections: [{ label: '实时定制', href: '/examples/luminary-card#luminary-card-preview' }, { label: '来源与说明', href: '/examples/luminary-card#luminary-card-notes' }] },
   { id: 'portal', title: '门户首页', href: '/', image: '/previews/portal.png', source: 'Home', description: '完整门户、系统入口与配置编辑', sections: [{ label: '顶部导航', href: '/?menu=system' }, { label: '主视觉', href: '/#portal-hero' }, { label: '系统矩阵', href: '/#systems' }, { label: '业务链路', href: '/#workflow' }, { label: '门户配置', href: '/?panel=admin' }] },
   { id: 'people', title: '人员分配', href: '/components/person-picker', image: '/previews/people.png', source: 'Operator', description: '人员选框、状态筛选与数据表格', sections: [{ label: '负责人选框', href: '/components/person-picker#people-owners' }, { label: '筛选工具栏', href: '/components/person-picker#people-filters' }, { label: '分配表格', href: '/components/person-picker#people-assignments' }] },
   { id: 'organization-figma', title: '组织人员 A · 拓扑结构', href: '/organization/figma', image: '/previews/organization-figma.png', source: 'Figma Make', description: '组织拓扑、可复用角色与荧光授权预览', sections: [{ label: '画布工具栏', href: '/organization/figma#figma-controls' }, { label: '组织与人员', href: '/organization/figma#figma-canvas' }, { label: '复刻说明', href: '/guide#figma-replica' }] },

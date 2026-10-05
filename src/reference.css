@@ -118,6 +118,11 @@
 .catalog-example h2 { display: flex; align-items: baseline; flex-wrap: wrap; gap: .375rem .625rem; margin: .125rem 0 .375rem; font-size: .9375rem; font-weight: 600; }
 .catalog-example h2 code { color: #9aa3af; font-size: .6875rem; font-weight: 400; }
 .catalog-example-heading p { margin: 0; color: #7d8897; font-size: .75rem; line-height: 1.8; }
+.catalog-id-copy { display: inline-flex; align-items: center; flex-wrap: wrap; gap: .35rem; max-width: 100%; margin-top: .35rem; padding: .2rem .4rem; border: 1px dashed #c7d4e5; border-radius: 5px; background: #f8fbff; color: #41658e; font: inherit; font-size: .68rem; cursor: pointer; }
+.catalog-id-copy code { font-size: inherit; overflow-wrap: anywhere; }
+.catalog-id-copy-feedback { color: #7d8897; }
+.catalog-id-copy:hover { border-color: #4b8ad1; background: #eef6ff; }
+.catalog-id-copy:focus-visible { outline: 2px solid #2d7eef; outline-offset: 2px; }
 .catalog-kind { flex-shrink: 0; margin-top: .375rem; color: #a0a7b0; font-size: .625rem; }
 .catalog-sample { margin-top: 1.125rem; border-radius: 6px; padding: 1.5rem; background: #f7f9fc; }
 .catalog-example-footer { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: .75rem 1rem; margin-top: .875rem; }
@@ -190,15 +195,24 @@
   .reference-shell .app-shell .desktop-nav { max-height: calc(100dvh - var(--reference-nav-height) - 5rem); }
 }
 
+@media (min-width: 621px) and (max-width: 760px) {
+  .reference-bar-inner { gap: .5rem; }
+  .reference-links { gap: .125rem; }
+  .ui-button.reference-link { gap: .25rem; padding: 0 .25rem; font-size: .6875rem; }
+  .reference-link > svg { display: none; }
+}
+
 @media (max-width: 620px) {
   :root { --reference-nav-height: 80px; }
-  .reference-bar-inner { display: grid; grid-template-rows: 36px 44px; gap: 0; width: calc(100% - 24px); }
-  .reference-brand { gap: .5rem; }
+  .reference-bar-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: 36px 44px; gap: 0; width: calc(100% - 24px); }
+  .reference-brand { grid-column: 1; grid-row: 1; gap: .5rem; }
+  .reference-bar-inner > .perm-launcher { grid-column: 2; grid-row: 1; min-height: 28px; padding: 4px 8px; font-size: 11px; }
   .reference-brand > strong { font-size: .8125rem; }
   .reference-brand > span { display: block; font-size: .625rem; }
   .reference-brand > svg { width: 16px; height: 16px; }
-  .reference-links { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-self: stretch; gap: .125rem; }
-  .ui-button.reference-link { min-height: 30px; gap: .375rem; border-radius: 4px; padding: 0 .25rem; font-size: .75rem; white-space: nowrap; }
+  /* 收藏页会继续增加；列数随可见入口变化，避免第六项换行越过固定导航高度。 */
+  .reference-links { grid-column: 1 / -1; grid-row: 2; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); align-self: stretch; gap: .125rem; }
+  .ui-button.reference-link { min-width: 0; min-height: 30px; gap: .375rem; border-radius: 4px; padding: 0 .125rem; font-size: .6875rem; white-space: nowrap; }
   .reference-link > svg { display: none; }
   .ui-button.reference-org-trigger { gap: .125rem; }
   .reference-org-trigger > svg:last-child { display: block; width: 10px; height: 10px; }
@@ -251,7 +265,7 @@
 }
 
 @media (max-width: 360px) {
-  .ui-button.reference-link { font-size: .6875rem; }
+  .ui-button.reference-link { padding: 0; font-size: .625rem; }
   .reference-link > svg { display: none; }
   .reference-brand > span { font-size: .625rem; }
   .reference-summary { gap: .5rem; }

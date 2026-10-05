@@ -1,0 +1,9 @@
+.segmented-control { position: relative; display: inline-grid; grid-auto-flow: column; grid-auto-columns: 1fr; max-width: 100%; padding: 4px; border-radius: 999px; background: #efede9; }
+.segmented-control::before { content: ''; position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc((100% - 8px) / var(--segment-count)); border-radius: 999px; background: #ec8f06; box-shadow: 0 4px 10px #b66a1833; transform: translateX(calc(var(--selected-index) * 100%)); transition: transform .22s ease; }
+.segmented-control[data-empty='true']::before { display: none; }
+.segmented-control > button { position: relative; z-index: 1; min-width: 72px; min-height: 38px; border: 0; border-radius: 999px; padding: 5px 18px; background: transparent; color: #7b8088; font: inherit; font-weight: 700; cursor: pointer; transition: color .2s; }
+.segmented-control > button[aria-checked='true'] { color: #fff; }
+.segmented-control > button:disabled { opacity: .45; cursor: not-allowed; }
+.segmented-control > button:focus-visible { outline: 3px solid #2d7eef; outline-offset: 2px; }
+@media (max-width: 420px) { .segmented-control { width: 100%; grid-auto-columns: minmax(0, 1fr); } .segmented-control > button { min-width: 0; padding-inline: 8px; } }
+@media (prefers-reduced-motion: reduce) { .segmented-control::before, .segmented-control > button { transition: none; } }

@@ -11,14 +11,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "^5.0.4",
+    "@hugeicons/core-free-icons": "^4.3.5",
+    "@hugeicons/react": "^1.1.10",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.0.4",
+    "gsap": "^3.15.0",
     "lucide-react": "^0.468.0",
+    "motion": "^12.43.0",
+    "ogl": "^1.0.11",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-icons": "^5.7.0",
+    "react-router-dom": "^7.18.4",
+    "three": "^0.180.0",
     "typescript": "^5.7.2",
     "vite": "^7.0.0"
-  },
-  "devDependencies": {}
+  }
 }

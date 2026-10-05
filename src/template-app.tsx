@@ -9,6 +9,7 @@ import { PeoplePage } from './pages/people-page'
 import { OrganizationTreePage } from './pages/organization-page'
 import { PersonnelManagementPage } from './pages/personnel-management-page'
 import { FigmaOrganizationPage } from './pages/figma-organization-page'
+import { LuminaryCardPage } from './pages/luminary-card-page'
 import { PermissionProvider, PermissionPage } from './components/permissions/permission-provider'
 
 const pageComponents: Record<TemplatePageId, ComponentType> = {
@@ -16,6 +17,7 @@ const pageComponents: Record<TemplatePageId, ComponentType> = {
   components: ComponentsPage,
   portal: App,
   people: PeoplePage,
+  'luminary-card': LuminaryCardPage,
   'organization-tree': OrganizationTreePage,
   'organization-personnel': PersonnelManagementPage,
   'organization-figma': FigmaOrganizationPage,

@@ -1,0 +1,29 @@
+/* Adapted from Uiverse.io / vinodjangid07 / smart-emu-83; hover timing preserved. */
+.uiverse-delete-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: .3s;
+  overflow: hidden;
+  position: relative;
+  padding: 0;
+}
+.uiverse-delete-btn .svgIcon { width: 12px; transition-duration: .3s; }
+.uiverse-delete-btn .svgIcon path { fill: white; }
+.uiverse-delete-btn:hover,
+.uiverse-delete-btn:focus-visible { width: 140px; border-radius: 50px; transition-duration: .3s; background-color: rgb(255, 69, 69); align-items: center; }
+.uiverse-delete-btn:hover .svgIcon,
+.uiverse-delete-btn:focus-visible .svgIcon { width: 50px; transition-duration: .3s; transform: translateY(60%); }
+.uiverse-delete-btn::before { position: absolute; top: -20px; content: 'Delete'; color: white; transition-duration: .3s; font-size: 2px; }
+.uiverse-delete-btn:hover::before,
+.uiverse-delete-btn:focus-visible::before { font-size: 13px; opacity: 1; transform: translateY(30px); transition-duration: .3s; }
+.uiverse-delete-btn:focus-visible { outline: 2px solid #b32525; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .uiverse-delete-btn, .uiverse-delete-btn .svgIcon, .uiverse-delete-btn::before { transition: none; } }

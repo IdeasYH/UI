@@ -21,11 +21,12 @@ test('每份复制清单包含示例和全部相对源码/CSS依赖，并能隔�
         : ts.preProcessFile(text).importedFiles.map(item => item.fileName)
       for (const specifier of imports) {
         if (!specifier.startsWith('.')) {
-          assert.ok(['react', 'react-dom', 'lucide-react'].includes(specifier), `${id} 未声明外部依赖 ${specifier}`)
+          const dependencies = entry.dependencies ?? ['react', 'react-dom', 'lucide-react']
+          assert.ok(dependencies.some(dependency => specifier === dependency || specifier.startsWith(`${dependency}/`)), `${id} 未声明外部依赖 ${specifier}`)
           continue
         }
         const relative = path.posix.normalize(path.posix.join(path.posix.dirname(source), specifier))
-        const candidates = [relative, `${relative}.ts`, `${relative}.tsx`, `${relative}/index.ts`, `${relative}/index.tsx`]
+        const candidates = [relative, `${relative}.ts`, `${relative}.tsx`, `${relative}.js`, `${relative}.jsx`, `${relative}.d.ts`, `${relative}/index.ts`, `${relative}/index.tsx`]
         assert.ok(candidates.some(candidate => files.has(candidate)), `${id}: ${source} 缺少 ${specifier}`)
       }
     }
@@ -36,7 +37,7 @@ test('每份复制清单包含示例和全部相对源码/CSS依赖，并能隔�
       writeFileSync(destination, readFileSync(path.join(root, file)))
     }
     writeFileSync(path.join(isolated, 'style.d.ts'), "declare module '*.css' {}\n")
-    writeFileSync(path.join(isolated, 'tsconfig.json'), JSON.stringify({ compilerOptions: { target: 'ES2022', lib: ['ES2022', 'DOM', 'DOM.Iterable'], module: 'ESNext', moduleResolution: 'Bundler', jsx: 'react-jsx', strict: true, skipLibCheck: true, noEmit: true, types: ['react', 'react-dom'] }, include: ['src', 'style.d.ts'] }))
+    writeFileSync(path.join(isolated, 'tsconfig.json'), JSON.stringify({ compilerOptions: { target: 'ES2022', lib: ['ES2022', 'DOM', 'DOM.Iterable'], module: 'ESNext', moduleResolution: 'Bundler', jsx: 'react-jsx', allowJs: true, strict: true, skipLibCheck: true, noEmit: true, types: ['react', 'react-dom'] }, include: ['src', 'style.d.ts'] }))
     execFileSync(process.execPath, [path.join(root, 'node_modules/typescript/bin/tsc'), '-p', path.join(isolated, 'tsconfig.json')], { stdio: 'pipe' })
   }
 })

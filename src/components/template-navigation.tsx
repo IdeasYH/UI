@@ -1,4 +1,4 @@
-import { BookOpen, Check, ChevronDown, Component, Layers3, LayoutTemplate, Network, Users } from 'lucide-react'
+import { BookOpen, Check, ChevronDown, Component, Layers3, LayoutTemplate, Network, Sparkles, Users } from 'lucide-react'
 import { organizationVariants, templatePages, type TemplatePageId } from '../data/template-catalog'
 import { Button } from './ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from './ui/dropdown-menu'
@@ -6,7 +6,7 @@ import { cn } from '../lib/utils'
 import { PermissionLauncher } from './permissions/permission-provider'
 import { usePermissions } from './permissions/permission-context'
 
-const pageIcons = { guide: BookOpen, components: Component, portal: LayoutTemplate, people: Users, 'organization-tree': Network, 'organization-personnel': Users, 'organization-figma': Network }
+const pageIcons = { guide: BookOpen, components: Component, portal: LayoutTemplate, people: Users, 'luminary-card': Sparkles, 'organization-tree': Network, 'organization-personnel': Users, 'organization-figma': Network }
 
 export function TemplateNavigation({ currentPage }: { currentPage: TemplatePageId }) {
   const permissions = usePermissions()

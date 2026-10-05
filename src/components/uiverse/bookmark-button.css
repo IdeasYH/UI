@@ -1,0 +1,47 @@
+/* Adapted from Uiverse.io / vinodjangid07 / heavy-badger-29; values and transitions preserved. */
+.uiverse-bookmark-btn {
+  width: 100px;
+  height: 40px;
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.349);
+  background-color: rgb(12, 12, 12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  padding: 0;
+}
+.uiverse-bookmark-btn .IconContainer {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(to bottom, rgb(255, 136, 255), rgb(172, 70, 255));
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+  transition-duration: 0.3s;
+}
+.uiverse-bookmark-btn .icon { border-radius: 1px; }
+.uiverse-bookmark-btn .text {
+  height: 100%;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 1;
+  transition-duration: 0.3s;
+  font-size: 1.04em;
+  margin: 0;
+}
+.uiverse-bookmark-btn:hover .IconContainer,
+.uiverse-bookmark-btn:focus-visible .IconContainer { width: 90px; transition-duration: 0.3s; }
+.uiverse-bookmark-btn:hover .text,
+.uiverse-bookmark-btn:focus-visible .text { transform: translate(10px); width: 0; font-size: 0; transition-duration: 0.3s; }
+.uiverse-bookmark-btn:active { transform: scale(0.95); transition-duration: 0.3s; }
+.uiverse-bookmark-btn:focus-visible { outline: 2px solid #d47bff; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .uiverse-bookmark-btn, .uiverse-bookmark-btn .IconContainer, .uiverse-bookmark-btn .text { transition: none; } }

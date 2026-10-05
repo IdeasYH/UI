@@ -1,0 +1,13 @@
+.collapse-panel { display: grid; gap: 10px; max-width: 760px; }
+.collapse-panel-item { border: 1px solid #e5e7e6; border-radius: 11px; background: #fff; overflow: hidden; }
+.collapse-panel-item[data-open='true'] { border-color: #b4ded1; box-shadow: 0 4px 14px #0f97710a; }
+.collapse-panel-item h3 { margin: 0; }
+.collapse-panel-item h3 > button { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 52px; border: 0; padding: 12px 20px; background: transparent; color: #263238; font: inherit; font-weight: 700; text-align: left; cursor: pointer; }
+.collapse-panel-item h3 > button svg { flex-shrink: 0; transform: rotate(-90deg); color: #828b8b; transition: transform .2s; }
+.collapse-panel-item[data-open='true'] h3 > button { color: #169a78; }
+.collapse-panel-item[data-open='true'] h3 > button svg { transform: rotate(0); color: #169a78; }
+.collapse-panel-item h3 > button:focus-visible { outline: 3px solid #2d7eef; outline-offset: -4px; }
+.collapse-panel-content { padding: 0 20px 20px 50px; color: #69767a; font-size: .875rem; line-height: 1.7; }
+.collapse-panel-content > :first-child { margin-top: 0; }
+.collapse-panel-content > :last-child { margin-bottom: 0; }
+@media (prefers-reduced-motion: reduce) { .collapse-panel-item h3 > button svg { transition: none; } }

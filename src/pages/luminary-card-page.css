@@ -1,0 +1,22 @@
+/* Shadow DOM 内的字体由唯一名称注册；宿主控件不会使用该字体。 */
+@font-face { font-family: LuminaryInstrument; src: url('../components/luminary-card/assets/instrument-serif.ttf') format('truetype'); font-display: swap; }
+.luminary-page { padding: 24px; color: var(--reference-ink); }
+.luminary-page-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: 0 auto 20px; max-width: 1600px; }
+.luminary-page-heading .reference-eyebrow { display: inline-flex; align-items: center; gap: 6px; }
+.luminary-page-heading h1 { margin: 6px 0; font-size: 25px; letter-spacing: -.025em; }
+.luminary-page-heading p { margin: 0; font-size: 13px; color: var(--reference-muted); }
+.luminary-page-heading nav { display: flex; gap: 8px; flex-shrink: 0; }
+.luminary-workspace { height: max(650px, calc(100dvh - 200px)); max-width: 1600px; margin: auto; border: 1px solid #242424; border-radius: 16px; overflow: hidden; background: #111; }
+.luminary-preview { display: block; height: 100%; }
+#luminary-card-preview, #luminary-card-notes { scroll-margin-top: calc(var(--reference-nav-height) + 16px); }
+.luminary-loading { color: #ddd; padding: 32px; }
+.luminary-notes { max-width: 1600px; margin: 16px auto 0; border: 1px solid var(--reference-line); border-radius: 10px; padding: 14px 18px; background: white; }
+.luminary-notes summary { cursor: pointer; font-size: 13px; font-weight: 600; }
+.luminary-notes .reference-document { margin-top: 16px; }
+@media (max-width: 620px) {
+  .luminary-page { padding: 14px; }
+  .luminary-page-heading { align-items: flex-start; flex-direction: column; gap: 12px; margin-bottom: 14px; }
+  .luminary-page-heading h1 { font-size: 22px; }
+  .luminary-workspace { height: auto; }
+  .luminary-preview { height: auto; }
+}

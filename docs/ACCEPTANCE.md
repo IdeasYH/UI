@@ -1,5 +1,55 @@
 # UI 模板验收记录
 
+## 2026-10-05：Luminary Card 个人收藏
+
+- 按用户“个人收藏库”的用途接入 `Johnlzx/luminary-card` 固定提交 `dce991d1d1bf1f99f89e36821cec93f1c5b17cf3`。保留卡面 DOM、CSS 光学材质、独立 3D 标记、六组定制面板与本地素材；React 容器通过 Shadow DOM 隔离样式和选择器，定制器按需加载，没有新增依赖。未引入参考视频或逐帧分析文件。
+- 完整页面为 `/examples/luminary-card`；新增顶部导航、组件总览“数据与状态”中的 `luminary-card` 条目和说明书界面地图。同步 `docs/UI-REUSE.md`、`docs/TEMPLATE-GUIDE.md`、收藏契约、真实 TSX 示例和原始来源/字体许可。该收藏是完整页面参考，不加入自动组件源码 JSON 下载包。
+- 浏览器实测：五种预设中的 Rose 切换、标题/编号编辑和信用卡比例即时更新；`0007` 在刷新后保留。方向键可倾斜、Home 回正；独立 Rings 标记与极光开关有效。隔离后首次发现鼠标移出宿主仍保持约 -7 度倾斜，改为监听宿主 `pointerleave`，复核离场回到约 0 度且清除 `will-change`。
+- 浏览器实测：PNG 上传变为嵌入式自定义纹理；有效 JSON 导入恢复 `Imported Collection`、`0012` 和倾斜 6；无效 JSON 提示错误并保留当前配置。导出通过 CDP 确认 `luminary-card.json` 下载完成，包含纹理时为 7,530 字节。设置在本来源的 `uimodel:luminary-card:v1` localStorage 保存，验收后恢复默认卡片。
+- 桌面 1280px 与 320、390、621、640、768px 宽度检查无文档横向溢出。手机导航改为随可见入口数量排成一行，权限按钮放在首行；621–760px 收紧导航，使 640px 下权限按钮右缘从 703px 回到 548px。组件目录和界面地图入口均实际点击到达，缩略图正常加载；说明锚点会展开来源正文。
+- 减少动态效果偏好下卡面计算变换为 `none`；常规环境 WebGL 极光正常就绪。卸载清理监听、观察器、动画、WebGL、定时器、临时 URL，异步文件操作卸载后不再更新。未实测 WebGL 强制失效或实体触屏设备。
+- `npm run typecheck` 通过；完整 `npm test` 88/88 通过；TypeScript / Vite 生产构建通过。既有主包大于 500 kB 的提示保留，Luminary 运行代码为独立加载块。最终重新加载并等待卡面就绪后，未记录新的浏览器错误。
+- 临时生产预览实测六组面板、Graphite 预设切换和恢复默认；箔面与纹理使用构建后的本地资产 URL，字体已加载，极光就绪，无浏览器错误。预览服务只用于验收，结束后关闭；原 5177 开发服务保持运行。构建中的缩略图 SHA256 与最终源截图一致。
+- 实拍缩略图为 `public/previews/luminary-card.jpg`；检查记录和完整命令日志为 `artifacts/luminary-card/browser-checks.json`、`final-test.log`、`final-build.log`。来源限制保持原始说明，未重新赋予上游代码或素材 MIT 授权；本轮未提交、推送或发布。
+
+## 2026-10-05：漫画色板按指定原作还原
+
+- 读取 `https://uiverse.io/chase2k25/witty-squid-83` 原始 HTML/CSS，替换现有 `swatch-color-picker` 的近似样式；补齐奶油底、漫画面板、重叠色块、黑边硬阴影、300ms 弹出提示与聚焦 `COPIED!`。移除原有额外勾号、蓝框、间距和窄屏换行。保留组件 ID、受控接口及示例中的真实复制反馈；许可写入随复制包提供的组件契约。
+- 浏览器对照原作：两端面板宽度均为 366.375px；当前色块及两级邻项的计算变换、过渡、边框与阴影一致，点击后示例报告正确 HEX。显式隔离宿主 `box-sizing` 和按钮 padding，避免原版尺寸被改写。
+- `npm run build` 通过；仍有既有主包 500 kB 提示。本轮验证 Chrome，没有声称跨浏览器逐帧像素一致。
+
+## 2026-10-05：Uiverse 光晕开关双态视觉调整
+
+- `uiverse-floating-glow-switch` 的视觉状态交换：关态为深色轨道与右侧灰暗圆球，开态为浅色轨道与左侧紫色渐变圆球。`checked`、回调、键盘切换及 3 秒悬浮动画不变；同步更新目录描述和组件契约。
+- `npm run build`、`git diff --check` 通过。浏览器点击切换双态，状态文字与实际 `checked` 一致；读取计算样式确认关态圆球为 `#6b7280` 且无彩色渐变，开态恢复紫色渐变。主包仍有既有的 500 kB 构建提示。
+
+## 2026-10-04：Uiverse 收藏 5 项与全目录可复制 ID
+
+- 核对当前用户登录的 Uiverse 收藏页，共 5 项：附件消息输入框、展开书签保存、展开退出、悬浮光晕开关、展开删除。逐项读取原作 HTML/CSS 并将 SVG、颜色、尺寸、0.3/0.4 秒过渡及开关 3 秒浮动关键帧适配为局部 React 组件；新增对应真实示例、契约、原作者许可及 `/guide#uiverse-favorites` 选型入口。示例中的保存、退出、删除、发送仅更新页面内状态，业务动作由宿主接入。
+- 组件总览全部 70 项均显示稳定 ID 并可点击复制；既有锚点不改，新收藏项使用表达用途和形态的 ID。ID 支持搜索和页面锚点，具备复用包的项目还支持 `/references/{ID}.json`。浏览器点击 `uiverse-message-composer` 的 ID 后，直接读取页面剪贴板为该 ID，显示“已复制”；5 项交互示例均已手动操作并更新状态。
+- `npm test` 83/83、`npm run build`、`git diff --check` 通过；复制包测试隔离编译了新增组件，生产构建包含 5 份 JSON。主包大于 500 kB 的既有构建提示仍在。未单独做窄屏及跨浏览器逐帧像素对照。
+
+## 2026-10-04：固定色板选色器
+
+- 新增 `SwatchColorPicker` 独立组件与 10 个示例颜色；点击或键盘激活立即回传 HEX，选中项有勾号、描边及 `aria-pressed`。保留用户所给色块与邻项放大的动效，悬停和键盘聚焦显示色值。示例额外演示复制色值，剪贴板失败不影响选色。
+- 已接入基础交互分类、结构词搜索、网站同源契约、真实 TSX 示例及 `/references/swatch-color-picker.json`。与连续色带 `ColorPicker` 分开，避免固定候选色与任意取色的使用边界混淆；样式参考用户提供的 Uiverse.io / Cobp 示例。
+- `npm test` 82/82、`npm run build` 与 `git diff --check` 通过；复制包通过隔离 TypeScript 编译，开发服务 JSON 返回 5 个文件且依赖为 React / React DOM。浏览器确认 10 色展示、点击蓝色后更新选中与复制反馈、回车选红色后再次更新，页面显示对应 HEX。窄屏视觉未单独验收。
+
+## 2026-10-04：React Bits 收藏夹 21 项收口
+
+- 从当前用户浏览器收藏页的虚拟网格读取完整 21 项；其中 FlexCarousel、PeekRating 已接入，本轮补齐另外 19 项。按导航与布局、基础交互、数据与状态、浮层与反馈分类，并把官方 Components/Micro 来源、结构选型、单项契约、最小运行示例和源码包连到 `/guide` 与 `/components`。`tests/react-bits-favorites.test.ts` 固定该次收藏快照，避免遗漏。
+- 19 项 `.jsx`/`.css` 与 2026-10-04 下载的官方 JS-CSS 注册表逐文件一致；开发服务的 19 个 `/references/<id>.json` 均有说明、示例与源码。复制清单隔离编译通过；图片、路由、请求和权限仍需宿主提供。PaperCrumple 示例使用本地 `/images/one.jpg`，不能把该地址原样带到其他项目。
+- `npm test` 82/82、`npm run build` 通过；`npm audit --omit=dev` 为 0 条公告。官方 PillNav 指定的 Router 6 有中危安全公告，本仓库经浏览器复验后使用仍导出 `Link` 的 `react-router-dom` 7.18.4。生产构建仍提示主包大于 500 kB；PaperCrumple 的 Three.js 代码按需加载。
+- 浏览器逐项确认 19 个预览均渲染；卡片导航展开、分支菜单叶节点选择、JellyRadio 切换、SpringCheck 勾选、LatticeLoader 状态切换、SwipeToast 撤销回调、CodeSlots 填满提示已手动操作。PaperCrumple 用 JPEG 纹理后显示；新的独立浏览器页上 PillNav 无运行错误。真实麦克风、验证码服务、通知订阅、后台请求及无 WebGL 环境未验收。
+
+## 2026-10-04：新增内容控件与 React Bits 原版
+
+- 新增分段控件、折叠面板、时间轴的独立 TSX/CSS、运行示例与复用契约；新增 React Bits `FlexCarousel`、`PeekRating` 的 JS/CSS 原版、TypeScript 声明与调用示例。图片画廊使用本地三张演示照片和用户给定的液态配置，评分使用 5 星和给定的颜色/动效参数。
+- 已将 5 项接入目录、结构词搜索、组件页实景预览、网站同源文档与源码 JSON。`/references/{segmented-control,collapse-panel,timeline,flex-carousel,peek-rating}.json` 在开发服务均返回 HTTP 200；文件数分别为 5、5、5、6、6，依赖清单包含实际第三方包。React Bits 四个 JS/CSS 文件与本次下载的官方注册表内容逐文件一致。
+- `npm run typecheck`、`npm test`（81/81）和 `npm run build` 通过；复制清单的隔离 TypeScript 编译涵盖 5 个新增组件。画廊与评分在浏览器按需加载，生产包分别拆分为独立 JS/CSS；主包仍有原有的 500 kB 提示。
+- 浏览器验证：分段控件点击“月”显示 3,420 单，方向键可从“周”切换到“月”；折叠面板展开一项会收起旧项；时间轴“下一步”从 1/4 变 2/4；PeekRating 点击 4 星确认，点击已选 3 星清空为 0；FlexCarousel 的本地图片显示，方向键将播报从 Iridescence 1/3 更新为 White Room 2/3。浏览器未记录错误日志。
+- 演示图片为 React Bits 示例所用的 Unsplash 图片。业务接入时应替换资产及替代文字；React Bits 画廊在未验证 WebGL 的环境下需要宿主提供替代呈现。未在本轮验证该异常环境。
+
 ## 2026-10-03：颜色选择器单行滑条
 
 - 三个 HSL 滑块合为一条白色 → 常用彩色 → 黑色渐变滑条，保留 24 个标准色、HEX 与原生颜色面板。绘制和插值共用同一组色节点；单轴不代表全部颜色空间，精确外部颜色不会被自动改成路径颜色。
@@ -334,3 +384,10 @@
 - 当前工作区的 v2 拓扑、现场编辑、跨页面桥接与行为测试随本轮一并纳入提交；旧说明书归档，不将 v1 规则作为当前依据。
 - A 工具栏新增只读说明书弹窗，复用现有 Markdown 正文和目录；新增使用步骤、640 汇总案例、同来源动作/范围判定、存储与后端接入边界，修正现场角色草稿持久化说明。
 - npm test 70/70 通过；生产构建通过（单包 >500KB 提示保留）。浏览器确认入口、正文、目录可见，字体与滚动布局正常；不据此宣称真实后端权限通过验收。
+
+## Tsiangana 环形社交按钮（2026-10-05）
+
+- 原作公开 HTML/CSS 适配为 `SocialTooltip`，10 条 SVG 路径逐条与原文一致；增加命名空间、键盘焦点和宿主回调，不改变原作图标、颜色、百分比位置与动画时长。
+- 目录、真实示例、契约、选型入口、源码复制包、MIT 署名已接入；无新增依赖，不修改已有组织权限业务。
+- `npm test`：88/88 通过，包含全部复制包独立编译；`npm run build` 通过，保留大于 500KB 的打包提示。
+- 浏览器确认八个图标展开、GitHub 点击反馈、Reddit 键盘 Enter 反馈；截图保存在本地忽略目录 `artifacts/uiverse-social-tooltip.png`。示例不执行真实分享。

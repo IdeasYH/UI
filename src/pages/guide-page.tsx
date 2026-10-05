@@ -8,6 +8,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '.
 import { componentCatalog, componentCategories, componentPreviewHref, examplePages, filterComponentCatalog, organizationVariants } from '../data/template-catalog'
 import { useCatalogQuery } from '../lib/use-catalog-query'
 import reuseMethod from '../../docs/UI-REUSE.md?raw'
+import reactBitsFavoritesGuide from '../../docs/REACT-BITS-FAVORITES.md?raw'
+import uiverseFavoritesGuide from '../../docs/UIVERSE-FAVORITES.md?raw'
 import { ReferenceDocument } from '../components/reference-document'
 import '../components/component-reference.css'
 
@@ -21,6 +23,8 @@ export function GuidePage() {
         <div className="reference-sidebar-heading"><BookOpen size={15} />模板说明书</div>
         <nav className="reference-chapter-list" aria-label="说明书目录">
           <Button variant="nav" href="#reuse-method"><BookOpen size={15} />从新需求选择与迁移</Button>
+          <Button variant="nav" href="#react-bits-favorites"><Component size={15} />React Bits 收藏选型</Button>
+          <Button variant="nav" href="#uiverse-favorites"><Component size={15} />Uiverse 收藏选型</Button>
           <Button variant="nav" href="#page-map"><LayoutTemplate size={15} />界面地图</Button>
           <Button variant="nav" href="#organization-variants"><Network size={15} />组织人员版本</Button>
           <Button variant="nav" href="#figma-replica"><FileCode2 size={15} />拓扑结构</Button>
@@ -40,6 +44,12 @@ export function GuidePage() {
 
         <section className="reference-section" id="reuse-method" aria-label="从新需求选择与迁移">
           <ReferenceDocument source={reuseMethod} />
+        </section>
+        <section className="reference-section" id="react-bits-favorites" aria-label="React Bits 收藏组件选型">
+          <ReferenceDocument source={reactBitsFavoritesGuide} />
+        </section>
+        <section className="reference-section" id="uiverse-favorites" aria-label="Uiverse 收藏组件选型">
+          <ReferenceDocument source={uiverseFavoritesGuide} />
         </section>
         <section className="reference-section" id="page-map" aria-labelledby="page-map-title">
           <div className="reference-section-heading"><h2 id="page-map-title">界面地图</h2><span>参考组件如何组成完整页面</span></div>

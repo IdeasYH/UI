@@ -1,0 +1,30 @@
+/* Adapted from Uiverse.io / vinodjangid07 / thin-duck-22; motion values preserved. */
+.uiverse-logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: rgb(255, 65, 65);
+  padding: 0;
+}
+.uiverse-logout-btn .sign { width: 100%; transition-duration: .3s; display: flex; align-items: center; justify-content: center; }
+.uiverse-logout-btn .sign svg { width: 17px; }
+.uiverse-logout-btn .sign svg path { fill: white; }
+.uiverse-logout-btn .text { position: absolute; right: 0%; width: 0%; opacity: 0; color: white; font-size: 1.2em; font-weight: 600; transition-duration: .3s; }
+.uiverse-logout-btn:hover,
+.uiverse-logout-btn:focus-visible { width: 125px; border-radius: 40px; transition-duration: .3s; }
+.uiverse-logout-btn:hover .sign,
+.uiverse-logout-btn:focus-visible .sign { width: 30%; transition-duration: .3s; padding-left: 20px; }
+.uiverse-logout-btn:hover .text,
+.uiverse-logout-btn:focus-visible .text { opacity: 1; width: 70%; transition-duration: .3s; padding-right: 10px; }
+.uiverse-logout-btn:active { transform: translate(2px, 2px); }
+.uiverse-logout-btn:focus-visible { outline: 2px solid #a62c2c; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .uiverse-logout-btn, .uiverse-logout-btn .sign, .uiverse-logout-btn .text { transition: none; } }

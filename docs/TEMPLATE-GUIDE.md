@@ -7,6 +7,8 @@ UIModel 为其他项目提供界面、交互和组件参考，使用本地示例
 | 当前任务 | 阅读入口 | 完成条件 |
 | --- | --- | --- |
 | 新页面、未列举的业务、搜索没有命中 | [通用复用方法](UI-REUSE.md) | 明确值形状、层级、确认时机、依赖及邻近模式 |
+| 需要 React Bits 收藏的动效组件 | [收藏组件选型](REACT-BITS-FAVORITES.md) | 按导航、输入、反馈和展示寻找原型，继续读单项契约和源码 |
+| 需要 Uiverse 收藏的展开动作、消息框或光晕开关 | [Uiverse 收藏组件选型](UIVERSE-FAVORITES.md) | 按值与动作边界选型，继续读原作、契约和真实示例 |
 | 平铺选项中选择一个值 | [SearchSelect 契约](components/search-select.md) | 清楚数据映射、过滤与选择提交的边界 |
 | 选择连续日期期间 | [DateRangePicker 契约](components/date-range.md) | 分清显示月份、草稿、已确认值和数据标记 |
 | 多项条件决定动作是否可用 | [PrerequisiteAction 契约](components/prerequisite-action.md) | 条件有稳定 ID，宿主判定与 UI 引导职责清楚 |
@@ -15,7 +17,7 @@ UIModel 为其他项目提供界面、交互和组件参考，使用本地示例
 
 城市、报名、订单和组织只是演示映射。未列举的业务同样应先按交互结构主动参考；组件也可以组合。结构不匹配时明确能力缺口，不能把演示文案换名当作完成适配。
 
-网站 `/guide` 和组件详情使用仓库中的说明源；`src/examples/` 中的 TSX 是实际参与编译的最小调用示例。网站展示这些文件，文档不另维护一份示例代码。
+网站 `/guide` 展示通用复用方法、React Bits 和 Uiverse 收藏选型，组件详情展示对应契约；`src/examples/` 中的 TSX 是实际参与编译的最小调用示例。网站展示这些文件，文档不另维护一份示例代码。
 
 ## 界面入口
 
@@ -47,9 +49,11 @@ A 的当前规则以 [组织权限说明书](ORGANIZATION-PERMISSIONS-BDD.md) �
 | 浮层与反馈 | 对话框、下拉菜单、登录演示、人员详情、组织与人员操作弹窗 |
 | 业务组件 | 人员选择、分配筛选与统计、门户配置、可见范围、组织关联图、人员名册、人员工作台、角色与组织授权 |
 
-目录标为 `live` 的项由 `ComponentPreview` 渲染示例；标为 `page` 的项通过入口展示所属界面。页面组合不自动等于可独立复制的组件。三个复用样板提供详细契约、真实最小示例和复制文件说明，其余条目需要继续核对实现。
+目录标为 `live` 的项由 `ComponentPreview` 渲染示例；标为 `page` 的项通过入口展示所属界面。页面组合不自动等于可独立复制的组件。已有复用包提供详细契约、真实最小示例和复制文件说明，React Bits 和 Uiverse 收藏组件也按同一约定接入；未登记复用包的条目仍需继续核对实现。
 
 公共目录登记组件标识、名称、分类、种类、描述、源码、所在界面和预览方式；说明入口、搜索词和复制清单按实际条目提供。源码位置用于定位，跨项目复制按对应契约检查文件与传递依赖。
+
+组件总览的每张卡片均显示稳定 ID，点击 ID 可直接复制给其他 agent。该 ID 同时用于搜索和 `#` 页面锚点；有复用包的组件还可用 `/references/{ID}.json` 取得同源源码。既有 ID 保持不变以确保旧链接有效；新增 ID 应表达用途或外观，而不是仅用来源站点的随机 slug。
 
 ## 搜索、分类与定位
 
@@ -85,17 +89,25 @@ A 的当前规则以 [组织权限说明书](ORGANIZATION-PERMISSIONS-BDD.md) �
 
 - `#switch`：关闭浅色、开启绿色，使用按钮的 switch 语义，支持原生键盘激活。
 - `#rating`：半星一步，悬停预览、点击确认、移出恢复；Tab 可访问半星目标，空格或回车确认。
+- `#peek-rating`：React Bits 的整数星级动效，悬停抬升并显示等级；再次点击当前分数可清空。依赖及复制边界见 [PeekRating 契约](components/peek-rating.md)。需要半星时使用上面的 `StarRating`。
+- `#segmented-control`：少量互斥选项即时切换同一区域内容，高亮底块滑动，方向键/Home/End 可操作；选型与接口见 [分段控件契约](components/segmented-control.md)。
 - `#search-select`：平铺单值选择，总选项超过五项时提供本地搜索，选中高亮与勾号。数据契约、关闭与键盘边界见 [SearchSelect 契约](components/search-select.md)。
 - `#cascader`：一个面板按层级展开多列；切换上级截断旧下级草稿，到叶子才确认关闭；未完成选择保留外部已确认值。支持任意层级，省市区是节选演示，不是完整区划数据。
 - `#tree-select`：存储叶子 ID，父节点状态由后代推导；父级勾选/取消影响全部后代，部分选择显示减号，折叠不清除选择。虚构组织可以换成同样语义的分类树，不能据此推断支持父级独立选值。
 
 ### 日期、颜色与数据展示
 
+- `#luminary-card`：个人收藏的全息卡片定制器，完整页面位于 `/examples/luminary-card`。保留原版卡面材质、独立 3D 标记、六组定制面板、图片上传和 JSON 导入导出；配置以 `uimodel:luminary-card:v1` 存入本来源的 localStorage。使用及来源见 [收藏说明](components/luminary-card.md)，该完整页面不加入自动组件源码下载包。
+
 - `#date-range`：双月选择，月份导航与区间确认分离，快捷区间直接确认并关闭；首尾描边，区间内有数据才填色。日期口径、受控值、复制清单及边界见 [日期契约](components/date-range.md)。
 - `#color-picker`：一条白色 → 彩色 → 黑色滑条，拖动同步 HEX 和色块；保留三行共 24 种标准色、方向键、选中勾号、HEX 校验及系统颜色面板。单轴表示常用色路径，并非全部颜色空间；路径外颜色通过 HEX 或系统面板精确输入，组件保留精确值，只把滑块指示到最近位置。渐变节点与取色插值共用 `color-model.ts`，调整配色时应同步保持视觉与取色一致。
+- `#swatch-color-picker`：按 Uiverse `chase2k25/witty-squid-83` 还原漫画色板，黑边硬阴影、紧密色块、悬停放大上移及邻项联动；聚焦显示原版 `COPIED!` 气泡，实际复制结果由示例状态报告。选型与复制清单见 [固定色板契约](components/swatch-color-picker.md)。
 - `#upload-progress`：显示文件名、类型、大小、百分比与完成勾号。演示定时推进进度；选择文件只取得名称和大小，不读取或上传内容，卸载清理定时器。真实上传需宿主提供进度和结果。
 - `#status-pills`：进行中、已完成、高优、默认和停用分别使用配套文字与背景。业务状态含义由目标系统定义。
 - `#statistics`：主数字最大、单位较小，涨红跌绿并带箭头；这些是演示值与视觉约定，业务计算及颜色语义由目标系统确认。
+- `#collapse-panel`：标题点击展开、切换或收起；当前只保留一项展开，适合问答与长详情。见 [折叠面板契约](components/collapse-panel.md)。
+- `#timeline`：按给定顺序与已完成数展示事件，时间由调用方提供；示例的进度按钮只操作本地演示。见 [时间轴契约](components/timeline.md)。
+- `#flex-carousel`：React Bits 原版 WebGL 图片画廊；三张图片与 560px 高度组成真实示例，鼠标、键盘和标题随原版源码工作。复制时带 `ogl` 和图片，见 [画廊契约](components/flex-carousel.md)。
 
 日期模型位于 `src/components/ui/date-range-model.ts`；其余数据控件位于 `src/components/ui/data-controls.tsx`，展示组合位于 `src/components/data-control-previews.tsx`。
 

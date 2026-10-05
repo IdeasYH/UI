@@ -1,0 +1,2 @@
+/* Keep the original negative child layers inside a hittable stacking context. */
+.main { position: relative; z-index: 0; }

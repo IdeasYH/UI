@@ -7,8 +7,26 @@ import { componentCatalog } from '../src/data/template-catalog.ts'
 import { uiverseFavorites } from '../src/data/uiverse-favorites.ts'
 import { uiverseNewFavorites } from '../src/data/uiverse-new-favorites.ts'
 
-// 2026-10-05 favorites: 23 catalog entries; witty-squid-83 is the existing swatch-color-picker.
+// 2026-10-05 favorites: 39 catalog entries; witty-squid-83 is the existing swatch-color-picker.
 const sourceSlugs = [
+  'honest-stingray-90',
+  'smooth-crab-52',
+  'smart-moth-68',
+  'curvy-earwig-22',
+
+  'modern-monkey-77',
+  'strong-treefrog-90',
+  'lazy-eel-99',
+  'mighty-dragonfly-75',
+  'heavy-snake-69',
+  'great-wombat-13',
+  'sour-sloth-50',
+  'happy-lionfish-33',
+  'orange-newt-23',
+  'pretty-panther-5',
+  'shy-dingo-61',
+  'stupid-bullfrog-39',
+
   'good-donkey-28', 'heavy-badger-29', 'thin-duck-22',
   'slimy-penguin-36', 'smart-emu-83', 'honest-bobcat-61',
   'stupid-panther-7', 'serious-turkey-52', 'strong-squid-82', 'chilly-eagle-55',
@@ -35,7 +53,7 @@ test('all Uiverse entries have semantic IDs, live examples, and copy packages', 
 })
 
 test('each newly favorited original has runnable isolated markup and the exact source files in its copy package', () => {
-  assert.equal(uiverseNewFavorites.length, 17)
+  assert.equal(uiverseNewFavorites.length, 33)
   for (const item of uiverseNewFavorites) {
     const prefix = `public/uiverse-originals/${item.rawSlug}`
     const raw = readFileSync(`${prefix}.source.html`, 'utf8')
@@ -52,7 +70,7 @@ test('each newly favorited original has runnable isolated markup and the exact s
 
 test('original HTML, CSS and generated Tailwind styles match the captured source snapshot', () => {
   const snapshot = JSON.parse(readFileSync('docs/UIVERSE-SOURCE-SNAPSHOT.json', 'utf8'))
-  assert.equal(snapshot.entries.length, 17)
+  assert.equal(snapshot.entries.length, 33)
   for (const entry of snapshot.entries) {
     for (const file of entry.files) {
       assert.equal(createHash('sha256').update(readFileSync(file.path)).digest('hex'), file.sha256, `${file.path} differs from ${entry.sourceUrl}`)

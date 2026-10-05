@@ -1,0 +1,37 @@
+.parent:not(:hover) .card {
+  transform: rotate3d(1, -1, 0, 25deg);
+  box-shadow:
+    rgba(30, 30, 60, 0.3) 30px 50px 25px -40px,
+    rgba(30, 30, 60, 0.15) 0px 25px 30px 0px;
+}
+
+.parent:not(:hover) .card .bottom .social-buttons-container .social-button {
+  transform: translate3d(0, 0, 60px);
+  box-shadow: rgba(30, 30, 60, 0.25) 5px 20px 10px 0px;
+}
+
+.parent:not(:hover) .card .logo .circle2 {
+  transform: translate3d(0, 0, 65px);
+}
+
+.parent:not(:hover) .card .logo .circle3 {
+  transform: translate3d(0, 0, 85px);
+}
+
+.parent:not(:hover) .card .logo .circle4 {
+  transform: translate3d(0, 0, 105px);
+}
+
+.parent:not(:hover) .card .logo .circle5 {
+  transform: translate3d(0, 0, 125px);
+}
+
+/* Hover flattens all depth layers; idle retains the original expanded 3D state. */
+.parent:hover .card { transform: none; box-shadow: rgba(30,30,60,0.2) 0 25px 25px -5px; }
+.parent:hover .card .glass,
+.parent:hover .card .content,
+.parent:hover .card .bottom,
+.parent:hover .card .bottom .view-more,
+.parent:hover .card .bottom .social-buttons-container .social-button,
+.parent:hover .card .logo .circle { transform: translate3d(0,0,0); }
+.parent:hover .card .bottom .social-buttons-container .social-button { box-shadow: rgba(30,30,60,0.4) 0 8px 6px -5px; }

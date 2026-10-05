@@ -230,6 +230,218 @@
           "sha256": "50aaa61f1c20a102b0eed5fb06f904d0fef5e9f19028ad07b1597d34b03687a5"
         }
       ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/Tsiangana/modern-monkey-77",
+      "files": [
+        {
+          "path": "public/uiverse-originals/Tsiangana--modern-monkey-77.source.html",
+          "sha256": "decef70624ca125fefdab26293f13b2d56997fcad7d6ddac4bce9f7ced90bc38"
+        },
+        {
+          "path": "public/uiverse-originals/Tsiangana--modern-monkey-77.css",
+          "sha256": "41cf235bde3864f594e40a512433696fcd0309e8b673d4e2fa4f8569082fbdf9"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/Pradeepsaranbishnoi/strong-treefrog-90",
+      "files": [
+        {
+          "path": "public/uiverse-originals/Pradeepsaranbishnoi--strong-treefrog-90.source.html",
+          "sha256": "aecce95186dda8dd866e8d406fa1109f777d73c038f182614deae1739118a604"
+        },
+        {
+          "path": "public/uiverse-originals/Pradeepsaranbishnoi--strong-treefrog-90.css",
+          "sha256": "1ed964e02460b1b55b70c5d224bef6cffd5114a7e8613ede3bf759753a790713"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/GeorgeAdvertising/lazy-eel-99",
+      "files": [
+        {
+          "path": "public/uiverse-originals/GeorgeAdvertising--lazy-eel-99.source.html",
+          "sha256": "1a83f2e6bfab89818f485fe1c74b8dc0f4c3dfaefa070e5433115d74dab44851"
+        },
+        {
+          "path": "public/uiverse-originals/GeorgeAdvertising--lazy-eel-99.css",
+          "sha256": "c3089ccd27704e9fd8db32e1100a74e952253b219d2669594c4ea760bf0c3c55"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/chase2k25/mighty-dragonfly-75",
+      "files": [
+        {
+          "path": "public/uiverse-originals/chase2k25--mighty-dragonfly-75.source.html",
+          "sha256": "ae7b351f8540c69122993656d83542e60b438634802f02e615f0dbc7ed6afeb5"
+        },
+        {
+          "path": "public/uiverse-originals/chase2k25--mighty-dragonfly-75.css",
+          "sha256": "3e9f02d56514ba79a5f92c2a95e9a7dd97e24e96aa89bc1e832308f73675c232"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/gharsh11032000/heavy-snake-69",
+      "files": [
+        {
+          "path": "public/uiverse-originals/gharsh11032000--heavy-snake-69.source.html",
+          "sha256": "5af792ceb11047911a2dd2b3dbd8883001a4b9fb4bbaa26721da567cfaf1dc38"
+        },
+        {
+          "path": "public/uiverse-originals/gharsh11032000--heavy-snake-69.css",
+          "sha256": "a254e649ba8f8466a4561591cb883e2d59978bdbb87018e5e92559d2954e9605"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/byllzz/great-wombat-13",
+      "files": [
+        {
+          "path": "public/uiverse-originals/byllzz--great-wombat-13.source.html",
+          "sha256": "fcda3bf08d557107bc275e025e263f579bcddb01c51c44fd06810cf95573aef8"
+        },
+        {
+          "path": "public/uiverse-originals/byllzz--great-wombat-13.css",
+          "sha256": "ec7d29a46acf5d68be93aea675a44af367eaa2fa1a472c4ad91ab71508f73347"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/Valeron-T/sour-sloth-50",
+      "files": [
+        {
+          "path": "public/uiverse-originals/Valeron-T--sour-sloth-50.source.html",
+          "sha256": "9b7546919994a28a0b36869db8c43fe4e5f0cc64c1e8b324d920159b7ef0b068"
+        },
+        {
+          "path": "public/uiverse-originals/Valeron-T--sour-sloth-50.css",
+          "sha256": "604d1172bc252272624c0d41fa0b963ea5a3c8f379871ebab9646a23e5d30ac6"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/junaid_3671/happy-lionfish-33",
+      "files": [
+        {
+          "path": "public/uiverse-originals/junaid_3671--happy-lionfish-33.source.html",
+          "sha256": "aa6ffde968de3e602c6e7f9f9a844adc2030375641b5f5aee176e764efb3c4b8"
+        },
+        {
+          "path": "public/uiverse-originals/junaid_3671--happy-lionfish-33.css",
+          "sha256": "e44d7d5ff4e65616853dfadbf73c65133771b35e572db8c2ab10c83df0fadbee"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/PriyanshuGupta28/orange-newt-23",
+      "files": [
+        {
+          "path": "public/uiverse-originals/PriyanshuGupta28--orange-newt-23.source.html",
+          "sha256": "977a2b79d3a6b8ed60480306b7861a1e5ebc547db257c0355069a95e283f4220"
+        },
+        {
+          "path": "public/uiverse-originals/PriyanshuGupta28--orange-newt-23.css",
+          "sha256": "5483d33586b118dcb312746afdac40755f2938528d5609e66b6cb6cd5a0f8b01"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/hoshikawamaki/pretty-panther-5",
+      "files": [
+        {
+          "path": "public/uiverse-originals/hoshikawamaki--pretty-panther-5.source.html",
+          "sha256": "2afacaba4165a1bbb5175997d269934b293ab12e5016e0757703f4551eeb1b41"
+        },
+        {
+          "path": "public/uiverse-originals/hoshikawamaki--pretty-panther-5.css",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "public/uiverse-originals/hoshikawamaki--pretty-panther-5.adapter.css",
+          "sha256": "2387a6bf5de6eb5bf94b81efd4d507c2636a7230641620e7e7740be9d922a3ad"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/chase2k25/shy-dingo-61",
+      "files": [
+        {
+          "path": "public/uiverse-originals/chase2k25--shy-dingo-61.source.html",
+          "sha256": "2d3daeeb3400ef5ddbeb5b41b420c221ffc1b0a0cc42169725126e5c3ed7b54e"
+        },
+        {
+          "path": "public/uiverse-originals/chase2k25--shy-dingo-61.css",
+          "sha256": "8c9e42a700950af91f64240b16e7aeaf9cf74983a4e69c2db01ea326ffa151cb"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/Smit-Prajapati/stupid-bullfrog-39",
+      "files": [
+        {
+          "path": "public/uiverse-originals/Smit-Prajapati--stupid-bullfrog-39.source.html",
+          "sha256": "44fb27d81c0fd01d383e10c3eca9b8a50bd49c35a188f9393060c75f153bb693"
+        },
+        {
+          "path": "public/uiverse-originals/Smit-Prajapati--stupid-bullfrog-39.css",
+          "sha256": "f615791c1c1602dc07246ed15b3e042059a1dd1628d510128669acf8a254645e"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/andrew-demchenk0/honest-stingray-90",
+      "files": [
+        {
+          "path": "public/uiverse-originals/andrew-demchenk0--honest-stingray-90.source.html",
+          "sha256": "b9bf0f0c7e99fb923b677f4d440212d449290054e66ce7b32cdcd1a96fcf0003"
+        },
+        {
+          "path": "public/uiverse-originals/andrew-demchenk0--honest-stingray-90.css",
+          "sha256": "bdfd635f1d37ca0027522730822ab029ebd7c7c4e6be870258000018e465daf9"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/Praashoo7/smooth-crab-52",
+      "files": [
+        {
+          "path": "public/uiverse-originals/Praashoo7--smooth-crab-52.source.html",
+          "sha256": "1deee51e782c2904a64a1321a71542e6279181ccdcd00cdc265702c410ae0e79"
+        },
+        {
+          "path": "public/uiverse-originals/Praashoo7--smooth-crab-52.css",
+          "sha256": "c761d4db33a354ed3371f5407e2d3804eea37b6ca7e39828ee8504c5738b113b"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/adamgiebl/smart-moth-68",
+      "files": [
+        {
+          "path": "public/uiverse-originals/adamgiebl--smart-moth-68.source.html",
+          "sha256": "658fe09eba440f3cdd702d3a989f6db54cf959c6bbff4f7cf707fee74d140405"
+        },
+        {
+          "path": "public/uiverse-originals/adamgiebl--smart-moth-68.css",
+          "sha256": "3a589c848b633790fe947de84e0941a67eca1f83edf43651f99cfa3878e2a2dd"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://uiverse.io/Lakshay-art/curvy-earwig-22",
+      "files": [
+        {
+          "path": "public/uiverse-originals/Lakshay-art--curvy-earwig-22.source.html",
+          "sha256": "caf1a8ade551436c0fe181d576197eec671fb2b474643d47754404b852394cd4"
+        },
+        {
+          "path": "public/uiverse-originals/Lakshay-art--curvy-earwig-22.css",
+          "sha256": "2f09c55bac79dc7880e3d3727b492c8ec3eea06e2f97be7b33657ea7d3ae89e5"
+        }
+      ]
     }
   ]
 }

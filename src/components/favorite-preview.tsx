@@ -3,6 +3,22 @@ import { reactBitsFavoriteIds } from '../data/react-bits-favorites'
 import { uiverseFavoriteIds } from '../data/uiverse-favorites'
 
 const modules: Record<string, () => Promise<{ default: ComponentType }>> = {
+  'uiverse-glass-music-card': () => import('../examples/uiverse-glass-music-card-example'),
+  'uiverse-phone-theme-switch': () => import('../examples/uiverse-phone-theme-switch-example'),
+  'uiverse-starry-planet-card': () => import('../examples/uiverse-starry-planet-card-example'),
+  'uiverse-purple-depth-card': () => import('../examples/uiverse-purple-depth-card-example'),
+  'uiverse-rotating-border-card': () => import('../examples/uiverse-rotating-border-card-example'),
+  'uiverse-expanding-file-folder': () => import('../examples/uiverse-expanding-file-folder-example'),
+  'uiverse-social-bounce-dock': () => import('../examples/uiverse-social-bounce-dock-example'),
+  'uiverse-glass-document-folder': () => import('../examples/uiverse-glass-document-folder-example'),
+  'uiverse-vertical-status-stepper': () => import('../examples/uiverse-vertical-status-stepper-example'),
+  'uiverse-expanding-vinyl-player': () => import('../examples/uiverse-expanding-vinyl-player-example'),
+  'uiverse-ios-settings-panel': () => import('../examples/uiverse-ios-settings-panel-example'),
+  'uiverse-portrait-reveal-card': () => import('../examples/uiverse-portrait-reveal-card-example'),
+  'uiverse-sun-moon-pill-switch': () => import('../examples/uiverse-sun-moon-pill-switch-example'),
+  'uiverse-social-glass-grid': () => import('../examples/uiverse-social-glass-grid-example'),
+  'uiverse-flying-send-button': () => import('../examples/uiverse-flying-send-button-example'),
+  'uiverse-neon-grid-search': () => import('../examples/uiverse-neon-grid-search-example'),
   'uiverse-grid-notification-stack': () => import('../examples/uiverse-grid-notification-stack-example'),
   'uiverse-orbit-dot-spinner': () => import('../examples/uiverse-orbit-dot-spinner-example'),
   'uiverse-day-night-theme-switch': () => import('../examples/uiverse-day-night-theme-switch-example'),

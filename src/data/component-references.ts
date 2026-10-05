@@ -88,7 +88,8 @@ export const componentReferences: Record<string, ReferenceEntry> = {
           `src/components/uiverse/${item.fileStem}.tsx`, 'src/components/uiverse/original-frame.tsx',
           `public/uiverse-originals/${item.rawSlug}.source.html`, `public/uiverse-originals/${item.rawSlug}.css`,
           `public/uiverse-originals/${item.rawSlug}.preview.html`,
-          ...(['ayman-ashine--wicked-liger-39', 'Cybercom682--jolly-liger-24'].includes(item.rawSlug) ? [`public/uiverse-originals/${item.rawSlug}.adapter.css`] : []),
+          ...(['Praashoo7--smooth-crab-52', 'chase2k25--mighty-dragonfly-75'].includes(item.rawSlug) ? [`public/uiverse-originals/${item.rawSlug}.override.css`] : []),
+          ...(['ayman-ashine--wicked-liger-39', 'Cybercom682--jolly-liger-24', 'hoshikawamaki--pretty-panther-5'].includes(item.rawSlug) ? [`public/uiverse-originals/${item.rawSlug}.adapter.css`] : []),
           'docs/components/uiverse-license.md', 'docs/UIVERSE-SOURCE-SNAPSHOT.json',
         ]
       : [`src/components/uiverse/${item.fileStem}.tsx`, `src/components/uiverse/${item.fileStem}.css`, 'docs/components/uiverse-license.md'],

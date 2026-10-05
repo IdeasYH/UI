@@ -35,3 +35,33 @@
 > The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 >
 > THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+## 第二轮新增原作署名
+
+```text
+Copyright - 2026 Tsiangana (Tsiangana Zau)
+Copyright - 2026 Pradeepsaranbishnoi (Pradeep Saran)
+Copyright - 2026 Lakshay-art (Lakshay Gupta)
+Copyright - 2026 Smit-Prajapati (Smit Prajapati)
+Copyright - 2026 gharsh11032000 (Harsh Gupta)
+Copyright - 2026 byllzz (Bilal Malik)
+Copyright - 2026 ahmed150up
+Copyright - 2026 junaid_3671 (Junaid Shaikh)
+Copyright - 2026 PriyanshuGupta28 (Priyanshu Gupta)
+Copyright - 2026 hoshikawamaki (Haruhi Yunona)
+Copyright - 2026 chase2k25 (chandu.exe)
+Copyright - 2026 Smit-Prajapati (Smit Prajapati)
+```
+
+以上原作沿用本文 MIT 许可全文。
+
+## 第二轮新增原作署名
+
+```text
+Copyright - 2026 andrew-demchenk0 (A)
+Copyright - 2026 Praashoo7 (Prashant)
+Copyright - 2026 adamgiebl (Adam Giebl)
+Copyright - 2026 Lakshay-art (Lakshay Gupta)
+```
+
+以上原作沿用本文 MIT 许可全文。

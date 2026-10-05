@@ -17,21 +17,21 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 const select=(key,label,options)=>`<div class="field-row"><label for="${key}">${label}</label><select id="${key}" name="${key}">${Object.entries(options).map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}</select></div>`;
 const range=(key,label,unit)=>`<div class="range-field"><div class="range-label"><label for="${key}">${label}</label><output for="${key}" data-unit="${unit}"></output></div><input id="${key}" name="${key}" type="range" min="${LIMITS[key][0]}" max="${LIMITS[key][1]}" step="1"></div>`;
 const toggle=(key,label,hint='')=>`<label class="toggle-row" for="${key}"><span class="toggle-copy">${label}${hint?`<small>${hint}</small>`:''}</span><input class="switch" id="${key}" name="${key}" type="checkbox" role="switch"></label>`;
-const color=(key,label)=>`<div class="field-row"><label for="${key}-hex">${label}</label><div class="color-pair"><input type="color" name="${key}" aria-label="${label} color picker"><input type="text" id="${key}-hex" data-color="${key}" aria-label="${label} hex color" maxlength="7" spellcheck="false"></div></div>`;
+const color=(key,label)=>`<div class="field-row"><label for="${key}-hex">${label}</label><div class="color-pair"><input type="color" name="${key}" aria-label="${label}选色器"><input type="text" id="${key}-hex" data-color="${key}" aria-label="${label}十六进制色值" maxlength="7" spellcheck="false"></div></div>`;
 const textField=(key,label,max=40)=>`<div class="text-field"><label for="${key}">${label}</label><input type="text" id="${key}" name="${key}" maxlength="${max}" spellcheck="false"></div>`;
 const section=(name,content)=>`<details class="control-section" open><summary>${name}</summary><div class="section-body">${content}</div></details>`;
 form.innerHTML=
-  section('Card',select('ratio','Ratio',{original:'Original · 292:423',credit:'Credit card · 85.6:53.98',portrait:'Portrait · 2:3',square:'Square · 1:1',landscape:'Landscape · 4:3'})+range('width','Width','px')+range('radius','Corner radius','px')+toggle('ticket','Ticket style','Side punches and tear line'))+
-  section('Colors',`<div class="preset-list" role="group" aria-label="Color presets">${Object.entries(PRESETS).map(([id,p])=>`<button type="button" class="preset-button" data-preset="${id}" aria-pressed="false"><span class="preset-swatch" style="--swatch:linear-gradient(135deg,${p.primary},${p.secondary} 55%,${p.accent})"></span><span>${p.name}</span></button>`).join('')}</div>`+color('primary','Primary')+color('secondary','Secondary')+color('accent','Accent')+range('angle','Gradient angle','°'))+
-  section('Texture',select('pattern','Pattern',{rosette:'Rosette',guilloche:'Guilloché',rings:'Concentric rings',waves:'Waves',grid:'Grid',none:'None',custom:'Custom image'})+`<button type="button" class="upload" id="upload">${uploadIcon}<span>Upload image…</span></button><p class="help">Seamless tiles work best. Max 3 MB.</p>`+range('textureScale','Scale','%')+range('textureOpacity','Opacity','%')+select('blend','Blend',{normal:'Normal',overlay:'Overlay','soft-light':'Soft light',screen:'Screen',multiply:'Multiply'})+toggle('emboss','Emboss stroke'))+
-  section('Lighting',range('foil','Foil','%')+range('glare','Glare','%')+range('grain','Grain','%')+range('tilt','Max tilt','°'))+
-  section('Content',textField('title','Title',48)+textField('subtitle','Subtitle',64)+textField('holder','Cardholder')+`<div class="two-fields">${textField('number','Number')}${textField('valid','Valid thru')}</div>`+color('textColor','Text color')+`<div class="field-row"><label>Logo</label><div class="segments" role="group" aria-label="Logo">${['star','rings','none'].map(key=>`<button type="button" data-logo="${key}" aria-pressed="false">${key[0].toUpperCase()+key.slice(1)}</button>`).join('')}</div></div>`)+
-  section('Scene',toggle('aurora','Aurora background','Animated WebGL light behind the card'));
+  section('卡片',select('ratio','比例',{original:'原始比例 · 292:423',credit:'信用卡 · 85.6:53.98',portrait:'竖向 · 2:3',square:'正方形 · 1:1',landscape:'横向 · 4:3'})+range('width','宽度','px')+range('radius','圆角半径','px')+toggle('ticket','票券样式','侧边打孔与撕裂线'))+
+  section('配色',`<div class="preset-list" role="group" aria-label="配色预设">${Object.entries(PRESETS).map(([id,p])=>`<button type="button" class="preset-button" data-preset="${id}" aria-pressed="false"><span class="preset-swatch" style="--swatch:linear-gradient(135deg,${p.primary},${p.secondary} 55%,${p.accent})"></span><span>${p.name}</span></button>`).join('')}</div>`+color('primary','主色')+color('secondary','辅助色')+color('accent','点缀色')+range('angle','渐变角度','°'))+
+  section('纹理',select('pattern','图案',{rosette:'花饰',guilloche:'玑镂纹',rings:'同心圆',waves:'波纹',grid:'网格',none:'无',custom:'自定义图片'})+`<button type="button" class="upload" id="upload">${uploadIcon}<span>上传图片…</span></button><p class="help">推荐使用无缝纹理，最大 3 MB。</p>`+range('textureScale','缩放','%')+range('textureOpacity','不透明度','%')+select('blend','混合模式',{normal:'正常',overlay:'叠加','soft-light':'柔光',screen:'滤色',multiply:'正片叠底'})+toggle('emboss','浮雕描边'))+
+  section('光照',range('foil','金属反光','%')+range('glare','高光','%')+range('grain','颗粒','%')+range('tilt','最大倾斜','°'))+
+  section('内容',textField('title','标题',48)+textField('subtitle','副标题',64)+textField('holder','持卡人')+`<div class="two-fields">${textField('number','编号')}${textField('valid','有效期')}</div>`+color('textColor','文字颜色')+`<div class="field-row"><label>标记</label><div class="segments" role="group" aria-label="标记">${Object.entries({star:'星形',rings:'双环',none:'无'}).map(([key,label])=>`<button type="button" data-logo="${key}" aria-pressed="false">${label}</button>`).join('')}</div></div>`)+
+  section('场景',toggle('aurora','极光背景','卡片背后的动态光效'));
 listen(form,'submit',e=>e.preventDefault());
 
 let disposeAurora, auroraEnabled, toastTimer, saveTimer;
 function toast(message){$('.toast').textContent=message;$('.toast').classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('.toast').classList.remove('visible'),3200);}
-function save(){clearTimeout(saveTimer);saveTimer=setTimeout(()=>{try{localStorage.setItem(STORAGE,JSON.stringify(config));$('#save-status').textContent='Live preview · auto-saved locally';}catch{$('#save-status').textContent='Storage full · export to save your card';toast('Browser storage is full. Export your configuration to keep it.');}},120);}
+function save(){clearTimeout(saveTimer);saveTimer=setTimeout(()=>{try{localStorage.setItem(STORAGE,JSON.stringify(config));$('#save-status').textContent='实时预览 · 自动保存到本地';}catch{$('#save-status').textContent='存储已满 · 请导出配置保存';toast('浏览器存储已满，请导出配置以保存卡片。');}},120);}
 function syncControls(){
   for(const el of form.querySelectorAll('[name]')){
     if(el.type==='checkbox')el.checked=config[el.name];else el.value=config[el.name];
@@ -44,7 +44,7 @@ function syncControls(){
   for(const el of form.querySelectorAll('[data-color]'))if(el!==root.activeElement)el.value=config[el.dataset.color];
   form.querySelectorAll('[data-preset]').forEach(el=>el.setAttribute('aria-pressed',String(config.preset===el.dataset.preset)));
   form.querySelectorAll('[data-logo]').forEach(el=>el.setAttribute('aria-pressed',String(config.logo===el.dataset.logo)));
-  $('#upload span').textContent=config.customTexture?'Replace image…':'Upload image…';
+  $('#upload span').textContent=config.customTexture?'替换图片…':'上传图片…';
 }
 const hexToRgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
 function mix(a,b,t){const x=hexToRgb(a),y=hexToRgb(b);return '#'+x.map((v,i)=>Math.round(v*(1-t)+y[i]*t).toString(16).padStart(2,'0')).join('');}
@@ -84,7 +84,7 @@ function render(){
   title.style.fontSize=config.title.length>22?`${Math.max(5.3,11.65*22/config.title.length)}cqw`:'';
   $('#card-subtitle').textContent=config.subtitle;
   $('#card-holder').textContent=config.holder;$('#card-number').textContent=config.number;$('#card-valid').textContent=config.valid;
-  card.setAttribute('aria-label',`${config.title} membership card. Move the pointer or use arrow keys to tilt.`);
+  card.setAttribute('aria-label',`${config.title} 会员卡。移动鼠标或使用方向键调整倾斜。`);
   $('.card-logo').style.display=config.logo==='none'?'none':'';
   $('.card-logo .star').style.display=config.logo==='star'?'block':'none';
   $('.card-logo .rings').style.display=config.logo==='rings'?'block':'none';
@@ -99,7 +99,7 @@ listen(form,'input',e=>{
   const el=e.target;
   if(el.dataset.color){
     if(/^#[\da-f]{6}$/i.test(el.value)){el.setCustomValidity('');setValue(el.dataset.color,el.value.toUpperCase());}
-    else el.setCustomValidity('Use a six-digit hex color, such as #FFC9D8.');
+    else el.setCustomValidity('请输入六位十六进制颜色，例如 #FFC9D8。');
     return;
   }
   if(!el.name)return;
@@ -116,31 +116,31 @@ listen(form,'click',e=>{
 listen($('#upload'),'click',()=>$('#texture-file').click());
 listen($('#texture-file'),'change',async e=>{
   const file=e.target.files[0];e.target.value='';if(!file)return;
-  if(file.size>3*1024*1024){toast('The texture must be 3 MB or smaller.');return;}
-  if(!['image/png','image/jpeg','image/webp','image/svg+xml'].includes(file.type)){toast('Choose a PNG, JPEG, WebP or SVG image.');return;}
+  if(file.size>3*1024*1024){toast('纹理图片不能超过 3 MB。');return;}
+  if(!['image/png','image/jpeg','image/webp','image/svg+xml'].includes(file.type)){toast('请选择 PNG、JPEG、WebP 或 SVG 图片。');return;}
   const url=URL.createObjectURL(file);urls.add(url);
   try{
     const image=new Image();image.src=url;await image.decode();if(disposed)return;
     const canvas=document.createElement('canvas');const scale=Math.min(1,1024/Math.max(image.width,image.height));
     canvas.width=Math.max(1,Math.round(image.width*scale));canvas.height=Math.max(1,Math.round(image.height*scale));
     canvas.getContext('2d').drawImage(image,0,0,canvas.width,canvas.height);
-    config={...config,pattern:'custom',customTexture:canvas.toDataURL('image/png')};render();save();toast('Texture updated.');
-  }catch{if(!disposed)toast('This image could not be decoded. Try a PNG or JPEG.');}finally{URL.revokeObjectURL(url);urls.delete(url);}
+    config={...config,pattern:'custom',customTexture:canvas.toDataURL('image/png')};render();save();toast('纹理已更新。');
+  }catch{if(!disposed)toast('无法读取此图片，请尝试 PNG 或 JPEG 格式。');}finally{URL.revokeObjectURL(url);urls.delete(url);}
 });
-listen($('#reset'),'click',()=>{config={...DEFAULTS};motion.reset();render();save();sweep();toast('Restored the original card.');});
+listen($('#reset'),'click',()=>{config={...DEFAULTS};motion.reset();render();save();sweep();toast('已恢复默认配置。');});
 listen($('#export'),'click',()=>{
   const blob=new Blob([exportConfig(config)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');
   urls.add(url);a.href=url;a.download='luminary-card.json';a.click();
-  const timer=setTimeout(()=>{URL.revokeObjectURL(url);urls.delete(url);exportTimers.delete(timer);},1000);exportTimers.add(timer);toast('Configuration exported.');
+  const timer=setTimeout(()=>{URL.revokeObjectURL(url);urls.delete(url);exportTimers.delete(timer);},1000);exportTimers.add(timer);toast('配置已导出。');
 });
 listen($('#import'),'click',()=>$('#import-file').click());
 listen($('#import-file'),'change',async e=>{
   const file=e.target.files[0];e.target.value='';if(!file)return;
-  if(file.size>5*1024*1024){toast('Configuration files must be smaller than 5 MB.');return;}
-  try{const next=validateConfig(JSON.parse(await file.text()));if(disposed)return;config=next;render();save();sweep();toast('Configuration imported.');}catch(err){if(!disposed)toast(err instanceof SyntaxError?'This file is not valid JSON.':err.message);}
+  if(file.size>5*1024*1024){toast('配置文件不能超过 5 MB。');return;}
+  try{const next=validateConfig(JSON.parse(await file.text()));if(disposed)return;config=next;render();save();sweep();toast('配置已导入。');}catch(err){if(!disposed)toast(err instanceof SyntaxError?'此文件不是有效的 JSON。':err.message);}
 });
 const resize=new ResizeObserver(fitCard);resize.observe(scene);
-render();if(storageError)toast('Saved settings could not be loaded. The original card is ready.');
+render();if(storageError)toast('无法读取已保存的配置，已加载默认卡片。');
 // React StrictMode remounts effects; each instance must release its own resources.
 return ()=>{
   disposed=true;events.abort();resize.disconnect();motion.destroy();disposeAurora?.();

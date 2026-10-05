@@ -1,8 +1,8 @@
 <main class="workspace">
-    <section class="scene" aria-label="Live card preview">
+    <section class="scene" aria-label="卡片实时预览">
       <div class="aurora-fallback" aria-hidden="true"></div><canvas id="aurora-canvas" aria-hidden="true"></canvas>
       <div class="card-space"><div class="entrance"><div class="card-target">
-        <article class="card" tabindex="0" aria-label="Luminary Club membership card. Move the pointer or use arrow keys to tilt.">
+        <article class="card" tabindex="0" aria-label="Luminary Club 会员卡。移动鼠标或使用方向键调整倾斜。">
           <div class="card-surface">
             <div class="card-colors"></div><div class="card-foil"></div><div class="card-glare"></div>
             <div class="card-texture"></div><div class="card-emboss"></div><div class="card-grain"></div>
@@ -14,10 +14,10 @@
         </article>
       </div></div></div>
     </section>
-    <aside class="inspector" aria-label="Customize card">
-      <header class="panel-header"><h2>Customize</h2><p id="save-status">Live preview · auto-saved locally</p></header>
+    <aside class="inspector" aria-label="卡片配置">
+      <header class="panel-header"><h2>卡片配置</h2><p id="save-status">实时预览 · 自动保存到本地</p></header>
       <form class="panel-scroll" id="controls" autocomplete="off"></form>
-      <footer class="panel-footer"><button type="button" class="icon-button" id="reset" title="Reset to defaults" aria-label="Reset to defaults"><svg viewBox="0 0 24 24"><path d="M3 4v6h6M3.7 9a8 8 0 1 1-.2 6"/></svg></button><div><button type="button" id="import"><svg viewBox="0 0 24 24"><path d="M12 15V3m-5 5 5-5 5 5M4 14v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/></svg>Import</button><button type="button" class="primary" id="export"><svg viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>Export</button></div></footer>
+      <footer class="panel-footer"><button type="button" class="icon-button" id="reset" title="恢复默认配置" aria-label="恢复默认配置"><svg viewBox="0 0 24 24"><path d="M3 4v6h6M3.7 9a8 8 0 1 1-.2 6"/></svg></button><div><button type="button" id="import"><svg viewBox="0 0 24 24"><path d="M12 15V3m-5 5 5-5 5 5M4 14v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/></svg>导入</button><button type="button" class="primary" id="export"><svg viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>导出</button></div></footer>
     </aside>
   </main>
   <input id="import-file" type="file" accept=".json,application/json" hidden>

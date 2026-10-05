@@ -55,7 +55,7 @@ type ComponentEntry = {
 export const componentCatalog = [
   {
     id: 'luminary-card', name: '全息卡片定制器', symbol: 'LuminaryCardCustomizer', category: 'display', kind: '页面组合',
-    description: '个人收藏：3D 倾斜、金属反光、独立标记视差与纹理；实时调整颜色和内容，支持本地保存、图片上传及 JSON 导入导出。',
+    description: '个人收藏：3D 倾斜、金属反光、独立标记视差与纹理；中文配置面板实时调整颜色和内容，支持本地保存、图片上传及 JSON 导入导出。',
     sources: ['src/components/luminary-card/luminary-card.tsx', 'src/components/luminary-card/src/app.js', 'src/components/luminary-card/src/config.js', 'src/components/luminary-card/src/motion.js', 'src/components/luminary-card/src/aurora.js', 'src/components/luminary-card/src/styles.css', 'src/components/luminary-card/workspace.html', 'src/examples/luminary-card-example.tsx', 'src/pages/luminary-card-page.tsx', 'src/pages/luminary-card-page.css'], preview: 'page',
     locations: [{ page: 'luminary-card', label: '全息卡片 / 完整定制器', href: '/examples/luminary-card' }],
   },

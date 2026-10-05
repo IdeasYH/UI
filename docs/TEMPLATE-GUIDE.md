@@ -97,7 +97,7 @@ A 的当前规则以 [组织权限说明书](ORGANIZATION-PERMISSIONS-BDD.md) �
 
 ### 日期、颜色与数据展示
 
-- `#luminary-card`：个人收藏的全息卡片定制器，完整页面位于 `/examples/luminary-card`。保留原版卡面材质、独立 3D 标记、六组定制面板、图片上传和 JSON 导入导出；配置以 `uimodel:luminary-card:v1` 存入本来源的 localStorage。使用及来源见 [收藏说明](components/luminary-card.md)，该完整页面不加入自动组件源码下载包。
+- `#luminary-card`：个人收藏的全息卡片定制器，完整页面位于 `/examples/luminary-card`。保留原版卡面材质、独立 3D 标记、六组中文配置面板、图片上传和 JSON 导入导出；配置以 `uimodel:luminary-card:v1` 存入本来源的 localStorage，已有配置格式保持兼容。使用及来源见 [收藏说明](components/luminary-card.md)，该完整页面不加入自动组件源码下载包。
 
 - `#date-range`：双月选择，月份导航与区间确认分离，快捷区间直接确认并关闭；首尾描边，区间内有数据才填色。日期口径、受控值、复制清单及边界见 [日期契约](components/date-range.md)。
 - `#color-picker`：一条白色 → 彩色 → 黑色滑条，拖动同步 HEX 和色块；保留三行共 24 种标准色、方向键、选中勾号、HEX 校验及系统颜色面板。单轴表示常用色路径，并非全部颜色空间；路径外颜色通过 HEX 或系统面板精确输入，组件保留精确值，只把滑块指示到最近位置。渐变节点与取色插值共用 `color-model.ts`，调整配色时应同步保持视觉与取色一致。

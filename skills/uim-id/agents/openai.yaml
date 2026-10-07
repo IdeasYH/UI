@@ -1,0 +1,6 @@
+interface:
+  display_name: "UIMID"
+  short_description: "按组件 ID 或名字读取完整源码包、变体与依赖，保持原效果接入。"
+  default_prompt: "使用 $uim-id 接入我指定 ID 或名字的 UIModel 组件。"
+policy:
+  allow_implicit_invocation: false

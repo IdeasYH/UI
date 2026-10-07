@@ -1,0 +1,6 @@
+interface:
+  display_name: "UIM浏览"
+  short_description: "打开 UIModel 组件库，浏览分类、完整演示并复制组件 ID。"
+  default_prompt: "使用 $uim-browse 打开组件库，让我挑选组件。"
+policy:
+  allow_implicit_invocation: false

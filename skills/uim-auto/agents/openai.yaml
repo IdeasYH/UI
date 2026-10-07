@@ -1,0 +1,6 @@
+interface:
+  display_name: "UIM自选"
+  short_description: "按交互结构从 UIModel 选择组件，读取源码及依赖后接入项目。"
+  default_prompt: "使用 $uim-auto 根据我的需求选择并接入 UIModel 组件。"
+policy:
+  allow_implicit_invocation: false

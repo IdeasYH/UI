@@ -20,3 +20,7 @@
 - `public/uiverse-originals/byllzz--great-wombat-13.source.html`
 - `public/uiverse-originals/byllzz--great-wombat-13.css`
 - `public/uiverse-originals/byllzz--great-wombat-13.preview.html`
+
+## 当前展示与交互调整
+
+展示整体缩放为 0.52，框架高度 210px；原始 HTML/CSS 保留，缩放位于独立 override.css，复制必须携带该文件。

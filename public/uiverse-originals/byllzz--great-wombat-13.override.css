@@ -1,0 +1,2 @@
+/* Scale the entire original composition; preserve all relative motion. */
+.folder-card { scale: .52; flex-shrink: 0; }

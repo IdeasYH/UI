@@ -14,6 +14,7 @@ export const templatePages = [
   { id: 'portal', title: '门户首页', href: '/' },
   { id: 'people', title: '人员分配', href: '/components/person-picker' },
   { id: 'luminary-card', title: '全息卡片', href: '/examples/luminary-card' },
+  { id: 'liquid-glass', title: '液态玻璃', href: '/examples/liquid-glass' },
   ...organizationVariants,
 ] as const
 
@@ -53,6 +54,40 @@ type ComponentEntry = {
 }
 
 export const componentCatalog = [
+  { id: 'persistent-alert-banner', name: '常驻警告／报错条', symbol: 'PersistentBanner', category: 'overlay', kind: '基础组件', description: '页面顶部黄条警告或红条报错，不自动消失，点击关闭后移除。', sources: [...componentReferences['persistent-alert-banner'].files, componentReferences['persistent-alert-banner'].example], preview: 'live', locations: [{ page: 'components', label: '组件总览 / 常驻警告／报错条', href: '/components?q=persistent-alert-banner' }] },
+  { id: 'grid-toast-stack', name: '网格堆叠轻提示', symbol: 'ToastStack', category: 'overlay', kind: '基础组件', description: '采用收藏通知的纯色背景，无网格纹理，进度清空自动消失，悬停暂停，支持关闭和选择复制文字。', sources: [...componentReferences['grid-toast-stack'].files, componentReferences['grid-toast-stack'].example], preview: 'live', locations: [{ page: 'components', label: '组件总览 / 网格堆叠轻提示', href: '/components?q=grid-toast-stack' }] },
+  { id: 'side-drawer', name: '侧边抽屉', symbol: 'Drawer', category: 'overlay', kind: '基础组件', description: '右侧滑出详情面板，支持遮罩、Escape、焦点约束及本地保存演示。', sources: [...componentReferences['side-drawer'].files, componentReferences['side-drawer'].example], preview: 'live', locations: [{ page: 'components', label: '组件总览 / 侧边抽屉', href: '/components?q=side-drawer' }] },
+
+  {
+    id: 'click-copy-value', name: '点击复制与小勾反馈', symbol: 'CopyValue', category: 'interaction', kind: '基础组件',
+    description: '点击编号或复制图标复制文本，成功后短暂显示绿色小勾；失败给出明确提示。',
+    sources: [...componentReferences['click-copy-value'].files, componentReferences['click-copy-value'].example], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 点击复制', href: '/components?q=click-copy-value' }],
+  },
+  {
+    id: 'table-crosshair-highlight', name: '表格行列交叉高亮', symbol: 'CrosshairTable', category: 'display', kind: '基础组件',
+    description: '鼠标同行同列浅紫色定位，交汇单元格稍深；轻微渐变、移出恢复，不增加深色外框。',
+    sources: [...componentReferences['table-crosshair-highlight'].files, componentReferences['table-crosshair-highlight'].example], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 行列定位', href: '/components?q=table-crosshair-highlight' }],
+  },
+  {
+    id: 'feishu-field-config', name: '飞书风格字段配置', symbol: 'FieldConfig', category: 'interaction', kind: '基础组件',
+    description: '字段模糊／拼音搜索、显示隐藏、分组折叠、拖动和键盘菜单排序；支持新增与重命名，实时控制表格列。',
+    sources: [...componentReferences['feishu-field-config'].files, componentReferences['feishu-field-config'].example], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 字段配置', href: '/components?q=feishu-field-config' }],
+  },
+  {
+    id: 'feishu-condition-filter', name: '飞书风格条件筛选', symbol: 'ConditionFilter', category: 'interaction', kind: '基础组件',
+    description: '所有／任一多条件组合；按字段选择文字、状态选项、数字与日期，支持中文模糊、全拼与首字母搜索，打开空面板默认一条条件；支持增删、快捷日期和日历，完整条件即时筛选。',
+    sources: [...componentReferences['feishu-condition-filter'].files, componentReferences['feishu-condition-filter'].example], preview: 'live',
+    locations: [{ page: 'components', label: '组件总览 / 飞书风格筛选', href: '/components?q=feishu-condition-filter#feishu-condition-filter' }],
+  },
+  {
+    id: 'liquid-glass', name: '液态玻璃光影面板', symbol: 'LiquidGlass', category: 'display', kind: '页面组合',
+    description: '截图参考复刻：厚玻璃边缘、紫青折射、柔和投影、鼠标光影和缓慢流光；包含按钮、输入、复选、分段与开关的本地交互。',
+    sources: [...componentReferences['liquid-glass'].files, componentReferences['liquid-glass'].example], preview: 'page',
+    locations: [{ page: 'liquid-glass', label: '液态玻璃 / 完整交互页面', href: '/examples/liquid-glass' }],
+  },
   {
     id: 'luminary-card', name: '全息卡片定制器', symbol: 'LuminaryCardCustomizer', category: 'display', kind: '页面组合',
     description: '个人收藏：3D 倾斜、金属反光、独立标记视差与纹理；中文配置面板实时调整颜色和内容，支持本地保存、图片上传及 JSON 导入导出。',
@@ -362,7 +397,7 @@ export function filterComponentCatalog(query = '', category = 'all'): readonly C
   return componentCatalog.filter((component) => {
     if (activeCategory !== 'all' && component.category !== activeCategory) return false
     const categoryTitle = componentCategories.find((item) => item.id === component.category)?.title ?? ''
-    const searchable = [component.name, component.symbol, component.kind, component.description, categoryTitle, ...(interactionKeywords[component.id] ?? []), ...component.sources, ...component.locations.map((location) => location.label)].join(' ').toLowerCase()
+    const searchable = [component.id, component.name, component.symbol, component.kind, component.description, categoryTitle, ...(interactionKeywords[component.id] ?? []), ...component.sources, ...component.locations.map((location) => location.label)].join(' ').toLowerCase()
     return keywords.every((keyword) => searchable.includes(keyword))
   })
 }

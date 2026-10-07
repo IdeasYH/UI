@@ -21,8 +21,12 @@ UIModel 提供可操作的交互原型、源码和使用契约。城市、报名
 
 ## 2. 按结构选择原型
 
+需要厚玻璃、彩色折射和跟随光影的页面材质时，可参考 [LiquidGlass](components/liquid-glass.md)。它是视觉页面组合；内部布尔、输入和互斥状态仍应按下面的交互结构分别接入目标业务。
+
 | 交互结构 | 先查看 | 区分相邻方案 |
 | --- | --- | --- |
+| 调整已有字段的可见性、顺序与展示分组 | [FieldConfig](components/field-config.md) | 视图配置不等于数据权限；隐藏列不清除筛选条件 |
+| 多个字段条件按所有／任一组合筛选记录 | [ConditionFilter](components/condition-filter.md) | 字段类型驱动输入；当前平铺 AND/OR，不支持嵌套组，查询与保存由宿主接入 |
 | 一个即时布尔状态 | ToggleSwitch | 需要提交前确认的同意条款可用复选框并组合前置条件 |
 | 少量平铺选项，只选一个，需同时比较 | RadioCards | 较长选项集或需要搜索时查看 SearchSelect |
 | 少量互斥选项，切换同一区域内容 | [SegmentedControl](components/segmented-control.md) | 每项有独立导航/复杂面板时考虑 Tabs；只收集一个表单值可用 RadioCards |
@@ -109,3 +113,9 @@ UIModel 提供可操作的交互原型、源码和使用契约。城市、报名
 ### 环形社交动作入口
 
 一个入口悬停展开八个动作时，可参考 [SocialTooltip](components/uiverse-social-tooltip.md)。保留 Tsiangana 的公开 SVG/CSS；宿主接管动作回调，不会自动分享、跳转或赋权。它不是任意层级菜单或多选器。
+
+### 密集表格视觉定位
+鼠标需要同时定位行列时可参考 [CrosshairTable](components/crosshair-table.md)。它只提供悬停背景辅助，不替代选择状态，也不处理合并单元格或虚拟滚动。
+
+### 持续状态、短暂反馈与详情
+持续需关注的页面状态用 PersistentBanner，短暂操作结果用 ToastStack，保留上下文的详情编辑用 Drawer。按持续时间与交互职责选择，不按演示业务名称；见 [反馈与抽屉](components/feedback-controls.md)。

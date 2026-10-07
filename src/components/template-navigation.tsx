@@ -6,7 +6,7 @@ import { cn } from '../lib/utils'
 import { PermissionLauncher } from './permissions/permission-provider'
 import { usePermissions } from './permissions/permission-context'
 
-const pageIcons = { guide: BookOpen, components: Component, portal: LayoutTemplate, people: Users, 'luminary-card': Sparkles, 'organization-tree': Network, 'organization-personnel': Users, 'organization-figma': Network }
+const pageIcons = { 'liquid-glass': Sparkles, guide: BookOpen, components: Component, portal: LayoutTemplate, people: Users, 'luminary-card': Sparkles, 'organization-tree': Network, 'organization-personnel': Users, 'organization-figma': Network }
 
 export function TemplateNavigation({ currentPage }: { currentPage: TemplatePageId }) {
   const permissions = usePermissions()

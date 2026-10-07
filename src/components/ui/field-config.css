@@ -1,0 +1,40 @@
+.fc-root { position: relative; display: inline-block; color: #373c43; font-size: 13px; }
+.fc-root button, .fc-root input, .fc-root select { font: inherit; }
+.fc-root button { cursor: pointer; }
+.fc-root button:disabled { opacity: .35; cursor: not-allowed; }
+.fc-root :focus-visible { outline: 2px solid #3370ff; outline-offset: 1px; }
+.fc-trigger { display: flex; align-items: center; gap: 5px; padding: 5px 8px; border: 0; border-radius: 4px; background: #fff5d8; color: #646a73; }
+.fc-trigger.fc-active { background: #ffedb8; }
+.fc-panel { position: absolute; top: calc(100% + 8px); left: 0; width: 270px; max-width: calc(100vw - 48px); z-index: 35; background: #fff; border: 1px solid #dee0e3; border-radius: 8px; box-shadow: 0 6px 20px #1f23291f; }
+.fc-search { display: flex; gap: 8px; align-items: center; padding: 12px; color: #8f959e; border-bottom: 1px solid #eff0f1; }
+.fc-search input { width: 100%; min-width: 0; border: 0; background: none; outline: none; }
+.fc-list { max-height: 430px; overflow-y: auto; padding: 7px 5px; }
+.fc-row { position: relative; display: flex; align-items: center; gap: 6px; min-height: 34px; padding: 3px 6px 3px 0; border-radius: 4px; }
+.fc-row:hover { background: #f0f1f2; }
+.fc-hidden { color: #a8adb5; }
+.fc-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fc-grip { opacity: 0; cursor: grab; display: flex; flex-shrink: 0; }
+.fc-row:hover .fc-grip, .fc-row:focus-within .fc-grip { opacity: .6; }
+.fc-row>button, .fc-group>button { display: flex; align-items: center; border: 0; background: none; padding: 4px; color: inherit; }
+.fc-nested { padding-left: 17px; }
+.fc-group { display: flex; align-items: center; color: #8f959e; margin-top: 5px; }
+.fc-group>button:first-child { flex: 1; min-width: 0; gap: 7px; padding: 7px 12px; }
+.fc-group>button:last-child { margin-right: 30px; }
+.fc-menu { position: absolute; top: 26px; right: 10px; z-index: 2; padding: 4px; border: 1px solid #dee0e3; border-radius: 5px; background: white; box-shadow: 0 3px 10px #0002; min-width: 100px; color: #373c43; }
+.fc-menu button { display: block; width: 100%; padding: 6px 12px; border: 0; background: none; text-align: left; }
+.fc-menu button:hover { background: #f0f4ff; }
+.fc-panel footer { border-top: 1px solid #e8eaed; padding: 8px 12px; }
+.fc-panel footer button { display: flex; gap: 6px; align-items: center; border: 0; padding: 4px; background: none; }
+.fc-editor { padding: 12px; border-top: 1px solid #e8eaed; display: grid; gap: 9px; }
+.fc-editor input, .fc-editor select { width: 100%; border: 1px solid #d0d3d8; border-radius: 4px; padding: 6px; }
+.fc-editor>div { display: flex; justify-content: flex-end; gap: 8px; }
+.fc-editor button { border: 1px solid #d0d3d8; background: white; border-radius: 4px; padding: 4px 12px; }
+.fc-editor button[type=submit] { background: #3370ff; border-color: #3370ff; color: white; }
+.fc-editor p { color: #d83931; margin: 0; }
+.fc-empty { color: #8f959e; padding: 16px; }
+
+.fc-row[draggable=true] { cursor: grab; }
+.fc-row[draggable=true]:active { cursor: grabbing; }
+.fc-drop-before::before, .fc-drop-after::after { content: ''; position: absolute; left: 4px; right: 4px; height: 2px; background: #3370ff; z-index: 4; pointer-events: none; }
+.fc-drop-before::before { top: -1px; }
+.fc-drop-after::after { bottom: -1px; }

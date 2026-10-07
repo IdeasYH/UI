@@ -1,0 +1,4 @@
+.crosshair-table th, .crosshair-table td { transition: background-color 110ms ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .crosshair-table th, .crosshair-table td { transition: none; }
+}

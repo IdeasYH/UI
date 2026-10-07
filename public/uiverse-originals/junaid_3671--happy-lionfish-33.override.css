@@ -1,0 +1,2 @@
+/* Scale the entire original composition; preserve all relative motion. */
+.folder { scale: .28; flex-shrink: 0; }

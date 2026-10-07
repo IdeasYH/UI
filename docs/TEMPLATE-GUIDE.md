@@ -23,6 +23,7 @@ UIModel 为其他项目提供界面、交互和组件参考，使用本地示例
 
 | 界面 | URL | 内容 |
 | --- | --- | --- |
+| 液态玻璃 | `/examples/liquid-glass` | 图片参考的厚玻璃材质、彩色折射、指针光影与本地控件交互；契约见 [LiquidGlass](components/liquid-glass.md) |
 | 说明书 | `/guide` | 通用复用方法、选型入口、界面地图与组件索引 |
 | 组件总览 | `/components` | 分类、搜索、可操作示例、使用契约与源码位置 |
 | 门户首页 | `/` | Home 主 UI、系统矩阵、搜索、收藏和配置面板 |
@@ -68,6 +69,10 @@ A 的当前规则以 [组织权限说明书](ORGANIZATION-PERMISSIONS-BDD.md) �
 ## 交互参考：从组件到规则
 
 ### 输入、选择与前置条件
+
+- `#feishu-field-config`：字段显示、搜索、排序、分组、新增与重命名。与筛选共享字段定义，配置实时反映到演示表格；见 [字段配置契约](components/field-config.md)。
+
+- `#feishu-condition-filter`：飞书风格多条件筛选，支持所有／任一、字段与运算符、可搜索状态、文字／数字、快捷日期与具体日期日历。虚构表格实时显示筛选结果；接口、日期边界与宿主职责见 [条件筛选契约](components/condition-filter.md)。
 
 - `#input`：`ValidatedInput` 接受调用方传入的错误信息，关联 `aria-invalid` 和错误描述。邮箱示例展示空值和格式错误；该正则只是演示，不代表服务端邮箱有效性校验。旁置标签在输入聚焦时显示绿色虚线边框与浅绿底，失焦恢复。
 - `#textarea`：`CountedTextarea` 显示长度与上限，`maxLength` 默认 200、可传入。计数与浏览器同用 UTF-16 口径，空格和换行计入，部分 emoji 占两个单位；输入区底部为计数预留空间。
@@ -153,3 +158,14 @@ A 的当前规则以 [组织权限说明书](ORGANIZATION-PERMISSIONS-BDD.md) �
 默认运行没有后端代理、真实身份认证、数据库或外部业务请求。服务端授权、业务数据和持久化在目标系统接入。本项目不会因展示组件而修改或重启 Home、Invest、Operator 或 HRM。
 
 目录、链接和源码检查见 `tests/template-catalog.test.ts`；模型规则见对应模型测试。迁移完成标准见 [UI-REUSE.md](UI-REUSE.md)，实际运行结果与浏览器证据集中写入 [ACCEPTANCE.md](ACCEPTANCE.md)，不从本文推断当前构建或验收已通过。
+
+### 表格交叉定位
+- ID：table-crosshair-highlight。鼠标同行同列浅紫高亮，交汇稍深，无附加外框。筛选／字段配置示例共用；契约见 [CrosshairTable](components/crosshair-table.md)。
+
+### 点击复制
+- click-copy-value：点击单值或复制图标，成功显示绿色小勾 1.8 秒；已接入示例表格编号列。见 [CopyValue](components/copy-value.md)。
+
+## 分类网格与快速浏览（2026-10-07）
+组件总览按导航与布局、基础交互、数据与状态、浮层与反馈、业务组件分区。catalog-layout.ts 维护预览尺寸：小型、中型和宽幅，CSS 按屏幕宽度自动安排一行 1–4 个。说明与源码默认折叠，稳定 ID、搜索、锚点及分类链接保留。
+页面非编辑状态按 Z 到顶部、C 到底部；输入框、下拉框、可编辑内容、对话框、输入法组合和 Ctrl/Alt/Meta/Shift 组合键不触发。
+新增 persistent-alert-banner、grid-toast-stack、side-drawer，契约见 [反馈与抽屉](components/feedback-controls.md)。

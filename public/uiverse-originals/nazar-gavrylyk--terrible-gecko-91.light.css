@@ -1,0 +1,9 @@
+/* Light variant; original source and motion remain unchanged. */
+body { background: #f4f5f7; }
+.card { background: #fff; box-shadow: 0 3px 14px #1f293712; border: 1px solid #e5e7eb; }
+.card .separator { border-color: #e5e7eb; }
+.card .list .element { color: #475569; }
+.card .list .element:hover { color: #fff; }
+.card .list:last-child .element { color: #7c3aed; }
+.card .list:last-child svg { stroke: #7c3aed; }
+.card .list:last-child .element:hover { background: #ede9fe; color: #6d28d9; }

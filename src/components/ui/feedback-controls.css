@@ -1,0 +1,42 @@
+.feedback-banner { background-image: none; position: fixed; top: 0; left: 0; right: 0; z-index: 2000; display: flex; align-items: center; gap: 12px; padding: 16px 26px; font-size: 14px; box-shadow: 0 3px 12px #0001; }
+.feedback-warning { background: #ffcf69; color: #604000; }
+.feedback-error { background: #e74750; color: white; }
+.feedback-banner>span:nth-child(2) { flex: 1; }
+.feedback-banner button, .feedback-toast button, .feedback-drawer header button { border: 0; background: transparent; color: inherit; font-size: 24px; cursor: pointer; }
+.feedback-toast-stack { position: fixed; right: 24px; bottom: 24px; z-index: 2100; display: flex; flex-direction: column; gap: 10px; width: min(360px, calc(100vw - 32px)); pointer-events: none; }
+/* Solid notification surfaces with the collected Uiverse color palette. */
+.feedback-toast { display: flex; align-items: center; gap: 12px; padding: 13px 16px; border: 1px solid #e3e7ec; border-radius: 8px; box-shadow: 0 8px 24px #303a4926; color: #27303d; background-color: #fbfcfd; background-image: none; pointer-events: auto; animation: feedback-toast-in .22s ease-out; font-size: 14px; }
+.feedback-toast>span:nth-child(2) { flex: 1; }
+.feedback-toast-icon { display: grid; place-items: center; width: 27px; height: 27px; border-radius: 6px; background: #e4edff; color: #3675df; font-weight: 700; }
+.feedback-toast-success .feedback-toast-icon { background: #dbf5e8; color: #15985e; }
+.feedback-toast-error .feedback-toast-icon { background: #ffe4e5; color: #dc4149; }
+.feedback-drawer { position: fixed; inset: 0 0 0 auto; width: min(440px, 100vw); max-width: 100vw; height: 100dvh; max-height: 100dvh; margin: 0; padding: 0; border: 0; background: #fff; color: #222b38; box-shadow: -8px 0 30px #14213620; }
+.feedback-drawer[open] { display: flex; flex-direction: column; animation: feedback-drawer-in .22s ease-out; }
+.feedback-drawer::backdrop { background: #17263d35; }
+.feedback-drawer header { display: flex; justify-content: space-between; align-items: center; padding: 22px 24px; border-bottom: 1px solid #e8ebef; }
+.feedback-drawer h2 { margin: 0; font-size: 20px; }
+.feedback-drawer-body { padding: 24px; overflow: auto; flex: 1; }
+.feedback-drawer footer { display: flex; justify-content: flex-end; gap: 12px; border-top: 1px solid #e8ebef; padding: 18px 24px; }
+.feedback-demo-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.feedback-demo-actions button, .feedback-drawer footer button { padding: 8px 14px; background: #fff; border: 1px solid #d9dfe8; border-radius: 6px; cursor: pointer; }
+.feedback-drawer footer button:last-child { background: #3370ff; color: white; border-color: #3370ff; }
+.feedback-drawer-body label { display: grid; gap: 8px; margin-bottom: 20px; font-size: 13px; color: #697281; }
+.feedback-drawer-body input, .feedback-drawer-body textarea { font: inherit; border: 1px solid #d8dee8; border-radius: 6px; padding: 10px; color: #27303d; }
+@keyframes feedback-toast-in { from { opacity: 0; transform: translateY(12px); } }
+@keyframes feedback-drawer-in { from { transform: translateX(100%); } }
+@media(prefers-reduced-motion:reduce) { .feedback-toast, .feedback-drawer[open] { animation: none; } }
+
+/* Colors from xerith_8140/stupid-panther-7 (MIT); grid texture intentionally removed. */
+.feedback-toast { position: relative; overflow: hidden; border: 0; border-radius: 6px; padding: 10px 15px; gap: 1em; box-shadow: 0 8px 24px #6f6f6f33; background-image: none; }
+.feedback-toast-success { background-color: #7dffbc; color: #047857; --grid-color: #10b98140; }
+.feedback-toast-info { background-color: #7eb8ff; color: #1e3a8a; --grid-color: #3b83f640; }
+.feedback-toast-error { background-color: #ff7e7e; color: #7f1d1d; --grid-color: #ef444440; }
+.feedback-toast-success:hover { background-color: #5bffaa; }
+.feedback-toast-info:hover { background-color: #5ba5ff; }
+.feedback-toast-error:hover { background-color: #ff5f5f; }
+.feedback-toast .feedback-toast-icon { background: transparent; color: inherit; }
+.feedback-toast-text { user-select: text; cursor: text; overflow-wrap: anywhere; }
+.feedback-toast-progress { position: absolute; bottom: 0; left: 0; height: 2px; width: 100%; background: currentColor; transform-origin: left; animation: toast-countdown linear forwards; }
+@keyframes toast-countdown { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+/* Countdown is functional timing, so retain it even with reduced visual motion. */
+@media (prefers-reduced-motion: reduce) { .feedback-toast-progress { animation-name: toast-countdown; animation-timing-function: linear; } }

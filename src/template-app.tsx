@@ -1,3 +1,5 @@
+import { usePageScrollShortcuts } from './lib/page-scroll-shortcuts'
+import { LiquidGlassPage } from './pages/liquid-glass-page'
 import { TopologyOnsiteBridge } from './components/permissions/topology-onsite'
 import { useEffect, type ComponentType } from 'react'
 import App from './App'
@@ -13,6 +15,7 @@ import { LuminaryCardPage } from './pages/luminary-card-page'
 import { PermissionProvider, PermissionPage } from './components/permissions/permission-provider'
 
 const pageComponents: Record<TemplatePageId, ComponentType> = {
+  'liquid-glass': LiquidGlassPage,
   guide: GuidePage,
   components: ComponentsPage,
   portal: App,
@@ -24,6 +27,7 @@ const pageComponents: Record<TemplatePageId, ComponentType> = {
 }
 
 export function TemplateApp() {
+  usePageScrollShortcuts()
   const currentPage = resolveTemplatePage(window.location.pathname)
   const Page = pageComponents[currentPage]
 

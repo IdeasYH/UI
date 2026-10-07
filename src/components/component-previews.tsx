@@ -1,3 +1,7 @@
+import { PersistentBannerExample, ToastStackExample, DrawerExample } from '../examples/feedback-controls-example'
+import { CopyValueExample } from '../examples/copy-value-example'
+import { CrosshairTableExample } from '../examples/crosshair-table-example'
+import { ConditionFilterExample } from '../examples/condition-filter-example'
 import { UiverseSocialTooltipExample } from '../examples/uiverse-social-tooltip-example'
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { ArrowRight, ArrowUpDown, Check, ChevronDown, LayoutTemplate, RotateCcw, Save, Search, Star, X } from 'lucide-react'
@@ -107,6 +111,13 @@ function PersonPickerPreview() {
 export function ComponentPreview({ component }: { component: CatalogComponent }) {
   if (reactBitsFavoriteIds.has(component.id) || uiverseNewFavoriteIds.has(component.id)) return <FavoritePreview id={component.id} />
   switch (component.id) {
+    case 'persistent-alert-banner': return <PersistentBannerExample />
+    case 'grid-toast-stack': return <ToastStackExample />
+    case 'side-drawer': return <DrawerExample />
+    case 'click-copy-value': return <CopyValueExample />
+    case 'table-crosshair-highlight': return <CrosshairTableExample />
+    case 'feishu-field-config':
+    case 'feishu-condition-filter': return <ConditionFilterExample />
     case 'uiverse-social-tooltip': return <UiverseSocialTooltipExample />
     case 'uiverse-message-composer': return <UiverseMessageComposerExample />
     case 'uiverse-expanding-bookmark-save': return <UiverseExpandingBookmarkSaveExample />

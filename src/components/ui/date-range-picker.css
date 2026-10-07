@@ -1,13 +1,13 @@
 .date-range-demo, .date-range-demo * { box-sizing: border-box; }
-.date-range-demo { min-width: 0; }
+.date-range-demo { min-width: 0; width: 100%; max-width: 640px; }
 .date-range-demo > .portable-button { max-width: 100%; }
 .date-range-demo :is(button, input):focus-visible { outline: 3px solid rgba(52, 120, 246, .32); outline-offset: 3px; }
 .date-range-demo .data-demo-note { color: #778397; font-size: 12px; line-height: 1.7; }
 .date-range-panel { margin-top: 14px; padding: 16px; border: 1px solid #e2dcf1; border-radius: 14px; background: white; }
 .date-range-toolbar { display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
 .date-shortcuts, .date-month-nav { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
-.date-range-toolbar .date-today-shortcut { display: inline-flex; flex-direction: column; align-items: center; gap: 3px; }
-.date-today-shortcut svg { color: #e6a019; }
+.date-range-toolbar .date-icon-shortcut { display: inline-flex; flex-direction: column; align-items: center; gap: 3px; }
+.date-sun-icon { color: #e6a019; }
 .date-month-nav { padding: 5px; border: 1px solid #bfd5ee; border-radius: 9px; background: #edf5ff; gap: 3px; }
 .date-range-toolbar .date-month-nav button { min-height: 32px; border-color: transparent; background: transparent; color: #2565a8; font-weight: 600; }
 .date-range-toolbar .date-month-nav button:hover { background: #d6e8fc; border-color: #b8d1ef; }
@@ -15,7 +15,7 @@
 .date-range-toolbar button { padding: 8px; border: 1px solid #e1dbf3; border-radius: 6px; background: #f6f3fd; color: #685786; font: inherit; font-size: 12px; cursor: pointer; }
 .date-range-toolbar button[aria-pressed="true"] { background: #7753cf; color: white; }
 .date-month-nav input { min-width: 0; max-width: 145px; padding: 7px; border: 1px solid #ddd6ee; border-radius: 6px; background: white; font: inherit; font-size: 12px; }
-.date-months { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 20px; }
+.date-months { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 16px; margin-top: 16px; }
 .date-month { min-width: 0; }
 .date-month h3 { font-size: 13px; color: #6c6088; text-align: center; margin: 0 0 14px; }
 .date-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; }
@@ -29,3 +29,33 @@
 .date-range-footer { border-top: 1px solid #eee8f7; padding-top: 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 12px; color: #6c6088; }
 .date-range-footer > span { min-width: 0; overflow-wrap: anywhere; }
 @media (max-width: 650px) { .date-months { grid-template-columns: 1fr; } .date-range-footer { flex-wrap: wrap; } }
+
+/* Keep all presets alongside month navigation; narrow hosts scroll this row. */
+.date-range-toolbar { justify-content: flex-start; flex-wrap: nowrap; gap: 5px; overflow-x: auto; padding: 3px 1px 5px; }
+.date-shortcuts, .date-month-nav { flex-wrap: nowrap; flex-shrink: 0; gap: 3px; }
+.date-range-toolbar button { white-space: nowrap; padding: 6px 5px; font-size: 11px; }
+.date-month-nav { padding: 3px; gap: 1px; }
+.date-month-nav input { width: 108px; max-width: 108px; padding: 5px 2px; font-size: 11px; }
+.date-range-toolbar .date-month-nav button { min-height: 30px; padding: 5px 4px; }
+
+.date-range-panel { position: relative; }
+.date-month-nav .date-month-trigger { display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-width: 108px; background: #fff; border: 1px solid #bfd5ee; }
+.date-month-picker { position: absolute; z-index: 30; top: 76px; left: 50%; transform: translateX(-50%); width: min(272px, calc(100% - 24px)); padding: 12px; background: #fff; border: 1px solid #e2dcf1; border-radius: 12px; box-shadow: 0 10px 32px #49377c26; }
+.date-month-picker header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; color: #51436d; font-size: 14px; }
+.date-month-picker button { border: 0; border-radius: 7px; background: transparent; color: #6c6088; font: inherit; font-size: 12px; padding: 8px; cursor: pointer; }
+.date-month-picker button:hover { background: #f1ebfc; color: #7041c5; }
+.date-month-picker button:disabled { opacity: .4; cursor: not-allowed; }
+.date-month-options { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.date-month-options button { min-height: 36px; }
+.date-month-options button[aria-pressed="true"] { background: #8057d9; color: #fff; font-weight: 600; }
+.date-month-picker footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee8f7; margin-top: 12px; padding-top: 8px; font-size: 11px; color: #8c83a2; }
+.date-month-picker footer button { color: #7041c5; }
+
+.date-year-icon { color: #b77912; fill: #fff0c2; }
+
+.date-week-icon { color: #2879c8; }
+.date-month-icon { color: #8057d9; fill: #f0e9ff; }
+
+.date-range-toolbar .date-month-nav .date-month-step { display: inline-flex; align-items: center; justify-content: center; min-width: 26px; padding: 2px 5px; background: transparent; border: 1px solid transparent; color: #a66b00; transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease; font-size: 20px; font-weight: 700; line-height: 1; }
+.date-range-toolbar .date-month-nav .date-month-step:hover { background: #d6e8fc; border-color: #b8d1ef; color: #805200; }
+.date-range-toolbar .date-month-nav .date-month-step:active { background: #c6def8; border-color: #a8c8eb; color: #684200; transform: translateY(1px); }

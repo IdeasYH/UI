@@ -20,3 +20,7 @@
 - `public/uiverse-originals/junaid_3671--happy-lionfish-33.source.html`
 - `public/uiverse-originals/junaid_3671--happy-lionfish-33.css`
 - `public/uiverse-originals/junaid_3671--happy-lionfish-33.preview.html`
+
+## 当前展示与交互调整
+
+展示整体缩放为 0.28，框架高度 210px；原始 HTML/CSS 保留，缩放位于独立 override.css，复制必须携带该文件。

@@ -63,13 +63,13 @@ export const uiverseNewFavorites = [
   {
     id: 'uiverse-mini-audio-player', name: '迷你音频播放器', symbol: 'MiniAudioPlayer', fileStem: 'mini-audio-player', exampleExport: 'UiverseMiniAudioPlayerExample',
     author: 'ahmed150up', sourceUrl: 'https://uiverse.io/ahmed150up/quiet-goat-67', rawSlug: 'ahmed150up--quiet-goat-67', category: 'interaction',
-    description: '深色迷你播放器外观，保留唱片封面、控制图标和进度条；原作不含音频逻辑。',
+    description: '深色迷你播放器，真实音频播放、暂停、倍速和可拖动进度；默认提供本地演示旋律。',
     keywords: ["音频", "播放", "暂停", "音乐"],
   },
   {
     id: 'uiverse-team-action-card', name: '团队动作卡片', symbol: 'TeamActionCard', fileStem: 'team-action-card', exampleExport: 'UiverseTeamActionCardExample',
     author: 'nazar-gavrylyk', sourceUrl: 'https://uiverse.io/nazar-gavrylyk/terrible-gecko-91', rawSlug: 'nazar-gavrylyk--terrible-gecko-91', category: 'overlay',
-    description: '分组操作卡片，悬停行改变背景、文字和图标颜色。',
+    description: '深色与白色两种分组操作卡片，悬停行改变背景、文字和图标颜色。',
     keywords: ["团队", "菜单", "管理", "操作"],
   },
   {

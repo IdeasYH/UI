@@ -228,3 +228,10 @@
     opacity: 0;
   }
 }
+
+/* Dark ink effects remain visible on the light component gallery. */
+.gooey-nav-container nav ul, .gooey-nav-container nav ul li, .gooey-nav-container .effect.text { color: #111; }
+.gooey-nav-container nav ul li.active, .gooey-nav-container .effect.text.active { color: white; }
+.gooey-nav-container nav ul li::after { background: #111; }
+.gooey-nav-container .effect.filter { filter: blur(7px) contrast(100) invert(1); mix-blend-mode: multiply; }
+.gooey-nav-container nav ul li:focus-within:has(:focus-visible) { box-shadow: 0 0 0.5px 1.5px #111; }

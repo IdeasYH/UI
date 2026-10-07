@@ -12,6 +12,44 @@ type ReferenceEntry = {
 }
 
 export const componentReferences: Record<string, ReferenceEntry> = {
+  'persistent-alert-banner': { title: '常驻警告与报错条', document: 'docs/components/feedback-controls.md', example: 'src/examples/feedback-controls-example.tsx', exportName: 'PersistentBannerExample', files: ['src/components/ui/feedback-controls.tsx', 'src/components/ui/feedback-controls.css'], dependencies: ['react', 'react-dom'] },
+  'grid-toast-stack': { title: '网格堆叠轻提示', document: 'docs/components/feedback-controls.md', example: 'src/examples/feedback-controls-example.tsx', exportName: 'ToastStackExample', files: ['src/components/ui/feedback-controls.tsx', 'src/components/ui/feedback-controls.css'], dependencies: ['react', 'react-dom'] },
+  'side-drawer': { title: '侧边抽屉', document: 'docs/components/feedback-controls.md', example: 'src/examples/feedback-controls-example.tsx', exportName: 'DrawerExample', files: ['src/components/ui/feedback-controls.tsx', 'src/components/ui/feedback-controls.css'], dependencies: ['react', 'react-dom'] },
+
+  'click-copy-value': {
+    title: '点击复制单值', document: 'docs/components/copy-value.md',
+    example: 'src/examples/copy-value-example.tsx', exportName: 'CopyValueExample',
+    files: ['src/components/ui/copy-value.tsx', 'src/components/ui/copy-value.css'], dependencies: ['react', 'react-dom', 'lucide-react'],
+  },
+  'table-crosshair-highlight': {
+    title: '表格行列交叉定位', document: 'docs/components/crosshair-table.md',
+    example: 'src/examples/crosshair-table-example.tsx', exportName: 'CrosshairTableExample',
+    files: ['src/components/ui/crosshair-table.tsx', 'src/components/ui/crosshair-table.css'], dependencies: ['react', 'react-dom'],
+  },
+  'feishu-field-config': {
+    title: '字段显示、分组与顺序配置',
+    document: 'docs/components/field-config.md',
+    example: 'src/examples/condition-filter-example.tsx',
+    exportName: 'ConditionFilterExample',
+    files: ['src/components/ui/field-config.tsx', 'src/components/ui/field-config.css', 'src/components/ui/field-config-model.ts', 'src/components/ui/condition-filter.tsx', 'src/components/ui/condition-filter-model.ts', 'src/components/ui/condition-filter.css', 'src/components/ui/copy-value.tsx', 'src/components/ui/copy-value.css', 'src/components/ui/crosshair-table.tsx', 'src/components/ui/crosshair-table.css'],
+    dependencies: ['react', 'react-dom', 'lucide-react'],
+  },
+  'feishu-condition-filter': {
+    title: '字段驱动的多条件筛选',
+    document: 'docs/components/condition-filter.md',
+    example: 'src/examples/condition-filter-example.tsx',
+    exportName: 'ConditionFilterExample',
+    files: ['src/components/ui/condition-filter.tsx', 'src/components/ui/condition-filter-model.ts', 'src/components/ui/condition-filter.css', 'src/components/ui/copy-value.tsx', 'src/components/ui/copy-value.css', 'src/components/ui/crosshair-table.tsx', 'src/components/ui/crosshair-table.css', 'src/components/ui/field-config.tsx', 'src/components/ui/field-config.css', 'src/components/ui/field-config-model.ts'],
+    dependencies: ['react', 'react-dom', 'lucide-react'],
+  },
+  'liquid-glass': {
+    title: '液态玻璃材质与交互页面',
+    document: 'docs/components/liquid-glass.md',
+    example: 'src/examples/liquid-glass-example.tsx',
+    exportName: 'LiquidGlassExample',
+    files: ['src/components/liquid-glass/liquid-glass.tsx', 'src/components/liquid-glass/liquid-glass.css'],
+    dependencies: ['react', 'react-dom'],
+  },
   'swatch-color-picker': {
     title: '固定色板中的单值选择',
     document: 'docs/components/swatch-color-picker.md',
@@ -86,9 +124,11 @@ export const componentReferences: Record<string, ReferenceEntry> = {
     files: 'rawSlug' in item
       ? [
           `src/components/uiverse/${item.fileStem}.tsx`, 'src/components/uiverse/original-frame.tsx',
+            ...(item.id === 'uiverse-team-action-card' ? ['public/uiverse-originals/nazar-gavrylyk--terrible-gecko-91-light.preview.html', 'public/uiverse-originals/nazar-gavrylyk--terrible-gecko-91.light.css'] : []),
+            ...(item.id === 'uiverse-mini-audio-player' ? ['src/components/uiverse/mini-audio-player.css'] : []),
           `public/uiverse-originals/${item.rawSlug}.source.html`, `public/uiverse-originals/${item.rawSlug}.css`,
           `public/uiverse-originals/${item.rawSlug}.preview.html`,
-          ...(['Praashoo7--smooth-crab-52', 'chase2k25--mighty-dragonfly-75'].includes(item.rawSlug) ? [`public/uiverse-originals/${item.rawSlug}.override.css`] : []),
+          ...(['Praashoo7--smooth-crab-52', 'chase2k25--mighty-dragonfly-75', 'byllzz--great-wombat-13', 'junaid_3671--happy-lionfish-33'].includes(item.rawSlug) ? [`public/uiverse-originals/${item.rawSlug}.override.css`] : []),
           ...(['ayman-ashine--wicked-liger-39', 'Cybercom682--jolly-liger-24', 'hoshikawamaki--pretty-panther-5'].includes(item.rawSlug) ? [`public/uiverse-originals/${item.rawSlug}.adapter.css`] : []),
           'docs/components/uiverse-license.md', 'docs/UIVERSE-SOURCE-SNAPSHOT.json',
         ]

@@ -16,3 +16,8 @@ test('快捷日期含首尾且正确跨年、闰月和季度', () => {
   assert.equal(shiftMonth('2026-01', -12), '2025-01')
   assert.deepEqual(orderRange('2026-10-20', '2026-10-01'), { start: '2026-10-01', end: '2026-10-20' })
 })
+
+test('本年覆盖自然年，包含闰年及年末', () => {
+  assert.deepEqual(presetRange('本年', '2024-02-29'), { start: '2024-01-01', end: '2024-12-31' })
+  assert.deepEqual(presetRange('本年', '2026-12-31'), { start: '2026-01-01', end: '2026-12-31' })
+})
